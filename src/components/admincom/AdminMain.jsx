@@ -1,12 +1,14 @@
 import React from "react";
-import AdminHeader from "./AdminHeader";
+
 import { Outlet } from "react-router-dom";
+import Header from "../header/Header";
 
 const AdminMain = () => {
-  return (/* 관리자 메인 */
+  return (
+    /* 관리자 메인 */
     <div>
       <div>
-        <AdminHeader />
+        <Header />
       </div>
       <div>
         <Outlet />

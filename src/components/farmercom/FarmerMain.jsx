@@ -1,12 +1,16 @@
 import React from "react";
-import FarmerHeader from "./FarmerHeader";
+
 import { Outlet } from "react-router-dom";
+import Header from "../header/Header";
+import SideBar from "../side/SideBar";
 
 const FarmerMain = () => {
-  return (/* 농부 메인페이지 */
+  return (
+    /* 농부 메인페이지 */
     <div>
       <div>
-        <FarmerHeader />
+        <Header />
+        <SideBar />
       </div>
       <div>
         <Outlet />
