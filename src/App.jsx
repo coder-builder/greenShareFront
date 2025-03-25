@@ -5,6 +5,7 @@ import AdminMain from "./components/admincom/AdminMain";
 import FarmerPlantList from "./components/farmercom/FarmerPlantList";
 import FarmerPlantDetail from "./components/farmercom/FarmerPlantDetail";
 import AdminPlantInsert from "./components/admincom/AdminPlantInsert";
+import FarmerNoti from "./components/farmercom/FarmerNoti";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           {/* OutLet으로 이동할 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
           <Route path="plant" element={<FarmerPlantDetail />} />
-          <Route path="" />
+          <Route path="noti" element={<FarmerNoti />} />
         </Route>
 
         {/* -------- 구분선 -------- */}
