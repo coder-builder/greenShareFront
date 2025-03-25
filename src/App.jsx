@@ -15,8 +15,8 @@ function App() {
         {/* 농부가 접속하는 화면 */}
         <Route path="/" element={<FarmerMain />}>
           {/* OutLet으로 이동할 페이지 */}
-          <Route path="/plants" element={<FarmerPlantList />} />
-          <Route path="/plant" element={<FarmerPlantDetail />} />
+          <Route path="plants" element={<FarmerPlantList />} />
+          <Route path="plant" element={<FarmerPlantDetail />} />
           <Route path="" />
         </Route>
 
@@ -24,7 +24,7 @@ function App() {
         {/* 관리자가 접속하는 화면 */}
         <Route path="/admin" element={<AdminMain />}>
           {/* OutLet으로 이동할 페이지 */}
-          <Route path="/insertplant" element={<AdminPlantInsert />} />
+          <Route path="insertplant" element={<AdminPlantInsert />} />
           <Route />
           <Route />
         </Route>
