@@ -1,0 +1,46 @@
+
+
+
+.container{
+  display: flex;
+  margin: 0 auto;
+  
+}
+
+.container2{
+  display: flex;
+  gap: 100px;
+
+  margin: 0 auto;
+  text-align: center;
+}
+.main{
+  border: 1px solid black;
+}
+.main img{
+  width: 15%;
+  height: 15%;
+}
+.profile{
+  border: 1px solid black;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+.profile img{
+  width: 15%;
+  height: 15%;
+}
+.heart{
+  border: 2px solid black;
+  text-align: start;
+  justify-content: space-between;
+}
+
+
+.heart img{
+  width: 15%;
+  height: 15%;
+  gap: 20px;
+}
