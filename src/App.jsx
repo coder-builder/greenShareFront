@@ -6,15 +6,34 @@ import FarmerPlantList from "./components/farmercom/FarmerPlantList";
 import FarmerPlantDetail from "./components/farmercom/FarmerPlantDetail";
 import AdminPlantInsert from "./components/admincom/AdminPlantInsert";
 import FarmerNoti from "./components/farmercom/FarmerNoti";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [viewSide, setSide] = useState(false);
+  const handleOn = (e) => {
+    /* 마우스의 위치를 판단하는 함수 */
+    if (e.clientX < 200) {
+      setSide(true);
+    } else {
+      setSide(false);
+    }
+  };
+  useEffect(() => {
+    /* 마우스의 움직임을 감지하는 이벤트 리스너 */
+    window.addEventListener("mousemove", handleOn);
+
+    return () => {
+      window.removeEventListener("mousemove", handleOn);
+    };
+  }, []);
+
   return (
-    <>
+    <div className="appCon">
       {/* 홈화면 */}
       <Routes>
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
-        <Route path="/" element={<FarmerMain />}>
+        <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* OutLet으로 이동할 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
           <Route path="plant" element={<FarmerPlantDetail />} />
@@ -30,7 +49,7 @@ function App() {
           <Route />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 

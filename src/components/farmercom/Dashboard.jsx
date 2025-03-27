@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -22,10 +23,14 @@ ChartJS.register(
   Legend
 );
 
+import React from 'react'
+
+
 const Dashboard = () => {
   const [labels, setLabels] = useState([]);
   const [temperatureData, setTemperatureData] = useState([]);
   const [illuminanceData, setIlluminanceData] = useState([]);
+
 
   const fetchData = async () => {
     try {
@@ -103,6 +108,11 @@ const Dashboard = () => {
     
     
     
+
+  
+  return (
+    <div>Dashboard</div>
+
   )
 }
 
