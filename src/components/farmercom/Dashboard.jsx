@@ -1,22 +1,89 @@
-import React from 'react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Dashboard = () => {
+  const [labels, setLabels] = useState([]);
+  const [temperatureData, setTemperatureData] = useState([]);
+  const [illuminanceData, setIlluminanceData] = useState([]);
 
+  const fetchData = async () => {
+    try {
+      const res = await axios.get("/api/environment");
 
-  const data = [
-    { time: '00:00', temperature: 22, humidity: 60 },
-    { time: '01:00', temperature: 21, humidity: 62 },
-    { time: '02:00', temperature: 20, humidity: 64 },
-    { time: '03:00', temperature: 19, humidity: 66 },
-    { time: '04:00', temperature: 18, humidity: 68 },
-    { time: '05:00', temperature: 17, humidity: 70 },
-    { time: '06:00', temperature: 16, humidity: 72 },
-    { time: '07:00', temperature: 18, humidity: 70 },
-    { time: '08:00', temperature: 20, humidity: 65 },
-    { time: '09:00', temperature: 22, humidity: 60 },
-  ];
+      const labelList = res.data.map((item) =>
+        new Date(item.join_date).toLocaleTimeString()
+      );
+      const tempList = res.data.map((item) => item.temperature);
+      const illList = res.data.map((item) => item.illuminance);
+
+      setLabels(labelList);
+      setTemperatureData(tempList);
+      setIlluminanceData(illList);
+    } catch (err) {
+      console.error("데이터 가져오기 실패:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // 최초 로딩
+    const interval = setInterval(fetchData, 5000); // 5초마다 갱신
+    return () => clearInterval(interval);
+  }, []);
+
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "온도 (°C)",
+        data: temperatureData,
+        borderColor: "rgba(255,99,132,1)",
+        backgroundColor: "rgba(255,99,132,0.2)",
+        tension: 0.4
+      },
+      {
+        label: "조도 (lx)",
+        data: illuminanceData,
+        borderColor: "rgba(54,162,235,1)",
+        backgroundColor: "rgba(54,162,235,0.2)",
+        tension: 0.4
+      },
+      
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "📊 온도 / 조도 환경 대시보드"
+      },
+      legend: {
+        position: "top"
+      }
+    }
+  };
 
   return (
     
@@ -24,26 +91,13 @@ const Dashboard = () => {
     <>
       <div>dashboard</div>
         
-      <div className="bar-chart-container">
-        <h2>시간별 온도 및 습도</h2>
-  
-        {/* 반응형 막대 그래프 */}
-        <ResponsiveContainer width="40%" height={400}>
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="time" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="temperature" fill="#8884d8" name="온도 (°C)" />
-            <Bar dataKey="humidity" fill="#82ca9d" name="습도 (%)" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+      <div style={{ width: "90%", maxWidth: "800px", margin: "2rem auto" }}>
+      <Line data={data} options={options} />
+    </div>
   
         
         
-      <div/>
+      
     </>
 
     
