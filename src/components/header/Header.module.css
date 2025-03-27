@@ -1,5 +1,37 @@
 .mainCon {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "Pretendard-Light", sans-serif;
+}
+.cateCon {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+
+  align-items: center;
+}
+/* 컬러 css */
+.grey {
+  color: rgb(201, 201, 201);
 }
 .green {
   color: #2a6439;
+}
+/* 폰트 css */
+.fontBold {
+  font-family: "Pretendard-Black", sans-serif;
+}
+.font15rem {
+  font-size: 1.5rem;
+}
+/* icon css */
+.icon {
+  display: flex;
+}
+
+.cursor {
+  cursor: pointer;
 }
