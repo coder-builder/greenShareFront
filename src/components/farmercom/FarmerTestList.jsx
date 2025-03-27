@@ -12,7 +12,8 @@ const FarmerTestList = () => {
   // const [boardList,setBoardList] = useState([]);
 
 
-//게시판 전체 조회 변수
+// 게시판 전체 조회 변수
+
   // useEffect(()=>{
   //   axios.get('/api/boards')
   //   .then((res)=>{

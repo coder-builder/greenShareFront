@@ -14,6 +14,14 @@ const FarmerPlantList = () => {
   return (
     /* 식물 목록페이지 */
 
+    <>
+      
+      <div>FarmerPlantList</div>
+      <FarmerTestList/>
+      <Dashboard/>
+    </>
+
+
     <div className={styles.mainCon}>
       <div>나의 농작물</div>
 
@@ -52,6 +60,7 @@ const FarmerPlantList = () => {
         </div>
       </div>
     </div>
+
 
   );
 };
