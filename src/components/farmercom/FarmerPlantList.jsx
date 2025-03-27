@@ -1,13 +1,19 @@
+
 import React, { useState } from "react";
 import styles from "./List.module.css";
 import { icon } from "../../consts/icons";
 import { pic } from "../../consts/pic";
+import React from "react";
+import FarmerTestList from "./FarmerTestList";
+import Dashboard from "./Dashboard";
+
 
 const FarmerPlantList = () => {
   const [plantList, setList] = useState();
 
   return (
     /* 식물 목록페이지 */
+
     <div className={styles.mainCon}>
       <div>나의 농작물</div>
 
@@ -46,6 +52,7 @@ const FarmerPlantList = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
