@@ -1,11 +1,10 @@
 .mainCon {
-  display: flex;
-  border-right: 1px solid #e0e0e0;
-  flex-direction: column;
-  padding: 30px;
-  width: 20%;
-  height: 100vh;
+  padding-top: 50px;
+  padding-left: 30px;
 }
 .green {
   color: #2a6439;
+}
+.content {
+  
 }
