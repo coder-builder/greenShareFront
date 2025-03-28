@@ -7,6 +7,7 @@ import FarmerPlantDetail from "./components/farmercom/FarmerPlantDetail";
 import AdminPlantInsert from "./components/admincom/AdminPlantInsert";
 import FarmerNoti from "./components/farmercom/FarmerNoti";
 import { useEffect, useState } from "react";
+import Dashboard from "./components/farmercom/Dashboard";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -45,7 +46,7 @@ function App() {
         <Route path="/admin" element={<AdminMain />}>
           {/* OutLet으로 이동할 페이지 */}
           <Route path="insertplant" element={<AdminPlantInsert />} />
-          <Route />
+          <Route path="test" element={<Dashboard/>}/>
           <Route />
         </Route>
       </Routes>
