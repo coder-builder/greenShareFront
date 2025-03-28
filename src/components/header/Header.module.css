@@ -22,7 +22,7 @@
 }
 /* 폰트 css */
 .fontBold {
-  font-family: "Pretendard-Black", sans-serif;
+  font-weight: 900;
 }
 .font15rem {
   font-size: 1.5rem;
