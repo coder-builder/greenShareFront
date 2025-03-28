@@ -43,7 +43,7 @@ function App() {
 
         {/* -------- 구분선 -------- */}
         {/* 관리자가 접속하는 화면 */}
-        <Route path="/admin" element={<AdminMain />}>
+        <Route path="/admin" element={<AdminMain isVisible={viewSide} />}>
           {/* OutLet으로 이동할 페이지 */}
           <Route path="insertplant" element={<AdminPlantInsert />} />
           <Route path="test" element={<Dashboard/>}/>
