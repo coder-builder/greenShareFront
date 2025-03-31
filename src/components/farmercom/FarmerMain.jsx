@@ -14,9 +14,13 @@ const FarmerMain = ({ isVisible }) => {
       <div>
         <Outlet />
         <SideBar isVisible={isVisible} />
+        
       </div>
     </div>
   );
 };
 
 export default FarmerMain;
+
+
+
