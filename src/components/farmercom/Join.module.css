@@ -1,0 +1,88 @@
+
+.container {
+  border: 1px solid black;
+  width: 500px;
+  margin: 100px auto;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f896;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
+}
+
+.body p {
+  margin: 15px 0 5px;
+  font-weight: 500;
+  color: #555;
+}
+
+.body input[type="text"],
+
+.body input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.body input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.6); /* 체크박스 크기 확대 */
+  cursor: pointer;
+}
+
+.body label {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.body div {
+  margin-bottom: 16px;
+  text-align: left; 
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+.phone-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-inputs input {
+  width: 80px;       /* ✅ 너비 줄이기 */
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.joinButton {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #4CAF50;   /* 녹색 계열 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.joinButton:hover {
+  background-color: #45a049;
+}

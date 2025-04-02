@@ -8,6 +8,8 @@ import AdminPlantInsert from "./components/admincom/AdminPlantInsert";
 import FarmerNoti from "./components/farmercom/FarmerNoti";
 import { useEffect, useState } from "react";
 import Dashboard from "./components/farmercom/Dashboard";
+import Login from "./components/farmercom/Login";
+import Join from "./components/farmercom/Join";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -39,6 +41,10 @@ function App() {
           <Route path="plants" element={<FarmerPlantList />} />
           <Route path="plant" element={<FarmerPlantDetail />} />
           <Route path="noti" element={<FarmerNoti />} />
+          {/* 로그인 페이지 */}
+          <Route path="login" element={<Login />} />
+          {/* 회원가입 페이지 */}
+          <Route path="join" element={<Join />} />
         </Route>
 
         {/* -------- 구분선 -------- */}
