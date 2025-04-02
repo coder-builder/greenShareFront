@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./List.module.css";
 import { icon } from "../../consts/icons";
 import { pic } from "../../consts/pic";
 import FarmerTestList from "./FarmerTestList";
 import Dashboard from "./Dashboard";
+import { getCropStandardsList } from "../../apis/envApi";
+import { IMAGE_PATH } from "../../consts/upload";
 
 const FarmerPlantList = () => {
-  const [plantList, setList] = useState();
+  const [cropList, setCropList] = useState([]);
+
+  useEffect(() => {
+    getCropStandardsList()
+      .then((res) => setCropList(res.data))
+      .catch((e) => console.log(e));
+  }, []);
 
   return (
     /* 식물 목록페이지 */
@@ -15,38 +23,36 @@ const FarmerPlantList = () => {
       <div>나의 농작물</div>
 
       <div className={styles.subCon}>
-        <span>총 몇개</span>
-        <span>작물 등록 &gt; </span>
-      </div>
-      <div className={styles.subCon}>
-        {/* 리스트 맵 돌릴것 */}
-        <div className={styles.infoCon}>
-          <div className={styles.picCon}>
-            <img src={pic.potato} /> {/* 맵.이미지 */}
-          </div>
-          <div className={styles.textCon}>
-            <span
-              className={[
-                styles.green,
-                styles.fontBold,
-                styles.font15rem,
-                styles.letterSpace2,
-              ].join(" ")}
-            >
-              감자{/* 맵.작물이름 */}
-            </span>
-            <span className={styles.grey}>potato{/* 맵.영어이름 */}</span>
-            <span className={styles.textBox}>상태가 양호합니다.</span>
-            <div
-              className={[styles.flexJustSpace, styles.maginTop10].join(" ")}
-            >
-              <span>df</span>
-              <span className={[styles.grey, styles.font08rem].join(" ")}>
-                디비에서 받아온 날짜 시간 {/* 맵.디비에서 받아온 시간 */}
-              </span>
+        {/* */}
+        {cropList.map((crop, i) => {
+          return (
+            <div className={styles.infoCon} key={i}>
+              <div className={styles.picCon}>
+                <img src={`${IMAGE_PATH}/${crop.imgName}`} /> 
+              </div>
+              <div className={styles.textCon}>
+              <div
+                  className={[
+                    styles.green,
+                    styles.fontBold,
+                    styles.font15rem,
+                    styles.letterSpace2,
+                  ].join(" ")}
+                >
+                  <p>{crop.crop}</p>
+                </div>
+                <div className={styles.textBox}>
+                  <span>{`적정 온도: ${crop.tempMin}도 ~ ${crop.tempMax}도`}</span>
+                  <span>{`적정 습도: ${crop.humidMin}% ~ ${crop.humidMax}%`}</span>
+                  <span>{`적정 조도(LUX): ${crop.luxMin} ~ ${crop.luxMax}`}</span>
+                  <span>{`적정 조도(ADC변환): ${crop.adcMin} ~ ${crop.adcMax}`}</span>
+                  <span>{`적정 토양수분: ${crop.soilMin}% ~ ${crop.soilMax}%`}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
+        {/* */}
       </div>
     </div>
   );
