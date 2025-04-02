@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Header.module.css";
 import { icon } from "../../consts/icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const nav = useNavigate();
@@ -57,7 +57,7 @@ const Header = () => {
           </span>
           <span className={styles.cursor}>커뮤니티</span>
           <span className={styles.cursor}>공지사항</span>
-          <span className={styles.cursor}>로그인</span>
+          <Link to={'/login'}><span className={styles.cursor}>로그인</span></Link>
           <span
             onClick={toggleMenu}
             className={[styles.grey, styles.icon].join(" ")}
