@@ -9,6 +9,7 @@ const Join = () => {
     userEmail: "",
     userName: "",
     userPassword: "",
+    confirmPassword: "", 
     tel1: "",
     tel2: "",
     tel3: ""
@@ -41,6 +42,11 @@ const Join = () => {
   
     if (!passwordRegex.test(userPassword)) {
       alert("비밀번호는 영문+숫자 포함 6자리 이상이어야 합니다.");
+      return;
+    }
+    //비밀번호 중복 유효성 검사 
+    if (joinData.userPassword !== joinData.confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
       return;
     }
   
@@ -102,7 +108,10 @@ const Join = () => {
         <p>비밀번호 확인*</p>
         <input
           type="password"
+          name="confirmPassword" // 👈 추가
           placeholder="비밀번호를 한번 더 입력하세요"
+          value={joinData.confirmPassword}
+          onChange={Change}
         />
 
         <p>성별</p>
