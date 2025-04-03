@@ -1,5 +1,3 @@
-/*농작물 리스트*/
-
 /*리스트 영역*/
 .subCon {
   display: flex;
@@ -77,20 +75,35 @@
   color: #27b06e;
 }
 /* 폰트 */
-.fontBold {
-  font-family: "Pretendard-Bold", sans-serif;
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-style: normal;
 }
+.fontBold {
+  font-family: "Pretendard-Regular";
+  font-weight: bold;
+}
+
 .font15rem {
+  /* 폰트사이즈 1.4rem */
   font-size: 1.4rem;
 }
 .font08rem {
+  /* 폰트사이즈 0.8rem */
   font-size: 0.8rem;
 }
 
 .maginTop10 {
+  /* 위쪽 마진 10px */
   margin-top: 10px;
 }
 
 .letterSpace2 {
-  letter-spacing: 2px; /* 글자 사이의 간격을 2px로 설정 */
+}
+
+.cursor {
+  /* 마우스 호버시 커서로 나오게 */
+  cursor: pointer;
 }

@@ -80,7 +80,6 @@ const FarmerPlantDetail = () => {
           </tbody>
         </table>
       )}
-
     </>
   );
 };
