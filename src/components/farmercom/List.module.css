@@ -8,16 +8,19 @@
 
 /*작물 하나하나의 영역*/
 .infoCon {
-  padding: 15px;
   width: calc(48% - 1%); /* 2개씩 배치하려면 50% 너비에서 간격을 빼야 한다 */
   display: flex;
   align-items: center;
-  justify-content: space-around;
   height: 200px;
   margin-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-bottom: 30px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.182); /* X축 이동, Y축 이동, 흐림 정도, 색상 */
+}
+.infoCon:hover {
+  /* 마우스 호버시 그림자 짙게 */
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.315);
+  transition: 0.3s;
 }
 
 @media (max-width: 768px) {
@@ -29,9 +32,9 @@
 /* 이미지 영역 */
 .picCon {
   display: flex;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.182);
-  width: 150px; /* 원하는 가로 크기 */
-  height: 150px; /* 원하는 세로 크기 */
+  /* box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.182); */
+  width: 180px; /* 원하는 가로 크기 */
+  height: 180px; /* 원하는 세로 크기 */
   overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
@@ -40,33 +43,53 @@
 
 /* 이미지 */
 .picCon > img {
-  width: 150%;
+  width: 180%;
   object-fit: cover; /* 비율 유지하면서 컨테이너를 꽉 채우기 */
 }
 
-/* 내용 영역 */
+/* 오른쪽 영역 */
 .textCon {
-  padding: 30px;
   display: flex;
-  height: 125px; /* 원하는 세로 크기 */
+  height: 100px; /* 원하는 세로 크기 */
   flex-direction: column;
   justify-content: center;
-  width: 65%;
+}
+
+/* 오른쪽 제목영역 작물이름+작물영어이름 */
+.titleCon {
+  line-height: 0; /* 행간을 최소화 */
 }
 
 /* 실제 들어가는 내용 */
 .textBox {
-  background-color: #e7e7e7;
-  border-radius: 10px;
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px;
-  gap: 3px;
 }
 
+.textBoxSon {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #b1b1b1;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #b1b1b1;
+}
+
+.textBoxSon > span:first-child {
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+.textBoxSon > span:nth-child(2) {
+  background-color: #11c6ab;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 3px 15px;
+  margin-right: 3px;
+}
+.textBoxSon > span:nth-child(2):hover {
+  background-color: #27b06e;
+}
 /* 컬러 css */
 .grey {
   color: rgb(201, 201, 201);
@@ -74,11 +97,17 @@
 .green {
   color: #27b06e;
 }
+.colorSub {
+  color: #11c6ab;
+}
+
 /* 폰트 */
 
 .fontBold {
   font-family: "Pretendard-Black";
-
+}
+.fontLight {
+  font-family: "Pretendard-ExtraLight";
 }
 
 .font15rem {
@@ -87,7 +116,7 @@
 }
 .font08rem {
   /* 폰트사이즈 0.8rem */
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .maginTop10 {
@@ -96,7 +125,6 @@
 }
 
 .letterSpace2 {
-  letter-spacing: 2px;
 }
 
 .cursor {
