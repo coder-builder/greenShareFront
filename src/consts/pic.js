@@ -1,5 +1,4 @@
-import potatoImg from "../assets/picture/potato.jpg";
-
+import logoImg from "../assets/picture/greenshare.png";
 export const pic = {
-  potato: potatoImg,
+  logo: logoImg,
 };
