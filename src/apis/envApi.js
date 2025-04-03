@@ -12,3 +12,4 @@ export const getCropStandardsList = () =>{
   const response = axios.get("/api/plants")
   return response;
 }
+

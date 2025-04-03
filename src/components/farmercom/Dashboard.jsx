@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { color } from "./../../consts/color"; // 색상 상수 import
 
-const Dashboard = () => {
+const Dashboard = ({
+  autoRefresh = true,
+  refreshInterval = 5000,
+  customTitle = "환경 센서 요약",
+  showStandardInfo = false,
+}) => {
   // 최신 센서 데이터를 저장할 상태 변수 정의
   const [latest, setLatest] = useState({
     temperature: 0,
@@ -100,39 +105,7 @@ const Dashboard = () => {
 
 
         
-        <img src="/User.png" onClick={(e)=>{
-            ImageClick();
-        }}/>
-        {/* 이미지 클릭 시 적정 기준 정보 표시 */}
-          {showInfo ? (
-            <div
-              style={{
-                marginTop: "1.5rem",
-                padding: "1.5rem",
-                borderRadius: "1rem",
-                backgroundColor: "#f0f4f8",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                maxWidth: "400px",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-            >
-              <h3 style={{ fontSize: "1.2rem", fontWeight: "bold", marginBottom: "1rem" }}>
-                  적정 환경 기준
-              </h3>
-              <ul style={{ lineHeight: "1.8" }}>
-                <li>
-                  <strong style={{ color: color.main }}>🌡 온도:</strong> 20~25°C
-                </li>
-                <li>
-                  <strong style={{ color: color.sub }}>💡 조도:</strong> 300~700 lx
-                </li>
-                <li>
-                  <strong style={{ color: color.accent }}>💧 습도:</strong> 40~60%
-                </li>
-              </ul>
-            </div>
-          ) : null}
+        
 
     </div>
   );

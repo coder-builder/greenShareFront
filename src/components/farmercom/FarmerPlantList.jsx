@@ -6,6 +6,7 @@ import FarmerTestList from "./FarmerTestList";
 import Dashboard from "./Dashboard";
 import { getCropStandardsList } from "../../apis/envApi";
 import { IMAGE_PATH } from "../../consts/upload";
+import { Link } from "react-router-dom";
 
 const FarmerPlantList = () => {
   const [cropList, setCropList] = useState([]);
@@ -16,6 +17,7 @@ const FarmerPlantList = () => {
       .catch((e) => console.log(e));
   }, []);
 
+  console.log(cropList)
   return (
     /* 식물 목록페이지 */
 
@@ -39,7 +41,10 @@ const FarmerPlantList = () => {
                     styles.letterSpace2,
                   ].join(" ")}
                 >
-                  <p>{crop.crop}</p>
+
+                  <Link to={`/plant/${cropList[i].id}`}><p>{crop.crop}</p></Link>
+
+
                 </div>
                 <div className={styles.textBox}>
                   <span>{`적정 온도: ${crop.tempMin} ~ ${crop.tempMax}도`}</span>

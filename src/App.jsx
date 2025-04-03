@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,Router } from "react-router-dom";
 import FarmerMain from "./components/farmercom/FarmerMain";
 import AdminMain from "./components/admincom/AdminMain";
 import FarmerPlantList from "./components/farmercom/FarmerPlantList";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Dashboard from "./components/farmercom/Dashboard";
 import Login from "./components/farmercom/Login";
 import Join from "./components/farmercom/Join";
+
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -39,7 +40,8 @@ function App() {
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* OutLet으로 이동할 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
-          <Route path="plant" element={<FarmerPlantDetail />} />
+          {/* 상세페이지 */}
+          <Route path="/plant/:id" element={<FarmerPlantDetail />} />
           <Route path="noti" element={<FarmerNoti />} />
           {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
