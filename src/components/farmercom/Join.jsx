@@ -14,7 +14,7 @@ const Join = () => {
     tel3: ""
   });
 
-  // 입력값 변경 핸들러
+  // 입력값 변경 함수
   const Change = (e) => {
     const { name, value } = e.target;
     setJoinData((prev) => ({ ...prev, [name]: value }));
@@ -108,10 +108,10 @@ const Join = () => {
         <p>성별</p>
         <div>
           <label>
-            <input type="checkbox" name="gender" value="male" /> 남자
+            <input type="radio" name="gender" value="male" /> 남자
           </label>
           <label>
-            <input type="checkbox" name="gender" value="female" /> 여자
+            <input type="radio" name="gender" value="female" /> 여자
           </label>
         </div>
 
