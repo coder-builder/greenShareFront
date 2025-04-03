@@ -23,7 +23,6 @@
 }
 
 
-
 @media (max-width: 768px) {
   .box {
     width: 100%; /* 작은 화면에서 세로로 쌓이게 설정 */
