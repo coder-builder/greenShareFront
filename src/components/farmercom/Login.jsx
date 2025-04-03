@@ -2,6 +2,12 @@ import React from 'react'
 import styles from "./Login.module.css";
 import { Link } from 'react-router-dom';
 const Login = () => {
+
+  
+
+
+
+
   return (
     /* 로그인 페이지 */
     <>
@@ -14,7 +20,7 @@ const Login = () => {
 
       <div className={styles.input}>
         <input  type="text" placeholder='이메일을 입력하세요' />
-        <input type="text" placeholder='비밀번호를 입력하세요' />
+        <input type="password" placeholder='비밀번호를 입력하세요' />
       </div>
       
       <Link to={'/join'}>
