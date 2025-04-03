@@ -40,26 +40,50 @@ const FarmerPlantList = () => {
               <div className={styles.picCon}>
                 <img src={`${IMAGE_PATH}/${crop.imgName}`} />
               </div>
+
               <div className={styles.textCon}>
-                <div>
+                {/* 작물이름 시작 */}
+                <div className={styles.titleCon}>
                   <p
                     className={[
                       styles.green,
                       styles.fontBold,
                       styles.font15rem,
-                      styles.letterSpace2,
                       styles.cursor,
                     ].join(" ")}
                   >
                     {crop.crop}
                   </p>
+                  <p
+                    className={[
+                      styles.grey,
+                      styles.fontLight,
+                      styles.font08rem,
+                    ].join(" ")}
+                  >
+                    {crop.engName}
+                  </p>
                 </div>
+                {/* 작물 이름 끝 */}
+
+                {/* 적정 생육 환경 */}
                 <div className={styles.textBox}>
-                  <span>{`적정 온도: ${crop.tempMin} ~ ${crop.tempMax}도`}</span>
-                  <span>{`적정 습도: ${crop.humidMin} ~ ${crop.humidMax}%`}</span>
-                  <span>{`적정 조도(LUX): ${crop.luxMin} ~ ${crop.luxMax}`}</span>
-                  <span>{`적정 조도(ADC변환): ${crop.adcMin} ~ ${crop.adcMax}`}</span>
-                  <span>{`적정 토양수분: ${crop.soilMin} ~ ${crop.soilMax}%`}</span>
+                  <div className={styles.textBoxSon}>
+                    <span>온도</span>
+                    <span>{`${crop.tempMin} ~ ${crop.tempMax}℃`}</span>
+                  </div>
+                  <div className={styles.textBoxSon}>
+                    <span>온도</span>
+                    <span>{`${crop.humidMin} ~ ${crop.humidMax}%`}</span>
+                  </div>
+                  <div className={styles.textBoxSon}>
+                    <span>적정 조도</span>
+                    <span>{`${crop.adcMin} ~ ${crop.adcMax}`}</span>
+                  </div>
+                  <div className={styles.textBoxSon}>
+                    <span>적정 토양수분</span>
+                    <span>{`${crop.soilMin} ~ ${crop.soilMax}%`}</span>
+                  </div>
                 </div>
               </div>
             </div>
