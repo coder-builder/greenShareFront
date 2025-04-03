@@ -56,7 +56,8 @@ const Header = () => {
         <div className={styles.cateCon}>
           {/* 작물 리스트 */}
           <span
-            onClick={() => {/* 클릭시 작물리스트로 이동 */
+            onClick={() => {
+              /* 클릭시 작물리스트로 이동 */
               nav("/plants");
             }}
             className={styles.cursor}

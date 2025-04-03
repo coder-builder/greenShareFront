@@ -6,10 +6,11 @@ import FarmerTestList from "./FarmerTestList";
 import Dashboard from "./Dashboard";
 import { getCropStandardsList } from "../../apis/envApi";
 import { IMAGE_PATH } from "../../consts/upload";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FarmerPlantList = () => {
   const [cropList, setCropList] = useState([]);
+  const nav = useNavigate();
 
   useEffect(() => {
     getCropStandardsList()
@@ -17,7 +18,7 @@ const FarmerPlantList = () => {
       .catch((e) => console.log(e));
   }, []);
 
-  console.log(cropList)
+  console.log(cropList);
   return (
     /* 식물 목록페이지 */
 
@@ -28,23 +29,30 @@ const FarmerPlantList = () => {
         {/* */}
         {cropList.map((crop, i) => {
           return (
-            <div className={styles.infoCon} key={i}>
+            <div
+              onClick={() => {
+                /* 클릭시 작물 디테일로  */
+                nav(`/plant/${cropList[i].id}`);
+              }}
+              className={[styles.infoCon, styles.cursor].join(" ")}
+              key={i}
+            >
               <div className={styles.picCon}>
                 <img src={`${IMAGE_PATH}/${crop.imgName}`} />
               </div>
               <div className={styles.textCon}>
-                <div
-                  className={[
-                    styles.green,
-                    styles.fontBold,
-                    styles.font15rem,
-                    styles.letterSpace2,
-                  ].join(" ")}
-                >
-
-                  <Link to={`/plant/${cropList[i].id}`}><p>{crop.crop}</p></Link>
-
-
+                <div>
+                  <p
+                    className={[
+                      styles.green,
+                      styles.fontBold,
+                      styles.font15rem,
+                      styles.letterSpace2,
+                      styles.cursor,
+                    ].join(" ")}
+                  >
+                    {crop.crop}
+                  </p>
                 </div>
                 <div className={styles.textBox}>
                   <span>{`적정 온도: ${crop.tempMin} ~ ${crop.tempMax}도`}</span>

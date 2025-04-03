@@ -9,5 +9,6 @@
 .appCon {
   width: 70%;
   margin: auto;
-  font-family: "Pretendard-Light", sans-serif;
+  font-family: "Pretendard-Regular", sans-serif;
+  font-style: normal;
 }

@@ -53,5 +53,7 @@
   border-radius: 8px;
   background-color: rgb(103, 231, 125);
   color: white;
+  cursor: pointer;
+  border-style: none;
   font-size: 20px;
 }
