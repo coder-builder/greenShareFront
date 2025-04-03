@@ -3,6 +3,7 @@ import styles from "./FarmerTestList.module.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Dashboard from "./Dashboard";
 
 const FarmerTestList = () => {
   const list = testData; // 임시데이터
@@ -23,6 +24,7 @@ const FarmerTestList = () => {
   return (
     <>
       <div>목록 페이지</div>
+      
 
       <h1>오늘의 게시글</h1>
       <div className={styles.container}>
