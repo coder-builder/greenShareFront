@@ -75,15 +75,10 @@
   color: #27b06e;
 }
 /* 폰트 */
-@font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-style: normal;
-}
+
 .fontBold {
-  font-family: "Pretendard-Regular";
-  font-weight: bold;
+  font-family: "Pretendard-Black";
+
 }
 
 .font15rem {
@@ -101,6 +96,7 @@
 }
 
 .letterSpace2 {
+  letter-spacing: 2px;
 }
 
 .cursor {
