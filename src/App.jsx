@@ -38,9 +38,11 @@ function App() {
         {/* 농부가 접속하는 화면 */}
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* OutLet으로 이동할 페이지 */}
+          {/* 목록 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
           {/* 상세페이지 */}
           <Route path="/plant/:id" element={<FarmerPlantDetail />} />
+        
           <Route path="noti" element={<FarmerNoti />} />
           {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
