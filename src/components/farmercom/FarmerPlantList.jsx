@@ -28,10 +28,10 @@ const FarmerPlantList = () => {
           return (
             <div className={styles.infoCon} key={i}>
               <div className={styles.picCon}>
-                <img src={`${IMAGE_PATH}/${crop.imgName}`} /> 
+                <img src={`${IMAGE_PATH}/${crop.imgName}`} />
               </div>
               <div className={styles.textCon}>
-              <div
+                <div
                   className={[
                     styles.green,
                     styles.fontBold,
@@ -42,11 +42,11 @@ const FarmerPlantList = () => {
                   <p>{crop.crop}</p>
                 </div>
                 <div className={styles.textBox}>
-                  <span>{`적정 온도: ${crop.tempMin}도 ~ ${crop.tempMax}도`}</span>
-                  <span>{`적정 습도: ${crop.humidMin}% ~ ${crop.humidMax}%`}</span>
+                  <span>{`적정 온도: ${crop.tempMin} ~ ${crop.tempMax}도`}</span>
+                  <span>{`적정 습도: ${crop.humidMin} ~ ${crop.humidMax}%`}</span>
                   <span>{`적정 조도(LUX): ${crop.luxMin} ~ ${crop.luxMax}`}</span>
                   <span>{`적정 조도(ADC변환): ${crop.adcMin} ~ ${crop.adcMax}`}</span>
-                  <span>{`적정 토양수분: ${crop.soilMin}% ~ ${crop.soilMax}%`}</span>
+                  <span>{`적정 토양수분: ${crop.soilMin} ~ ${crop.soilMax}%`}</span>
                 </div>
               </div>
             </div>

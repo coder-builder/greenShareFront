@@ -22,7 +22,6 @@
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.182); /* X축 이동, Y축 이동, 흐림 정도, 색상 */
 }
 
-
 @media (max-width: 768px) {
   .box {
     width: 100%; /* 작은 화면에서 세로로 쌓이게 설정 */
@@ -32,13 +31,13 @@
 /* 이미지 영역 */
 .picCon {
   display: flex;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.182);
   width: 150px; /* 원하는 가로 크기 */
   height: 150px; /* 원하는 세로 크기 */
   overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
-  overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
-  border-radius: 50%;
+  border-radius: 50%; /* 모서리 둥글게 */
 }
 
 /* 이미지 */
@@ -75,7 +74,7 @@
   color: rgb(201, 201, 201);
 }
 .green {
-  color: #2a6439;
+  color: #27b06e;
 }
 /* 폰트 */
 .fontBold {
