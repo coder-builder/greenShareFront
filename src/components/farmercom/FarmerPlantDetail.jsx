@@ -78,6 +78,7 @@ const FarmerPlantDetail = () => {
 
       {/* 작물의 기본 정보를 보여줌 */}
       <div className={styles.description}>
+        <h3>Information</h3>
         <p>{cropDetail.description}</p>
       </div>
     </div>
