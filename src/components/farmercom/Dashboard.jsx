@@ -15,7 +15,7 @@ const Dashboard = ({
     illuminance: 0,
     humidity: 0,
     soilMoisture: 0,
-    time: "",
+    joinDate: "",
   });
 
   // API로부터 환경 데이터를 가져오는 함수
@@ -30,7 +30,7 @@ const Dashboard = ({
         illuminance: latestData.illuminance,
         humidity: latestData.humidity,
         soilMoisture: latestData.soilMoisture,
-        time: new Date(latestData.joinDate).toLocaleTimeString(),
+        joinDate: new Date(latestData.joinDate).toLocaleTimeString(),
       });
     } catch (err) {
       console.error("데이터 가져오기 실패:", err); // 에러 처리
@@ -54,7 +54,7 @@ const Dashboard = ({
     <>
       <div className={styles.dashboardContainer}>
         <h2 className={styles.dashboardTitle}>
-          환경 센서 요약 (업데이트: {latest.time})
+          환경 센서 요약 (최신 업데이트: {latest.joinDate})
         </h2>
 
         <div className={styles.cardWrapper}>
