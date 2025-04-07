@@ -77,7 +77,7 @@ const Dashboard = ({
             <h3 className={styles.cardTitle} style={{ color: color.sub }}>
               💡 조도:ADC
             </h3>
-            <p className={styles.cardValue}>{latest.illuminance} lux</p>
+            <p className={styles.cardValue}>{latest.illuminance} ADC</p>
           </div>
 
           {/* 습도 카드 */}
