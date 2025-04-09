@@ -60,31 +60,38 @@ const Header = () => {
               /* 클릭시 작물리스트로 이동 */
               nav("/plants");
             }}
-            className={styles.cursor}
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
           >
             작물 리스트
           </span>
 
-          <span className={styles.cursor}>커뮤니티</span>
-          <span className={styles.cursor}>공지사항</span>
+          <span
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
+          >
+            커뮤니티
+          </span>
+          <span
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
+          >
+            공지사항
+          </span>
 
           <span
             onClick={() => {
               nav("/login");
             }}
-            className={styles.cursor}
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
           >
             로그인
           </span>
-
-          <span
-            onClick={toggleMenu}
-            className={[styles.grey, styles.icon].join(" ")}
-          >
-            <img src={icon.accout} />
-          </span>
-
-          {/* 로그인 되었을 땐 이걸로 나오게 */}
         </div>
       </div>
     </>

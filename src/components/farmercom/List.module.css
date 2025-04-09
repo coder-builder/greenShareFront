@@ -77,6 +77,7 @@
 .textBoxSon > span:first-child {
   padding-left: 5px;
   margin-bottom: 5px;
+  color: #11c6ab;
 }
 .textBoxSon > span:nth-child(2) {
   background-color: #11c6ab;
