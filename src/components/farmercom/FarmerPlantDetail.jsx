@@ -17,6 +17,7 @@ const FarmerPlantDetail = () => {
       .get(`/api/plants/${id}`)
       .then((res) => {
         console.log(res.data);
+        console.log(id);
         setCropDetail(res.data);
       })
       .catch((error) => {
@@ -39,6 +40,7 @@ const FarmerPlantDetail = () => {
           autoRefresh={true}
           refreshInterval={10000}
           showStandardInfo={false}
+          id={id}
         />
       </div>
 
