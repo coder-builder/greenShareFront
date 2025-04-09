@@ -27,7 +27,7 @@ const FarmerPlantDetail = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}> 식물 상세 환경 정보</h1>
-     
+
       <div className={styles.Img_data}>
         <img
           src={`${IMAGE_PATH}/${cropDetail.imgName}`}
@@ -41,7 +41,7 @@ const FarmerPlantDetail = () => {
           showStandardInfo={false}
         />
       </div>
-      
+
       {/* 식물 적정 데이터  */}
       <table className={styles.detailTable}>
         <thead>
@@ -75,7 +75,6 @@ const FarmerPlantDetail = () => {
           </tr>
         </tbody>
       </table>
-
 
       {/* cropDetail이 존재할 때만 표시 */}
       {cropDetail && (
@@ -121,19 +120,12 @@ const FarmerPlantDetail = () => {
         </table>
       )}
 
-    
-    
-
-
-    </>
-
       {/* 작물의 기본 정보를 보여줌 */}
       <div className={styles.description}>
         <h3>Information</h3>
         <p>{cropDetail.description}</p>
       </div>
     </div>
-
   );
 };
 
