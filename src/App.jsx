@@ -8,6 +8,10 @@ import AdminPlantInsert from "./components/admincom/AdminPlantInsert";
 import FarmerNoti from "./components/farmercom/FarmerNoti";
 import { useEffect, useState } from "react";
 import Dashboard from "./components/farmercom/Dashboard";
+import FarmerNotiInsert from "./components/farmercom/FarmerNotiInsert";
+import FarmerNotiDetail from "./components/farmercom/FarmerNotiDetail";
+import UserQna from "./components/user/UserQna";
+import UserQnaDetail from "./components/user/UserQnaDetail";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -38,7 +42,12 @@ function App() {
           {/* OutLet으로 이동할 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
           <Route path="plant" element={<FarmerPlantDetail />} />
-          <Route path="noti" element={<FarmerNoti />} />
+          <Route path="noti" element={<FarmerNoti/>} />
+          <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
+          <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
+          <Route path='/qna' element={<UserQna/>}/>
+          <Route path='/qna/:num' element={<UserQnaDetail/>}/>
+
         </Route>
 
         {/* -------- 구분선 -------- */}
