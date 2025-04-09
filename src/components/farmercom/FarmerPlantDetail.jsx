@@ -76,12 +76,64 @@ const FarmerPlantDetail = () => {
         </tbody>
       </table>
 
+
+      {/* cropDetail이 존재할 때만 표시 */}
+      {cropDetail && (
+        <table className={styles.detailTable}>
+          <thead>
+            <tr>
+              <th>작물명</th>
+              <th>이미지</th>
+              <th>온도(°C)</th>
+              <th>습도(%)</th>
+              <th>조도(lux)</th>
+              <th>토양수분(%)</th>
+              <th>ADC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{cropDetail.crop}</td>
+              <td>
+                <img
+                  src={`${IMAGE_PATH}/${cropDetail.imgName}`}
+                  alt={cropDetail.crop}
+                  className={styles.cropImage}
+                />
+              </td>
+              <td>
+                {cropDetail.tempMin} ~ {cropDetail.tempMax}
+              </td>
+              <td>
+                {cropDetail.humidMin} ~ {cropDetail.humidMax}
+              </td>
+              <td>
+                {cropDetail.luxMin} ~ {cropDetail.luxMax}
+              </td>
+              <td>
+                {cropDetail.soilMin} ~ {cropDetail.soilMax}
+              </td>
+              <td>
+                {cropDetail.adcMin} ~ {cropDetail.adcMax}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+
+    
+    
+
+
+    </>
+
       {/* 작물의 기본 정보를 보여줌 */}
       <div className={styles.description}>
         <h3>Information</h3>
         <p>{cropDetail.description}</p>
       </div>
     </div>
+
   );
 };
 
