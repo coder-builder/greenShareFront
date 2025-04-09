@@ -8,6 +8,10 @@ import AdminPlantInsert from "./components/admincom/AdminPlantInsert";
 import FarmerNoti from "./components/farmercom/FarmerNoti";
 import { useEffect, useState } from "react";
 import Dashboard from "./components/farmercom/Dashboard";
+import FarmerNotiInsert from "./components/farmercom/FarmerNotiInsert";
+import FarmerNotiDetail from "./components/farmercom/FarmerNotiDetail";
+import UserQna from "./components/user/UserQna";
+import UserQnaDetail from "./components/user/UserQnaDetail";
 import Login from "./components/farmercom/Login";
 import Join from "./components/farmercom/Join";
 import TempDetail from "./components/farmercom/detailboard/TempDetail";
@@ -45,7 +49,6 @@ function App() {
           {/* OutLet으로 이동할 페이지 */}
           {/* 목록 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
-
           {/* 상세페이지 */}
           <Route path="/plant/:id" element={<FarmerPlantDetail />} />
 
@@ -62,10 +65,17 @@ function App() {
           <Route path="/plant/:id/soil" element={<SoilDetail />} />
 
           <Route path="noti" element={<FarmerNoti />} />
-          {/* 로그인 페이지 */}
+
+          <Route path="noti" element={<FarmerNoti/>} />
+          <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
+          <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
+          <Route path='/qna' element={<UserQna/>}/>
+          <Route path='/qna/:num' element={<UserQnaDetail/>}/>
+                  {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
           {/* 회원가입 페이지 */}
           <Route path="join" element={<Join />} />
+
         </Route>
 
         {/* -------- 구분선 -------- */}
