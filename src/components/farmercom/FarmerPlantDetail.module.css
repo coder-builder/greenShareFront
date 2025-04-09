@@ -1,13 +1,30 @@
 .container {
+  /* 메인 컨테이너 */
   max-width: 1500px;
   margin: 0 auto;
 }
 
+.subContainer {
+  /* 서브컨테이너 */
+  border: 1px solid black;
+  display: flex;
+}
+
+.imgCon {
+  /* 이미지 컨테이너 */
+  border: 1px solid black;
+  width: 40%;
+}
+.imgCon > img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  text-align: center;
   color: #27b06e;
 }
 
@@ -41,13 +58,6 @@
   background-color: #f1f8ff;
 }
 
-.cropImage {
-  width: 35%;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 /* 반응형 */
 @media (max-width: 768px) {
   .detailTable {
@@ -65,16 +75,10 @@ table td {
   border-bottom: 1px solid #ddd;
 }
 
-
 /* 작물의 사진과 데이터 표시 영역 */
-.Img_data{
-  display: flex;
-  width: 100%;
-}
-
 
 /* 작물의 상세한 설명 */
-.description{
+.description {
   font-size: 1.5rem;
   padding: 10px;
   border-radius: 10px;
