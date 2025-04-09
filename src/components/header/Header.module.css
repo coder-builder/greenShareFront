@@ -18,10 +18,11 @@
   font-size: 1.1rem;
 }
 .cateCon > span:hover {
-  border: 1px solid black;
+  color: #11c6ab;
+  border: 1px solid #11c6ab;
   padding: 5px 10px;
 
-  font-family: "Pretendard-Bold", sans-serif;
+  font-family: "Pretendard-Black", sans-serif;
   font-weight: 400;
   transition: 0.1s;
   border-radius: 20px;
@@ -30,9 +31,15 @@
 .grey {
   color: rgb(201, 201, 201);
 }
+
+.darkGrey {
+  color: rgb(100, 100, 100);
+}
+
 .green {
   color: #27b06e;
 }
+
 /* 폰트 css */
 .fontBold {
   font-weight: 900;
