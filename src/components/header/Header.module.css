@@ -4,22 +4,42 @@
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-family: "Pretendard-Light", sans-serif;
 }
 .cateCon {
   display: flex;
   width: 40%;
   justify-content: space-between;
-
   align-items: center;
+}
+.cateCon > span {
+  font-family: "Pretendard-Light", sans-serif;
+  display: flex;
+  padding: 5px 10px;
+  font-size: 1.1rem;
+}
+.cateCon > span:hover {
+  color: #11c6ab;
+  border: 1px solid #11c6ab;
+  padding: 5px 10px;
+
+  font-family: "Pretendard-Black", sans-serif;
+  font-weight: 400;
+  transition: 0.1s;
+  border-radius: 20px;
 }
 /* 컬러 css */
 .grey {
   color: rgb(201, 201, 201);
 }
-.green {
-  color: #2a6439;
+
+.darkGrey {
+  color: rgb(100, 100, 100);
 }
+
+.green {
+  color: #27b06e;
+}
+
 /* 폰트 css */
 .fontBold {
   font-weight: 900;

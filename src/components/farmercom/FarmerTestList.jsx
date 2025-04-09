@@ -24,7 +24,6 @@ const FarmerTestList = () => {
   return (
     <>
       <div>목록 페이지</div>
-      
 
       <h1>오늘의 게시글</h1>
       <div className={styles.container}>

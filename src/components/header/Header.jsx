@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Header.module.css";
 import { icon } from "../../consts/icons";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { pic } from "../../consts/pic";
 
 const Header = () => {
   const nav = useNavigate();
@@ -33,39 +34,64 @@ const Header = () => {
   return (
     <>
       <div className={styles.mainCon}>
+        {/* 메인 콘테이너 */}
+
         <span
           className={[
-            styles.green,
-            styles.fontBold,
-            styles.font15rem,
-            styles.cursor,
+            styles.green /* 컬러 그린 */,
+            styles.fontBold /* 폰트 굵게 */,
+            styles.font15rem /* 폰트 사이즈 1.5REM */,
+            styles.cursor /* 마우스 호버시 커서 */,
           ].join(" ")}
           onClick={() => {
+            /* 온클릭시 메인 페이지로 이동 */
             nav("/");
           }}
         >
-          GREENSHARE
+          <img src={pic.logo} />
+          {/* 로고 이미지 */}
         </span>
+
+        {/* 여기서부터 오른쪽 카테고리 컨테이너 */}
         <div className={styles.cateCon}>
+          {/* 작물 리스트 */}
           <span
             onClick={() => {
+              /* 클릭시 작물리스트로 이동 */
               nav("/plants");
             }}
-            className={styles.cursor}
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
           >
-            내작물
-          </span>
-          <span className={styles.cursor}>커뮤니티</span>
-          <span className={styles.cursor}>공지사항</span>
-          <span className={styles.cursor}>로그인</span>
-          <span
-            onClick={toggleMenu}
-            className={[styles.grey, styles.icon].join(" ")}
-          >
-            <img src={icon.accout} />
+            작물 리스트
           </span>
 
-          {/* 로그인 되었을 땐 이걸로 나오게 */}
+          <span
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
+          >
+            커뮤니티
+          </span>
+          <span
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
+          >
+            공지사항
+          </span>
+
+          <span
+            onClick={() => {
+              nav("/login");
+            }}
+            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+              " "
+            )}
+          >
+            로그인
+          </span>
         </div>
       </div>
     </>
