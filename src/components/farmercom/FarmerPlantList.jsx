@@ -6,18 +6,20 @@ import FarmerTestList from "./FarmerTestList";
 import Dashboard from "./Dashboard";
 import { getCropStandardsList } from "../../apis/envApi";
 import { IMAGE_PATH } from "../../consts/upload";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const FarmerPlantList = () => {
   const [cropList, setCropList] = useState([]);
+  const nav = useNavigate();
 
   useEffect(() => {
     getCropStandardsList()
       .then((res) => setCropList(res.data))
       .catch((e) => console.log(e));
   }, []);
-
   console.log(cropList)
+
+  console.log(cropList);
   return (
     /* 식물 목록페이지 */
 
@@ -28,30 +30,61 @@ const FarmerPlantList = () => {
         {/* */}
         {cropList.map((crop, i) => {
           return (
-            <div className={styles.infoCon} key={i}>
+            <div
+              onClick={() => {
+                /* 클릭시 작물 디테일로  */
+                nav(`/plant/${cropList[i].id}`);
+              }}
+              className={[styles.infoCon, styles.cursor].join(" ")}
+              key={i}
+            >
               <div className={styles.picCon}>
                 <img src={`${IMAGE_PATH}/${crop.imgName}`} />
               </div>
+
               <div className={styles.textCon}>
-                <div
-                  className={[
-                    styles.green,
-                    styles.fontBold,
-                    styles.font15rem,
-                    styles.letterSpace2,
-                  ].join(" ")}
-                >
-
-                  <Link to={`/plant/${cropList[i].id}`}><p>{crop.crop}</p></Link>
-
-
+                {/* 작물이름 시작 */}
+                <div className={styles.titleCon}>
+                  <p
+                    className={[
+                      styles.green,
+                      styles.fontBold,
+                      styles.font15rem,
+                      styles.cursor,
+                    ].join(" ")}
+                  >
+                    {crop.crop}
+                  </p>
+                  <p
+                    className={[
+                      styles.grey,
+                      styles.fontLight,
+                      styles.font08rem,
+                    ].join(" ")}
+                  >
+                    {crop.engName}
+                  </p>
                 </div>
+                {/* 작물 이름 끝 */}
+
+                {/* 적정 생육 환경 */}
                 <div className={styles.textBox}>
-                  <span>{`적정 온도: ${crop.tempMin} ~ ${crop.tempMax}도`}</span>
-                  <span>{`적정 습도: ${crop.humidMin} ~ ${crop.humidMax}%`}</span>
-                  <span>{`적정 조도(LUX): ${crop.luxMin} ~ ${crop.luxMax}`}</span>
-                  <span>{`적정 조도(ADC변환): ${crop.adcMin} ~ ${crop.adcMax}`}</span>
-                  <span>{`적정 토양수분: ${crop.soilMin} ~ ${crop.soilMax}%`}</span>
+                  <div className={styles.textBoxSon}>
+                    <span>온도</span>
+                    <span>{`${crop.tempMin} ~ ${crop.tempMax}℃`}</span>
+                  </div>
+                  <div className={styles.textBoxSon}>
+                    <span>온도</span>
+                    <span>{`${crop.humidMin} ~ ${crop.humidMax}%`}</span>
+                  </div>
+                  <div className={styles.textBoxSon}>
+                    <span>적정 조도</span>
+                    <span>{`${crop.adcMin} ~ ${crop.adcMax}`}</span>
+                  </div>
+                  <div className={styles.textBoxSon}>
+                    <span>적정 토양수분</span>
+                    <span>{`${crop.soilMin} ~ ${crop.soilMax}%`}</span>
+                  </div>
                 </div>
               </div>
             </div>

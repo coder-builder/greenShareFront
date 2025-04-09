@@ -14,8 +14,8 @@ const Dashboard = ({
     temperature: 0,
     illuminance: 0,
     humidity: 0,
-    soilMoisture : 0,
-    time: "",
+    soilMoisture: 0,
+    joinDate: "",
   });
 
   // API로부터 환경 데이터를 가져오는 함수
@@ -29,8 +29,8 @@ const Dashboard = ({
         temperature: latestData.temperature,
         illuminance: latestData.illuminance,
         humidity: latestData.humidity,
-        soilMoisture : latestData.soilMoisture,
-        time: new Date(latestData.joinDate).toLocaleTimeString(),
+        soilMoisture: latestData.soilMoisture,
+        joinDate: new Date(latestData.joinDate).toLocaleTimeString(),
       });
     } catch (err) {
       console.error("데이터 가져오기 실패:", err); // 에러 처리
@@ -40,9 +40,8 @@ const Dashboard = ({
   const [showInfo, setShowInfo] = useState(false); // 클릭시 데이터오픈
 
   const ImageClick = () => {
-    setShowInfo(!showInfo); // 클릭하면 
+    setShowInfo(!showInfo); // 클릭하면
   };
-
 
   // 컴포넌트가 처음 렌더링될 때 데이터 가져오기 + 5초마다 갱신
   useEffect(() => {
@@ -52,41 +51,65 @@ const Dashboard = ({
   }, []);
 
   return (
+    <>
+      <div className={styles.dashboardContainer}>
+        <h2 className={styles.dashboardTitle}>
+          환경 센서 요약 (최신 업데이트: {latest.joinDate})
+        </h2>
 
-    <div className={styles.dashboardContainer}>
-    <h2 className={styles.dashboardTitle}>
-      환경 센서 요약 (업데이트: {latest.time})
-    </h2>
-  
-    <div className={styles.cardWrapper}>
-      {/* 온도 카드 */}
-      <div className={styles.card} style={{ borderLeft: `6px solid ${color.main}` }}>
-        <h3 className={styles.cardTitle} style={{ color: color.main }}>🌡 온도</h3>
-        <p className={styles.cardValue}>{latest.temperature} °C</p>
-      </div>
-  
-      {/* 조도 카드 */}
-      <div className={styles.card} style={{ borderLeft: `6px solid ${color.sub}` }}>
-        <h3 className={styles.cardTitle} style={{ color: color.sub }}>💡 조도:ADC</h3>
-        <p className={styles.cardValue}>{latest.illuminance} lux</p>
-      </div>
-  
-      {/* 습도 카드 */}
-      <div className={styles.card} style={{ borderLeft: `6px solid ${color.accent || "#999"}` }}>
-        <h3 className={styles.cardTitle} style={{ color: color.accent || "#999" }}>💧 습도</h3>
-        <p className={styles.cardValue}>{latest.humidity} %</p>
-      </div>
-  
-      {/* 토양수분 카드 */}
-      <div className={styles.card} style={{ borderLeft: `6px solid ${color.accent || "#62d48f"}` }}>
-        <h3 className={styles.cardTitle} style={{ color: color.accent || "#62d48f" }}>🌱 토양수분</h3>
-        <p className={styles.cardValue}>{latest.soilMoisture} %</p>
-      </div>
-    </div>
-  </div>
-  
+        <div className={styles.cardWrapper}>
+          {/* 온도 카드 */}
+          <div
+            className={styles.card}
+            style={{ borderLeft: `6px solid ${color.main}` }}
+          >
+            <h3 className={styles.cardTitle} style={{ color: color.main }}>
+              🌡 온도
+            </h3>
+            <p className={styles.cardValue}>{latest.temperature} °C</p>
+          </div>
 
+          {/* 조도 카드 */}
+          <div
+            className={styles.card}
+            style={{ borderLeft: `6px solid ${color.sub}` }}
+          >
+            <h3 className={styles.cardTitle} style={{ color: color.sub }}>
+              💡 조도:ADC
+            </h3>
+            <p className={styles.cardValue}>{latest.illuminance} ADC</p>
+          </div>
 
+          {/* 습도 카드 */}
+          <div
+            className={styles.card}
+            style={{ borderLeft: `6px solid ${color.accent || "#999"}` }}
+          >
+            <h3
+              className={styles.cardTitle}
+              style={{ color: color.accent || "#999" }}
+            >
+              💧 습도
+            </h3>
+            <p className={styles.cardValue}>{latest.humidity} %</p>
+          </div>
+
+          {/* 토양수분 카드 */}
+          <div
+            className={styles.card}
+            style={{ borderLeft: `6px solid ${color.accent || "#62d48f"}` }}
+          >
+            <h3
+              className={styles.cardTitle}
+              style={{ color: color.accent || "#62d48f" }}
+            >
+              🌱 토양수분
+            </h3>
+            <p className={styles.cardValue}>{latest.soilMoisture} %</p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
