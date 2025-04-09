@@ -81,6 +81,10 @@ const FarmerPlantDetail = () => {
         </table>
       )}
 
+    
+    
+
+
     </>
   );
 };

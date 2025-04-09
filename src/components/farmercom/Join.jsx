@@ -86,6 +86,7 @@ const Join = () => {
           value={joinData.userEmail}
           onChange={Change}
         />
+        
 
         <p>닉네임*</p>
         <input
@@ -113,6 +114,7 @@ const Join = () => {
           value={joinData.confirmPassword}
           onChange={Change}
         />
+        
 
         <p>성별</p>
         <div>
