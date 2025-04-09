@@ -1,0 +1,76 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 120px;
+}
+
+.container h1{
+  margin-left: 600px;
+  margin-top: 100px;
+}
+ .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin:  3px; ;
+}
+
+.header {
+  padding: 15px;
+  border-top: 2px solid black;
+}
+
+.table td { 
+  padding: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.date{
+  text-align: center;
+}
+.insertDate{
+  font-size: 0.8rem;
+}
+
+.fuction{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.fuction select{
+  width: 7rem;
+  padding: 6px;
+}
+.fuction input{
+  width: 300px;
+  padding: 6px;
+}
+.firstBtn {
+  width: 7rem;
+  padding: 6px;
+  background-color: #FF6600;
+  border: none;
+  border-radius: 6px;
+  color: white;  
+} 
+
+.secondBtn {
+  border-radius: 6px;
+  margin-left: 20px;
+  padding: 10px;
+  width: 100px;
+  background-color: #00a651;
+  color: white;
+  color: white;
+  border: none;
+}
+.title{
+  text-align: center;
+}
+.mapTitle {
+  text-align: center;
+}
+.table tbody tr:not(:first-child):hover {
+  background-color: #f0f0f0;
+}
