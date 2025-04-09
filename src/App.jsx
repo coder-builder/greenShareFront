@@ -14,6 +14,10 @@ import UserQna from "./components/user/UserQna";
 import UserQnaDetail from "./components/user/UserQnaDetail";
 import Login from "./components/farmercom/Login";
 import Join from "./components/farmercom/Join";
+import TempDetail from "./components/farmercom/detailboard/TempDetail";
+import LuxDetail from "./components/farmercom/detailboard/LuxDetail";
+import HumidDetail from "./components/farmercom/detailboard/HumidDetail";
+import SoilDetail from "./components/farmercom/detailboard/SoilDetail";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -41,17 +45,33 @@ function App() {
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
+          {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
           {/* 목록 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
+          {/* 상세페이지 */}
+          <Route path="/plant/:id" element={<FarmerPlantDetail />} />
+
+          {/* 각 작물 상세 온도 */}
+          <Route path="/plant/:id/temp" element={<TempDetail />} />
+
+          {/* 각 작물 상세 조도 */}
+          <Route path="/plant/:id/lux" element={<LuxDetail />} />
+
+          {/* 각 작물 상세 습도 */}
+          <Route path="/plant/:id/humid" element={<HumidDetail />} />
+
+          {/* 각 작물 상세 토양 수분 */}
+          <Route path="/plant/:id/soil" element={<SoilDetail />} />
+
+          <Route path="noti" element={<FarmerNoti />} />
+
           <Route path="noti" element={<FarmerNoti/>} />
           <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
           <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
           <Route path='/qna' element={<UserQna/>}/>
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
-          {/* 상세페이지 */}
-          <Route path="/plant/:id" element={<FarmerPlantDetail />} />
-          {/* 로그인 페이지 */}
+                  {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
           {/* 회원가입 페이지 */}
           <Route path="join" element={<Join />} />

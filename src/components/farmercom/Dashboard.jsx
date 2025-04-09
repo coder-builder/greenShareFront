@@ -8,6 +8,7 @@ const Dashboard = ({
   refreshInterval = 5000,
   customTitle = "환경 센서 요약",
   showStandardInfo = false,
+  id,
 }) => {
   // 최신 센서 데이터를 저장할 상태 변수 정의
   const [latest, setLatest] = useState({
