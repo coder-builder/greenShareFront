@@ -1,4 +1,15 @@
-
 .container{
+  border: 1px solid black;
+}
+
+.imgDiv{
+  border: 1px solid black;
+}
+
+.contentDiv{
+  border: 1px solid black;
+}
+
+.likeDiv{
   border: 1px solid black;
 }
