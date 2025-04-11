@@ -18,6 +18,7 @@ import TempDetail from "./components/farmercom/detailboard/TempDetail";
 import LuxDetail from "./components/farmercom/detailboard/LuxDetail";
 import HumidDetail from "./components/farmercom/detailboard/HumidDetail";
 import SoilDetail from "./components/farmercom/detailboard/SoilDetail";
+import FarmerCommunity from "./components/farmercom/FarmerCommunity";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -67,15 +68,21 @@ function App() {
           <Route path="noti" element={<FarmerNoti />} />
 
           <Route path="noti" element={<FarmerNoti/>} />
+          
           <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
+         
           <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
+          
           <Route path='/qna' element={<UserQna/>}/>
+         
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
+          
                   {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
           {/* 회원가입 페이지 */}
           <Route path="join" element={<Join />} />
-
+          
+          <Route path="/community" element={<FarmerCommunity />} />
         </Route>
 
         {/* -------- 구분선 -------- */}

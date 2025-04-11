@@ -77,6 +77,9 @@ const Header = () => {
             className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
               " "
             )}
+            onClick={(e)=>{
+              nav('/community')
+            }}
           >
             커뮤니티
           </span>
