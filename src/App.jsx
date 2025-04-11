@@ -19,6 +19,7 @@ import LuxDetail from "./components/farmercom/detailboard/LuxDetail";
 import HumidDetail from "./components/farmercom/detailboard/HumidDetail";
 import SoilDetail from "./components/farmercom/detailboard/SoilDetail";
 import FarmerCommunity from "./components/farmercom/FarmerCommunity";
+import UserQnaInsert from "./components/user/UserQnaInsert";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -76,6 +77,8 @@ function App() {
           <Route path='/qna' element={<UserQna/>}/>
          
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
+          
+          <Route path='/userQnaInsert' element={<UserQnaInsert/>}/>
           
                   {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />

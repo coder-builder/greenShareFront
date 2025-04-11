@@ -24,7 +24,6 @@
 
 /* 작성자 날짜 조회수 박스 */
 .secondContainer {
-  padding: 15px;
   display: flex;
   justify-content: space-between;   
 }
@@ -57,7 +56,6 @@
   height: 100px;
   padding: 10px;
   border: 1px solid #e5e5e5;
-  resize: none;
   margin-bottom: 10px;
 }
 
