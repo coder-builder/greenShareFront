@@ -3,8 +3,14 @@ import styles from "./Header.module.css";
 import { icon } from "../../consts/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { pic } from "../../consts/pic";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutReducer } from "../../redux/authSlice";
+
 
 const Header = () => {
+  const token = useSelector(state => state.auth.token);
+  const user = useSelector(state => state.auth.user);
+  const dispatch = useDispatch()
   const nav = useNavigate();
   /* 열림 닫힘 상태 */
   const [isOpen, setIsOpen] = useState(false);
@@ -81,17 +87,36 @@ const Header = () => {
           >
             공지사항
           </span>
+          {
+            token === null 
+              ? 
+              (
+                <span
+                  onClick={() => nav("/login")}
+                  className={`${styles.cursor} ${styles.darkGrey}`}
+                >
+                  로그인
+                </span>
+              ) 
+              : 
+              (
+                <p className={`${styles.cursor} ${styles.darkGrey}`} onClick={() => dispatch(logoutReducer())}>
+                로그아웃  {user?.userName && `(${user.userName})`}
+                </p>
+              
+              )
+            }
 
-          <span
-            onClick={() => {
-              nav("/login");
-            }}
-            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
-              " "
-            )}
-          >
-            로그인
-          </span>
+
+
+            
+        
+            
+
+          
+
+
+
         </div>
       </div>
     </>
