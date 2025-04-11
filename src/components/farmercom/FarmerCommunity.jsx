@@ -7,8 +7,7 @@ const FarmerCommunity = () => {
       <h2>자유 게시판</h2>
 
       <div className={styles.container}>
-        <div>검색</div>
-        <div>게시글 목록</div>
+        <div>자유게시판 목록</div>
       </div>
     </>
   );
