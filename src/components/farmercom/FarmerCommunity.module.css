@@ -1,15 +1,50 @@
 .container{
-  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+  padding: 20px;
+  width: 100%;
 }
+
+.contentBox{
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
 
 .imgDiv{
-  border: 1px solid black;
+  border-bottom: 1px solid lightgray;
 }
 
-.contentDiv{
-  border: 1px solid black;
+.imgDiv > div:first-child{
+  margin-bottom: 10px;
 }
 
-.likeDiv{
-  border: 1px solid black;
+.imgDiv > p{
+  margin-bottom: 10px;
+  font-size: 0.9rem;
 }
+
+
+.titleDiv > p:first-child{
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.titleDiv > p:nth-child(2){
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+button{
+  width: 100px;
+  padding: 10px;
+  color: white;
+  background-color: brown;
+  border: none;
+}
+

@@ -1,0 +1,41 @@
+.container{
+  border: 1px solid black;
+  padding: 15px;
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+
+.titleDiv{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.likeDiv{
+  display: flex;
+  gap: 20px;
+}
+
+
+
+.contentDiv{
+  border: 1px solid saddlebrown;
+}
+
+
+
+.replyDiv{
+  border: 1px solid tomato;
+}

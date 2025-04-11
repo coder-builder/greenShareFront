@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { detailStory } from "../../apis/plantStory";
+import styles from "./FamerCommunityDetail.module.css";
+import dayjs from "dayjs";
 
 const FarmerCommunityDetail = () => {
+  const { boardNum } = useParams();
+
+  const [storyDetail, setStoryDetail] = useState({});
+
+  useEffect(() => {
+    detailStory(boardNum)
+      .then((res) => setStoryDetail(res.data))
+      .catch((error) => console.log(error));
+  }, [boardNum]);
+
   return (
     <>
-      <p>title</p>
-      <p>작성자=USER_ROLE</p>
-      <p>date / readCnt</p>
-      <p>좋아요 갯수와 이모 / 댓글 갯수와 이모</p>
-      <p>사진</p>
-      <p>내용</p>
-      <p>댓글 목록</p>
-      <p>댓글 등록</p>
+      <div className={styles.container}>
+       
+        <div className={styles.header}>
+          <p>{storyDetail.userEmail}</p>
+          <p>팔로우</p>
+        </div>
+
+        <div className={styles.titleDiv}>
+          <h2>{storyDetail.title}</h2>
+          <div className={styles.likeDiv}>
+            <p>{dayjs(storyDetail.regDate).format('YYYY-MM-DD')}</p>
+            <p>조회수: {storyDetail.readCnt}</p>
+            <p>좋아요 누르기</p>
+          </div>
+        </div>
+        
+        <div className={styles.contentDiv}>
+          <p>{storyDetail.content}</p>
+          <p>이미지</p>
+        </div>
+
+        <div className={styles.replyDiv}>댓글영역</div>
+      </div>
     </>
   );
 };
