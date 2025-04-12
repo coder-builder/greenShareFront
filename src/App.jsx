@@ -21,6 +21,7 @@ import SoilDetail from "./components/farmercom/detailboard/SoilDetail";
 import FarmerCommunity from "./components/farmercom/FarmerCommunity";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
+import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -89,6 +90,7 @@ function App() {
           <Route path="/community" element={<FarmerCommunity />} />
           <Route path="/reg-community" element={<FarmerCommunityInsert />}/>
           <Route path="/detail-community/:boardNum" element={<FarmerCommunityDetail />}/>
+          <Route path="/update-community/:boardNum" element={<FarmerCommunityUpdate />}/>
         </Route>
 
         {/* -------- 구분선 -------- */}

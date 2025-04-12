@@ -20,10 +20,16 @@ const FarmerCommunityInsert = () => {
   };
 
   const sendInsert = (insertStory) => {
+    if(insertStory.title === "" || insertStory.content === ""){
+      alert('제목과 내용은 필수 작성입니다')
+      return;
+    }
     insertStories(insertStory)
-      .then(res => alert("등록되었습니다"))
+      .then((res) => {alert("등록되었습니다")
+        nav('/community')
+      })
       .catch((error) => {console.log(error)
-        alert('등록 실패!')
+        alert('이메일은 필수 작성이면서 본인 이메일이여야 합니다')
       });
   };
 

@@ -21,7 +21,13 @@ const FarmerCommunity = () => {
       <div className={styles.container}>
         {getPlantStory.map((story, i) => {
           return (
-            <div className={styles.contentBox} key={i} onClick={()=>{nav(`/detail-community/${story.boardNum}`)}}>
+            <div
+              className={styles.contentBox}
+              key={i}
+              onClick={() => {
+                nav(`/detail-community/${story.boardNum}`);
+              }}
+            >
               <div className={styles.imgDiv}>
                 <div>이미지</div>
                 <p>{story.userEmail}</p>
@@ -33,7 +39,8 @@ const FarmerCommunity = () => {
             </div>
           );
         })}
-
+      </div>
+      <div>
         <button
           type="button"
           onClick={(e) => {
