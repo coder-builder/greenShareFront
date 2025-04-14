@@ -24,6 +24,7 @@
   border-radius: 6px;
   font-size: 16px;
   font-weight: bold;
+  resize: none
 }
 
 .insert {
@@ -38,11 +39,8 @@
   border: none;
   border-radius: 8px;
 }
-
 .insert:hover{
-  background-color:#11C6AB;
   cursor: pointer;
+  background-color: #11C6AB;
   transition: all 0.5s
-
 }
-
