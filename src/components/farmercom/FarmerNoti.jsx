@@ -52,6 +52,35 @@ const FarmerNoti = () => {
     <>
       <div className={styles.container}>
         <h1>공지사항</h1>
+        <div className={styles.fuction}>
+          <select
+            name="selectWord"
+            value={search.selectWord}
+            onChange={(e) => {
+              changeSearch(e);
+            }}
+          >
+            <option value="title">제목</option>
+            <option value="writer">작성자</option>
+          </select>
+          <input
+            type="text"
+            name="searchLog"
+            value={search.searchLog}
+            onChange={(e) => {
+              changeSearch(e);
+            }}
+          />
+          <button
+            type="button"
+            className={styles.firstBtn}
+            onClick={(e) => {
+              searchList();
+            }}
+          >
+            검색
+          </button>
+        </div>
         <table className={styles.table}>
           <colgroup>
             <col width={"10"} />
@@ -70,14 +99,14 @@ const FarmerNoti = () => {
             </tr>
             {list.map((list, i) => {
               return (
-                <tr key={i} onClick={(e) => {
-                  nav(`/noti/${list.boardNum}`);
-                }}>
+                <tr
+                  key={i}
+                  onClick={(e) => {
+                    nav(`/noti/${list.boardNum}`);
+                  }}
+                >
                   <td>{list.boardNum}</td>
-                  <td
-                    className={styles.mapTitle}>
-                    {list.title}
-                  </td>
+                  <td className={styles.mapTitle}>{list.title}</td>
                   <td>{list.writer}</td>
                   <td>{list.views}</td>
                   <td className={styles.insertDate}>
@@ -88,42 +117,15 @@ const FarmerNoti = () => {
             })}
           </tbody>
         </table>
-          <div className={styles.fuction}>
-            <select
-              name="selectWord"
-              value={search.selectWord}
-              onChange={(e) => {
-                changeSearch(e);
-              }}
-            >
-              <option value="title">제목</option>
-              <option value="writer">작성자</option>
-            </select>
-            <input
-              type="text"
-              name="searchLog"
-              value={search.searchLog}
-              onChange={(e) => {
-                changeSearch(e);
-              }}
-            />
-            <button
-              type="button"
-              className={styles.firstBtn}
-              onClick={(e) => {
-                searchList();
-              }}
-            >
-              검색
-            </button>
-            <button
-              type="button"
-              className={styles.secondBtn}
-              onClick={(e) => nav("/FarmerNotiInsert")}
-            >
-              등록하기
-            </button>
-          </div>
+       <div className={styles.secondBtn}>
+          <button
+            type="button"
+            className={styles.insertBtn}
+            onClick={(e) => nav("/FarmerNotiInsert")}
+          >
+            등록하기
+          </button>
+       </div>
       </div>
     </>
   );

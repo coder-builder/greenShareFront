@@ -1,0 +1,99 @@
+.header{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid lightgray;
+}
+
+.titleDiv{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.likeDiv{
+  display: flex;
+  gap: 20px;
+}
+
+.contentDiv{
+  border: 1px solid saddlebrown;
+}
+
+/* 댓글 영역  */
+
+.replyDiv{
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+
+/* 각 댓글의 영역 */
+.reply_content{
+  margin-top: 10px;
+  border-top: 1px solid lightgray;
+  padding: 15px;
+}
+
+/* 각 댓글의 작성자와 등록기간, 삭제버튼 */
+.reply_content > div:first-child{
+  display: flex;
+  font-size: 0.8rem;
+  color: lightgray;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 댓글 삭제 버튼 */
+.reply_content > div:first-child > button{
+  width: 80px;
+  padding: 2px;
+}
+
+/* 댓글 등록 구역 */
+.reply_reg{
+  background-color: lightgray;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.reply_reg > input{
+  width: 30%;
+}
+
+.reply_reg_detail{
+  width: 100%;
+  display: flex;
+  height: 85px;
+}
+
+.reply_reg_detail > textarea{
+  flex: 7;
+}
+
+.reply_reg_detail > button{
+  flex: 1;
+}
+
+
+/* 하단의 버튼영역 */
+
+.bottom_btn{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.update_delete_btn{
+  display: flex;
+  gap: 10px;
+
+}
