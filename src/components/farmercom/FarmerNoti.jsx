@@ -84,10 +84,10 @@ const FarmerNoti = () => {
         <table className={styles.table}>
           <colgroup>
             <col width={"10"} />
-            <col width={"60%"} />
-            <col width={"10%"} />
-            <col width={"10%"} />
-            <col width={"10%"} />
+            <col width={"50%"} />
+            <col width={"20%"} />
+            <col width={"8%"} />
+            <col width={"12%"} />
           </colgroup>
           <tbody>
             <tr className={styles.header}>
@@ -101,6 +101,7 @@ const FarmerNoti = () => {
               return (
                 <tr
                   key={i}
+                  className={styles.list}
                   onClick={(e) => {
                     nav(`/noti/${list.boardNum}`);
                   }}
@@ -117,7 +118,7 @@ const FarmerNoti = () => {
             })}
           </tbody>
         </table>
-       <div className={styles.secondBtn}>
+        <div className={styles.secondBtn}>
           <button
             type="button"
             className={styles.insertBtn}
@@ -125,7 +126,7 @@ const FarmerNoti = () => {
           >
             등록하기
           </button>
-       </div>
+        </div>
       </div>
     </>
   );
