@@ -5,7 +5,11 @@ import styles from "./FarmerNotiInsert.module.css";
 
 const FarmerNotiInsert = () => {
   const nav = useNavigate();
-  const[insertNoti,setInsertNoti] = useState({});
+  const[insertNoti,setInsertNoti] = useState({
+    writer: '',
+    title: '',
+    content: ''
+  });
 
   const insertChange = (e) =>{
     setInsertNoti({

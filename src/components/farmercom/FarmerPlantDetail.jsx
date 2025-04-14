@@ -29,15 +29,21 @@ const FarmerPlantDetail = () => {
     <div className={styles.container}>
       <div className={styles.subContainer}>
         <div className={styles.imgCon}>
-          <p className={styles.title}>{cropDetail.crop} 환경 정보</p>
-          <img
-            src={`${IMAGE_PATH}/${cropDetail.imgName}`}
-            alt={cropDetail.crop}
-          />
+          <div className={styles.textCon}>
+            <p className={styles.title}>{cropDetail.crop} 환경 정보</p>
+          </div>
+
+          <div className={styles.imgCon1}>
+            <img
+              src={`${IMAGE_PATH}/${cropDetail.imgName}`}
+              alt={cropDetail.crop}
+            />
+          </div>
         </div>
         <Dashboard
           customTitle="농장 환경 센서 데이터"
           autoRefresh={true}
+          cropDetail={cropDetail}
           refreshInterval={10000}
           showStandardInfo={false}
           id={id}
@@ -52,7 +58,7 @@ const FarmerPlantDetail = () => {
             <th>습도(%)</th>
             <th>조도(lux)</th>
             <th>토양수분(%)</th>
-            <th>ADC</th>
+            <th>조도ADC</th>
           </tr>
         </thead>
         <tbody>

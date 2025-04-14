@@ -28,6 +28,10 @@
   justify-content: space-between;   
 }
 
+/* 수정할때 내용박스 */
+table textarea{
+  resize: none
+}
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */
   
@@ -56,6 +60,7 @@
   height: 100px;
   padding: 10px;
   border: 1px solid #e5e5e5;
+  resize: none;
   margin-bottom: 10px;
 }
 
@@ -75,45 +80,33 @@
 
 /* 댓글 삭제버튼 컨테이너(댓글 날짜도 같이 묶여있음) */
 .changeButton{
-  background-color: #00FF9C;
+  background-color: #27B06E;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 12px;  
 }
 
+.changeButton:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
+
 .replyDelteBtn{
-  background-color: red;
+  background-color: #11C6AB;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 12px;
 }
 
-.btnContainer{
-  display: flex;
-  justify-content: end;
-}
-.deleteBtnContainer{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+.replyDelteBtn:hover{
+  background-color: #27B06E;
+  cursor: pointer;
+  transition: all 0.5s
 }
 
-.deleteBtn{
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 12px;
-}
 
-.button {
-  background-color: skyblue;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 12px;
-}
 
 
