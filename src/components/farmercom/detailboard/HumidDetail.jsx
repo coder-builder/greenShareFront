@@ -39,10 +39,12 @@ const HumidDetail = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await axios.get(`/api/environment?interval=${interval}`);
+        const res = await axios.get(
+          `/api/environment/humid?interval=${interval}`
+        );
         const result = res.data.map((item) => ({
           time: new Date(item.joinDate).toLocaleTimeString(),
-          습도: item.temperature,
+          습도: item.humidity,
         }));
         setData(result); /* time과 습도를 받아오는 것*/
 
@@ -89,7 +91,12 @@ const HumidDetail = () => {
           </>
         )}
         <div className={styles.buttonBox}>
-          <button onClick={() => nav(-1)} className={styles.backButton}>
+          <button
+            onClick={() => {
+              nav(`/plant/${id}`);
+            }}
+            className={styles.backButton}
+          >
             ← 뒤로가기
           </button>
         </div>

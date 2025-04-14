@@ -43,8 +43,8 @@ const Dashboard = ({
   // API로부터 환경 데이터를 가져오는 함수
   const fetchData = async () => {
     try {
-      const res = await axios.get("/api/environment"); // API 호출
-      const latestData = res.data[res.data.length - 1]; // 가장 최근 데이터 사용
+      const res = await axios.get("/api/environment/latest"); // API 호출
+      const latestData = res.data; // 가장 최근 데이터 사용
 
       // 최신 값으로 상태 업데이트
       setLatest({
