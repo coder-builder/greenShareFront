@@ -38,11 +38,8 @@
   border: none;
   border-radius: 8px;
 }
-
 .insert:hover{
-  background-color:#11C6AB;
   cursor: pointer;
+  background-color: #11C6AB;
   transition: all 0.5s
-
 }
-

@@ -24,7 +24,6 @@
 
 /* 작성자 날짜 조회수 박스 */
 .secondContainer {
-  padding: 15px;
   display: flex;
   justify-content: space-between;   
 }
@@ -77,21 +76,32 @@
 
 /* 댓글 삭제버튼 컨테이너(댓글 날짜도 같이 묶여있음) */
 .changeButton{
-  background-color: #00FF9C;
+  background-color: #27B06E;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 12px;  
 }
 
+.changeButton:hover{
+  background-color:#11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
+
 .replyDelteBtn{
-  background-color: red;
+  background-color: #11C6AB;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 12px;
 }
 
+.replyDelteBtn:hover{
+  background-color: #27B06E;
+  cursor: pointer;
+  transition: all 0.5s
+}
 .btnContainer{
   display: flex;
   justify-content: end;
@@ -103,19 +113,32 @@
 }
 
 .deleteBtn{
-  background-color: red;
+  background-color: #27B06E;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 12px;
+}
+
+.deleteBtn:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
 }
 
 .button {
-  background-color: skyblue;
+  background-color: #27B06E;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 12px;
 }
 
+.button:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
+
+  
 
