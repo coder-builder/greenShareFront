@@ -40,6 +40,7 @@ function App() {
   }, []);
 
   return (
+    
     <div className="appCon">
       {/* 홈화면 */}
       <Routes>
@@ -53,7 +54,7 @@ function App() {
           {/* 상세페이지 */}
           <Route path="/plant/:id" element={<FarmerPlantDetail />} />
 
-          {/* 각 작물 상세 온도 */}
+          각 작물 상세 온도
           <Route path="/plant/:id/temp" element={<TempDetail />} />
 
           {/* 각 작물 상세 조도 */}
@@ -70,11 +71,11 @@ function App() {
           <Route path="noti" element={<FarmerNoti/>} />
           
           <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
-         
+        
           <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
           
           <Route path='/qna' element={<UserQna/>}/>
-         
+        
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
           
                   {/* 로그인 페이지 */}
