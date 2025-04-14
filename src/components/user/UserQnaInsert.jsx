@@ -5,6 +5,7 @@ import styles from './UserQnaInsert.module.css';
 
 const UserQnaInsert = () => {
   const nav = useNavigate();
+
   const[insertQna,setInsertQna] = useState({
     writer: '',
     title: '',
@@ -55,8 +56,8 @@ const UserQnaInsert = () => {
                  </td>
                  <td>
                    <textarea rows={7} cols={23} 
-                   name='content' 
-                   value={insertQna.content} onChange={e=>{insertChange(e)}}/>
+                    name='content' 
+                    value={insertQna.content} onChange={e=>{insertChange(e)}}/>
                  </td>
                </tr>
              </tbody>
