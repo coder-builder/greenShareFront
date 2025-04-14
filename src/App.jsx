@@ -24,6 +24,7 @@ import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert"
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
 
+
 function App() {
   const [viewSide, setSide] = useState(false);
   const handleOn = (e) => {
@@ -80,6 +81,8 @@ function App() {
           <Route path='/qna' element={<UserQna/>}/>
          
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
+
+          <Route path='/qnaInsert' element={<UserQnaInsert/>}/>
           
 
           <Route path='/userQnaInsert' element={<UserQnaInsert/>}/>
