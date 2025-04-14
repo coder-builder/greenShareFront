@@ -39,7 +39,9 @@ const SoilDetail = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const res = await axios.get(`/api/environment?interval=${interval}`);
+        const res = await axios.get(
+          `/api/environment/soil?interval=${interval}`
+        );
         const result = res.data.map((item) => ({
           time: new Date(item.joinDate).toLocaleTimeString(),
           ["토양 수분"]: item.soilMoisture,
@@ -90,7 +92,10 @@ const SoilDetail = () => {
           </>
         )}
         <div className={styles.buttonBox}>
-          <button onClick={() => nav(-1)} className={styles.backButton}>
+          <button
+            onClick={() => nav(`/plant/${id}`)}
+            className={styles.backButton}
+          >
             ← 뒤로가기
           </button>
         </div>
