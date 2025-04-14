@@ -41,7 +41,7 @@ const UserQnaDetail = () => {
   const update = () => {
     axios
     .put(`/api/qna/${qnaNum.num}`, qnaData)
-      .then(() => {
+      .then((res) => {
         alert("수정 완료하였습니다.");
         setIsEdit(false);
       })

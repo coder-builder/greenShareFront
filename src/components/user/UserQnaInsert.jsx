@@ -5,25 +5,25 @@ import styles from "./UserQnaInsert.module.css";
 
 const UserQnaInsert = () => {
   const nav = useNavigate();
-  const[insertNoti,setInsertNoti] = useState({
+  const[insertqna,setInsertqna] = useState({
     writer:'',
     title:'',
     content:''
   });
 
   const insertChange = (e) =>{
-    setInsertNoti({
-      ...insertNoti,
+    setInsertqna({
+      ...insertqna,
       [e.target.name] : e.target.value
     });
   };
 
   //게시글 등록기능
-  const insertFarmers = () =>{
-    axios.post('api/farmers',insertNoti)
+  const insertQna = () =>{
+    axios.post('api/qna',insertqna)
           .then((res)=>{
             alert('등록성공!')
-            nav('/noti')
+            nav('/qna')
           })
           .catch((error)=>{
             console.log(error)
@@ -39,7 +39,7 @@ const UserQnaInsert = () => {
                     작성자
                   </td>
                   <td>
-                    <input type="text"  name='writer' value={insertNoti.writer} onChange={e=>{insertChange(e)}} />
+                    <input type="text"  name='writer' value={insertqna.writer} onChange={e=>{insertChange(e)}} />
                   </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@ const UserQnaInsert = () => {
                     제목
                   </td>
                   <td>
-                    <input type='text' name='title' value={insertNoti.title} onChange={e=>{insertChange(e)}}/>
+                    <input type='text' name='title' value={insertqna.title} onChange={e=>{insertChange(e)}}/>
                   </td>
                 </tr>
                 <tr>
@@ -58,12 +58,12 @@ const UserQnaInsert = () => {
                     <textarea rows={7} cols={23} 
                     type='text' 
                     name='content' 
-                    value={insertNoti.content} onChange={e=>{insertChange(e)}}/>
+                    value={insertqna.content} onChange={e=>{insertChange(e)}}/>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <button type="button" className={styles.insert} onClick={insertFarmers}>등록하기</button>
+            <button type="button" className={styles.insert} onClick={insertQna}>등록하기</button>
           </div>
         </>
   )
