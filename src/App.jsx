@@ -19,6 +19,7 @@ import LuxDetail from "./components/farmercom/detailboard/LuxDetail";
 import HumidDetail from "./components/farmercom/detailboard/HumidDetail";
 import SoilDetail from "./components/farmercom/detailboard/SoilDetail";
 import FarmerCommunity from "./components/farmercom/FarmerCommunity";
+import UserQnaInsert from "./components/user/UserQnaInsert";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
@@ -81,7 +82,13 @@ function App() {
         
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
           
+
+          <Route path='/userQnaInsert' element={<UserQnaInsert/>}/>
+          
+
+
           {/* 로그인 페이지 */}
+
           <Route path="login" element={<Login />} />
           
           {/* 회원가입 페이지 */}
