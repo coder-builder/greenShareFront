@@ -41,7 +41,7 @@ const FarmerNotiDetail = () => {
   const update = () => {
     axios
       .put(`/api/farmers/${data.boardNum}`, data)
-      .then(() => {
+      .then((res) => {
         alert("수정 완료하였습니다.");
         setIsEdit(false);
       })
@@ -53,8 +53,13 @@ const FarmerNotiDetail = () => {
 
   // 게시글 삭제 기능
   const deleteBoard = () => {
-    const result = window.confirm("삭제하겠습니까?");
-    if (!result) return;
+    const result = confirm("삭제하겠습니까?");
+    if (!result){
+       return;
+      }
+
+    axios
+      .delete(`/api/farmers/${boardNum.num}`)
 
     axios
       .delete(`/api/farmers/${boardNum.num}`)
