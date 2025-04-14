@@ -20,6 +20,9 @@ import HumidDetail from "./components/farmercom/detailboard/HumidDetail";
 import SoilDetail from "./components/farmercom/detailboard/SoilDetail";
 import FarmerCommunity from "./components/farmercom/FarmerCommunity";
 import UserQnaInsert from "./components/user/UserQnaInsert";
+import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
+import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
+import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -78,14 +81,23 @@ function App() {
          
           <Route path='/qna/:num' element={<UserQnaDetail/>}/>
           
+
           <Route path='/userQnaInsert' element={<UserQnaInsert/>}/>
           
-                  {/* 로그인 페이지 */}
+
+
+          {/* 로그인 페이지 */}
+
           <Route path="login" element={<Login />} />
+          
           {/* 회원가입 페이지 */}
           <Route path="join" element={<Join />} />
           
+          {/* 식물 이야기 페이지 */}
           <Route path="/community" element={<FarmerCommunity />} />
+          <Route path="/reg-community" element={<FarmerCommunityInsert />}/>
+          <Route path="/detail-community/:boardNum" element={<FarmerCommunityDetail />}/>
+          <Route path="/update-community/:boardNum" element={<FarmerCommunityUpdate />}/>
         </Route>
 
         {/* -------- 구분선 -------- */}
