@@ -3,7 +3,7 @@ import styles from "./List.module.css";
 import { icon } from "../../consts/icons";
 import { pic } from "../../consts/pic";
 import FarmerTestList from "./FarmerTestList";
-import Dashboard from "./Dashboard";
+
 import { getCropStandardsList } from "../../apis/envApi";
 import { IMAGE_PATH } from "../../consts/upload";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ const FarmerPlantList = () => {
       .then((res) => setCropList(res.data))
       .catch((e) => console.log(e));
   }, []);
-  console.log(cropList)
+  console.log(cropList);
 
   console.log(cropList);
   return (
@@ -74,7 +74,7 @@ const FarmerPlantList = () => {
                     <span>{`${crop.tempMin} ~ ${crop.tempMax}℃`}</span>
                   </div>
                   <div className={styles.textBoxSon}>
-                    <span>온도</span>
+                    <span>습도</span>
                     <span>{`${crop.humidMin} ~ ${crop.humidMax}%`}</span>
                   </div>
                   <div className={styles.textBoxSon}>

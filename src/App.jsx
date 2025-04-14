@@ -57,40 +57,46 @@ function App() {
           <Route path="/plant/:id" element={<FarmerPlantDetail />} />
 
           {/* 각 작물 상세 온도 */}
-          <Route path="/plant/:id/temp" element={<TempDetail />} />
+          <Route path="/plant/:id/temperature" element={<TempDetail />} />
 
           {/* 각 작물 상세 조도 */}
-          <Route path="/plant/:id/lux" element={<LuxDetail />} />
+          <Route path="/plant/:id/illuminance" element={<LuxDetail />} />
 
           {/* 각 작물 상세 습도 */}
-          <Route path="/plant/:id/humid" element={<HumidDetail />} />
+          <Route path="/plant/:id/humidity" element={<HumidDetail />} />
 
           {/* 각 작물 상세 토양 수분 */}
-          <Route path="/plant/:id/soil" element={<SoilDetail />} />
+          <Route path="/plant/:id/soilMoisture" element={<SoilDetail />} />
 
           <Route path="noti" element={<FarmerNoti />} />
 
-          <Route path="noti" element={<FarmerNoti/>} />
-          
-          <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
-         
-          <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
-          
-          <Route path='/qna' element={<UserQna/>}/>
-         
-          <Route path='/qna/:num' element={<UserQnaDetail/>}/>
-          
+          <Route path="noti" element={<FarmerNoti />} />
+
+          <Route path="/noti/:num" element={<FarmerNotiDetail />} />
+
+          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
+
+          <Route path="/qna" element={<UserQna />} />
+
+          <Route path="/qna/:num" element={<UserQnaDetail />} />
+
           {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
-          
+
           {/* 회원가입 페이지 */}
           <Route path="join" element={<Join />} />
-          
+
           {/* 식물 이야기 페이지 */}
           <Route path="/community" element={<FarmerCommunity />} />
-          <Route path="/reg-community" element={<FarmerCommunityInsert />}/>
-          <Route path="/detail-community/:boardNum" element={<FarmerCommunityDetail />}/>
-          <Route path="/update-community/:boardNum" element={<FarmerCommunityUpdate />}/>
+          <Route path="/reg-community" element={<FarmerCommunityInsert />} />
+          <Route
+            path="/detail-community/:boardNum"
+            element={<FarmerCommunityDetail />}
+          />
+          <Route
+            path="/update-community/:boardNum"
+            element={<FarmerCommunityUpdate />}
+          />
         </Route>
 
         {/* -------- 구분선 -------- */}
