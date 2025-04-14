@@ -87,7 +87,7 @@ const Header = () => {
             className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
               " "
             )}
-            onClick={e=>{
+            onClick={(e)=>{
               nav('/noti')
             }}
           >
