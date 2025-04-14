@@ -1,4 +1,5 @@
 import axios from "axios"
+import {axiosInstance} from '../redux/axiosInstance'
 
 // 식물 이야기 등록 api
 export const insertStories = (insertStory) => {
@@ -8,7 +9,7 @@ export const insertStories = (insertStory) => {
 
 //식물 이야기 조회 api
 export const getStories = () =>{
-  const response = axios.get("/api/plantStories")
+  const response = axiosInstance.get("/plantStories")
   return response;
 }
 

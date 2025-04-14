@@ -32,6 +32,7 @@ const FarmerCommunityInsert = () => {
         alert('이메일은 필수 작성이면서 본인 이메일이여야 합니다')
       });
   };
+  console.log(insertStory);
 
   return (
     <>

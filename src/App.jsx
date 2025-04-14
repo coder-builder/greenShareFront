@@ -23,6 +23,8 @@ import UserQnaInsert from "./components/user/UserQnaInsert";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
+import MyPage from "./components/farmercom/MyPage";
+import Follow from "./components/farmercom/Follow";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -53,6 +55,11 @@ function App() {
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
+          {/* 마이 페이지 */}
+          <Route path="mypage" element={<MyPage />} />
+          {/* 마이 페이지 */}
+          <Route path="follow" element={<Follow />} />
+
           {/* 목록 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
           {/* 상세페이지 */}

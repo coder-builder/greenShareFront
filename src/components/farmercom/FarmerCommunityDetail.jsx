@@ -13,6 +13,7 @@ const FarmerCommunityDetail = () => {
   //게시글 상세 정보를 받는 변수
   const [storyDetail, setStoryDetail] = useState({});
 
+  console.log(storyDetail);
   useEffect(() => {
     detailStory(boardNum)
       .then((res) => setStoryDetail(res.data))
@@ -84,7 +85,11 @@ const FarmerCommunityDetail = () => {
   //각 게시물 댓글 정보를 담는 변수
   const [replyList, setReplyList] = useState([]);
 
+  
+
   return (
+
+    
     <>
       <div className={styles.container}>
         <div className={styles.header}>
@@ -100,6 +105,7 @@ const FarmerCommunityDetail = () => {
             <p>좋아요 누르기</p>
           </div>
         </div>
+
 
         <div className={styles.contentDiv}>
           <p>{storyDetail.content}</p>

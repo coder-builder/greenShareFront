@@ -1,50 +1,147 @@
-.container{
+.container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
-  padding: 10px;
-  width: 100%;
+  grid-template-columns: repeat(5, 1fr); /* 5개씩 정렬 */
+  gap: 20px; /* 카드 사이 간격 */
+  padding: 20px;
 }
 
-.contentBox{
-  border: 1px solid lightgray;
+.contentBox {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contentBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.imgDiv {
+  position: relative;
+  height: 140px;
+  background-color: #f5f5f5;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgDiv img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imgDiv p {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 0.75rem;
+  color: #555;
+  background: rgba(255,255,255,0.7);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.titleDiv {
   padding: 10px;
-  gap: 10px;
 }
 
-
-.imgDiv{
-  border-bottom: 1px solid lightgray;
-}
-
-.imgDiv > div:first-child{
-  margin-bottom: 10px;
-}
-
-.imgDiv > p{
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-
-.titleDiv > p:first-child{
-  margin-bottom: 10px;
+.titleDiv > p:first-child {
   font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.titleDiv > p:nth-child(2){
-  margin-bottom: 10px;
   font-size: 1rem;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-button{
-  width: 100px;
-  padding: 10px;
+.titleDiv > p:nth-child(2) {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.3;
+  height: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.iconDiv img {
+  width: 23px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.iconDiv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.userDiv img {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.infoDiv {
+  display: flex;
+  justify-content: space-between; /* 좌우 정렬 */
+  align-items: center;
+  margin-top: 10px;
+}
+
+button {
+  width: 120px;
+  padding: 12px;
+  margin: 30px auto;
+  display: block;
   color: white;
   background-color: brown;
   border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
+button:hover {
+  background-color: #5a2d2d;
+}
+.infoDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.iconDiv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.like {
+  color: red;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.reply {
+  color: rgb(36, 36, 37);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.userDiv img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
