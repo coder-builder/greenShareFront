@@ -15,12 +15,12 @@
   margin-bottom: 10px;
   border-radius: 15px;
   margin-bottom: 30px;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.182); /* X축 이동, Y축 이동, 흐림 정도, 색상 */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.082); /* X축 이동, Y축 이동, 흐림 정도, 색상 */
 }
 
 .infoCon:hover {
   /* 마우스 호버시 그림자 짙게 */
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.315);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
   transition: 0.3s;
 }
 
@@ -81,10 +81,10 @@
 .textBoxSon > span:first-child {
   padding-left: 5px;
   margin-bottom: 5px;
-  color: #11c6ab;
+  color: #27b06e;
 }
 .textBoxSon > span:nth-child(2) {
-  background-color: #11c6ab;
+  background-color: #27b06e;
   border-radius: 20px;
   color: white;
   display: flex;
@@ -93,11 +93,11 @@
   margin-right: 3px;
 }
 .textBoxSon > span:nth-child(2):hover {
-  background-color: #27b06e;
+  background-color: #11c6ab;
 }
 /* 컬러 css */
 .grey {
-  color: rgb(201, 201, 201);
+  color: rgb(87, 87, 87);
 }
 .green {
   color: #27b06e;
@@ -112,7 +112,7 @@
   font-family: "Pretendard-Black";
 }
 .fontLight {
-  font-family: "Pretendard-ExtraLight";
+  font-family: "Pretendard-Light";
 }
 
 .font15rem {
