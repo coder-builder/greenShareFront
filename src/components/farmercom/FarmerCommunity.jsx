@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styles from "./FarmerCommunity.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
-import axios from "axios";
 import { axiosInstance } from "../../redux/axiosInstance";
 import { isAuthenticated } from "../../redux/authCheck";
 
@@ -44,10 +43,6 @@ const FarmerCommunity = () => {
       return ;
     }
 
-console.log(isUpdate);
-
-
-
     axiosInstance.post('/plantStories/like-insert', { boardNum: boardNum })
       .then(() => {
         alert('좋아요 등록');
@@ -60,7 +55,6 @@ console.log(isUpdate);
         alert('좋아요 등록에 실패했습니다.');
       });
   };
-  
   
   
   const deleteLike = (boardNum) => {
@@ -88,7 +82,6 @@ console.log(isUpdate);
   }
   
 
-
   const getUserEmailFromToken = () => {
     const token = localStorage.getItem('accessToken');
     
@@ -105,9 +98,6 @@ console.log(isUpdate);
     return decodedPayload.sub;  // 여기 key 중요!!
   }
   
-  
-
-
   const handleFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
   
@@ -134,12 +124,6 @@ console.log(isUpdate);
     });
   }
   
-  
-  
-  
-  
-
-
 
   // 모든 이미지 중 첫 번째 이미지 추출
   const getFirstImage = (content) => {
