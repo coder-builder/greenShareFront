@@ -44,7 +44,7 @@ const FarmerCommunity = () => {
       return ;
     }
 
-console.log(isUpdate);
+
 
 
 
@@ -130,7 +130,7 @@ console.log(isUpdate);
     })
     .catch((error) => {
       console.log(error);
-      alert('이미 팔로우 했거나 오류 발생');
+      alert('이미 팔로우 했습니다.');
     });
   }
   
