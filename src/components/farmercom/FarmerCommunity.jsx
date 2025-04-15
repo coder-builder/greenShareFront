@@ -8,7 +8,8 @@ import { isAuthenticated } from "../../redux/authCheck";
 
 const FarmerCommunity = () => {
   const nav = useNavigate();
-  const [getPlantStory, setGetPlantStory] = useState([]);
+  const [getPlantStory, setPlantStory] = useState([]);
+  const [isUpdate, setIsUpdate] = useState(0); // 좋아요 상태 업데이트를 위한 상태
 
   // ✅ 이메일 & 권한 상태 저장
   const [userEmail, setUserEmail] = useState(null);
@@ -31,11 +32,11 @@ const FarmerCommunity = () => {
 
   useEffect(() => {
     getStories()
-      .then((res) => setPlantStories(res.data))
+      .then((res) => setPlantStory(res.data))
       .catch((error) => console.log(error));
   }, [isUpdate]);
 
-  console.log(plantStories);
+  console.log(setPlantStory);
 
   const like = (boardNum) => {
     const token = localStorage.getItem('accessToken');
@@ -72,7 +73,7 @@ console.log(isUpdate);
     .then((res) => {
         alert('좋아요 취소되었습니다');
         // 좋아요 상태 갱신
-        setPlantStories((prevStories) =>
+        setPlantStory((prevStories) =>
           prevStories.map((story) =>
             story.boardNum === boardNum
               ? { ...story, isLike: 'N', likeCount: story.likeCount - 1 }
