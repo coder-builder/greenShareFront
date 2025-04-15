@@ -4,6 +4,8 @@
 }
 
 .dashboardTitle {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.2rem;
   font-family: "Pretendard-Bold";
   margin-bottom: 1rem;
@@ -57,4 +59,16 @@
   font-weight: 700;
   color: #333;
   margin: 0;
+}
+
+.backButton {
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: #27b06e;
+  font-family: "Pretendard-Bold";
+}
+
+.backButton:hover {
+  background-color: #11c6ab;
+  transition: 0.2s;
 }

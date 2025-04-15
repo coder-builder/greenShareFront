@@ -76,7 +76,15 @@ const Dashboard = ({
     <>
       <div className={styles.dashboardContainer}>
         <h2 className={styles.dashboardTitle}>
-          현재 환경 (업데이트: {latest.joinDate})
+          <p>현재 환경 ({latest.joinDate})</p>
+          <button
+            className={styles.backButton}
+            onClick={() => {
+              nav("/plants");
+            }}
+          >
+            ← 뒤로가기
+          </button>
         </h2>
 
         <div className={styles.cardWrapper}>
@@ -84,8 +92,8 @@ const Dashboard = ({
           <div
             className={styles.card}
             style={{
-              borderLeft: `6px solid ${
-                isTempOk(latest.temperature) ? "#27B06E" : "red"
+              borderLeft: `3px solid ${
+                isTempOk(latest.temperature) ? "#27B06E" : color.red
               }`,
             }}
             onClick={() => handleCardClick("temperature")}
@@ -94,16 +102,18 @@ const Dashboard = ({
               <h3
                 className={styles.cardTitle}
                 style={{
-                  color: `${isTempOk(latest.temperature) ? "#27B06E" : "red"}`,
+                  color: color.dgrey,
                 }}
               >
                 🌡️ 온도
               </h3>
               <p className={styles.statusText}>
                 {isTempOk(latest.temperature) ? (
-                  <span style={{ color: color.main }}>✅ 적정 환경입니다</span>
+                  <span style={{ color: color.main }}>● 적정 환경입니다</span>
                 ) : (
-                  <span style={{ color: "red" }}>⚠️ 적정 환경이 아닙니다</span>
+                  <span style={{ color: color.red }}>
+                    ● 적정 환경이 아닙니다
+                  </span>
                 )}
               </p>
             </div>
@@ -114,8 +124,8 @@ const Dashboard = ({
           <div
             className={styles.card}
             style={{
-              borderLeft: `6px solid ${
-                isLuxOk(latest.illuminance) ? "#27B06E" : "red"
+              borderLeft: `3px solid ${
+                isLuxOk(latest.illuminance) ? "#27B06E" : color.red
               }`,
             }}
             onClick={() => handleCardClick("illuminance")}
@@ -124,16 +134,18 @@ const Dashboard = ({
               <h3
                 className={styles.cardTitle}
                 style={{
-                  color: `${isLuxOk(latest.illuminance) ? "#27B06E" : "red"}`,
+                  color: color.dgrey,
                 }}
               >
                 💡 조도:ADC
               </h3>
               <p className={styles.statusText}>
                 {isLuxOk(latest.illuminance) ? (
-                  <span style={{ color: color.main }}>✅ 적정 환경입니다</span>
+                  <span style={{ color: color.main }}>● 적정 환경입니다</span>
                 ) : (
-                  <span style={{ color: "red" }}>⚠️ 적정 환경이 아닙니다</span>
+                  <span style={{ color: color.red }}>
+                    ● 적정 환경이 아닙니다
+                  </span>
                 )}
               </p>
             </div>
@@ -144,8 +156,8 @@ const Dashboard = ({
           <div
             className={styles.card}
             style={{
-              borderLeft: `6px solid ${
-                isHumidOk(latest.humidity) ? "#27B06E" : "red"
+              borderLeft: `3px solid ${
+                isHumidOk(latest.humidity) ? "#27B06E" : color.red
               }`,
             }}
             onClick={() => handleCardClick("humidity")}
@@ -154,16 +166,18 @@ const Dashboard = ({
               <h3
                 className={styles.cardTitle}
                 style={{
-                  color: `${isHumidOk(latest.humidity) ? "#27B06E" : "red"}`,
+                  color: color.dgrey,
                 }}
               >
                 💧 습도
               </h3>
               <p className={styles.statusText}>
                 {isHumidOk(latest.humidity) ? (
-                  <span style={{ color: color.main }}>✅ 적정 환경입니다</span>
+                  <span style={{ color: color.main }}>● 적정 환경입니다</span>
                 ) : (
-                  <span style={{ color: "red" }}>⚠️ 적정 환경이 아닙니다</span>
+                  <span style={{ color: color.red }}>
+                    ● 적정 환경이 아닙니다
+                  </span>
                 )}
               </p>
             </div>
@@ -174,8 +188,8 @@ const Dashboard = ({
           <div
             className={styles.card}
             style={{
-              borderLeft: `6px solid ${
-                isSoilOk(latest.soilMoisture) ? "green" : "red"
+              borderLeft: `3px solid ${
+                isSoilOk(latest.soilMoisture) ? "green" : color.red
               }`,
             }}
             onClick={() => handleCardClick("soilMoisture")}
@@ -184,16 +198,18 @@ const Dashboard = ({
               <h3
                 className={styles.cardTitle}
                 style={{
-                  color: `${isSoilOk(latest.soilMoisture) ? "#27B06E" : "red"}`,
+                  color: color.dgrey,
                 }}
               >
                 🌱 토양수분
               </h3>
               <p className={styles.statusText}>
                 {isSoilOk(latest.soilMoisture) ? (
-                  <span style={{ color: color.main }}>✅ 적정 환경입니다</span>
+                  <span style={{ color: color.main }}>● 적정 환경입니다</span>
                 ) : (
-                  <span style={{ color: "red" }}>⚠️ 적정 환경이 아닙니다</span>
+                  <span style={{ color: color.red }}>
+                    ● 적정 환경이 아닙니다
+                  </span>
                 )}
               </p>
             </div>

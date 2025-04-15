@@ -12,12 +12,6 @@ const FarmerMain = ({ isVisible }) => {
       <div className={styles.contentArea}>
         <Header />
         <Outlet />
-        <div className={styles.imageWrapper}>
-          <img src="/isto.jpg" alt="메인 이미지" className={styles.img} />
-          <div className={styles.logo}>
-            <img src="/logo.png" alt="로고" />
-          </div>
-        </div>
       </div>
     </div>
   );
