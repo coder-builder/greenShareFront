@@ -72,7 +72,7 @@ const Join = () => {
         alert("회원가입 중 오류가 발생했습니다.");
       });
   };
-  
+  console.log(joinData);
 
   return (
     <div className={styles.container}>

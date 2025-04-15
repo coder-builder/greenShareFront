@@ -24,6 +24,10 @@ import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert"
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
 import MainPage from "./components/farmercom/main/MainPage";
+import MyPage from "./components/farmercom/MyPage";
+import Follow from "./components/farmercom/Follow";
+
+
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -45,6 +49,7 @@ function App() {
   }, []);
 
   return (
+    
     <div className="appCon">
       {/* 홈화면 */}
       <Routes>
@@ -53,6 +58,11 @@ function App() {
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
+          {/* 마이 페이지 */}
+          <Route path="mypage" element={<MyPage />} />
+          {/* 마이 페이지 */}
+          <Route path="follow" element={<Follow />} />
+
           {/* 목록 페이지 */}
           <Route path="/" element={<MainPage />} />
           <Route path="plants" element={<FarmerPlantList />} />
@@ -73,13 +83,11 @@ function App() {
 
           <Route path="noti" element={<FarmerNoti />} />
 
-          <Route path="noti" element={<FarmerNoti />} />
+
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
 
           <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
-
-          <Route path="/qna" element={<UserQna />} />
 
           <Route path="/qna/:num" element={<UserQnaDetail />} />
 

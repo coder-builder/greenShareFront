@@ -1,4 +1,4 @@
-.header{
+.header {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -8,7 +8,7 @@
   border-bottom: 1px solid lightgray;
 }
 
-.titleDiv{
+.titleDiv {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -17,32 +17,73 @@
   padding: 20px;
 }
 
-.likeDiv{
+.likeDiv {
   display: flex;
   gap: 20px;
 }
 
-.contentDiv{
-  border: 1px solid saddlebrown;
+/* 본문 내용 */
+.contentDiv {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
+  font-size: 16px;
 }
+
+/* ================================================ */
+/* 본문 내용 css 적용하기 => react - quill전용*/
+/* 태그들이라서 태그에 맞게 css 주기 */
+
+/* 첨부된 파일 크기 조절 */
+.contentDiv img {
+  width: 80%;
+}
+
+/* 본문 안의 텍스트 요소 정렬 */
+.contentDiv p,
+.contentDiv li,
+.contentDiv h1,
+.contentDiv h2,
+.contentDiv h3 {
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+/* 이미지 정렬 및 크기 */
+.contentDiv img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 6px;
+}
+
+/* 리스트 스타일 */
+.contentDiv ul,
+.contentDiv ol {
+  padding-left: 1.5em;
+}
+
+/* ==================================== */
+
 
 /* 댓글 영역  */
 
-.replyDiv{
+.replyDiv {
   margin-top: 100px;
   margin-bottom: 20px;
 }
 
-
 /* 각 댓글의 영역 */
-.reply_content{
+.reply_content {
   margin-top: 10px;
   border-top: 1px solid lightgray;
   padding: 15px;
 }
 
 /* 각 댓글의 작성자와 등록기간, 삭제버튼 */
-.reply_content > div:first-child{
+.reply_content > div:first-child {
   display: flex;
   font-size: 0.8rem;
   color: lightgray;
@@ -51,13 +92,13 @@
 }
 
 /* 댓글 삭제 버튼 */
-.reply_content > div:first-child > button{
+.reply_content > div:first-child > button {
   width: 80px;
   padding: 2px;
 }
 
 /* 댓글 등록 구역 */
-.reply_reg{
+.reply_reg {
   background-color: lightgray;
   padding: 10px;
   display: flex;
@@ -65,35 +106,32 @@
   gap: 5px;
 }
 
-.reply_reg > input{
+.reply_reg > input {
   width: 30%;
 }
 
-.reply_reg_detail{
+.reply_reg_detail {
   width: 100%;
   display: flex;
-  height: 85px;
+  height: 100px;
 }
 
-.reply_reg_detail > textarea{
+.reply_reg_detail > textarea {
   flex: 7;
 }
 
-.reply_reg_detail > button{
+.reply_reg_detail > button {
   flex: 1;
 }
 
-
 /* 하단의 버튼영역 */
 
-.bottom_btn{
+.bottom_btn {
   display: flex;
   justify-content: space-between;
 }
 
-
-.update_delete_btn{
+.update_delete_btn {
   display: flex;
   gap: 10px;
-
 }
