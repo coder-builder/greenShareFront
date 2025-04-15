@@ -44,10 +44,6 @@ const FarmerCommunity = () => {
       return ;
     }
 
-
-
-
-
     axiosInstance.post('/plantStories/like-insert', { boardNum: boardNum })
       .then(() => {
         alert('좋아요 등록');
@@ -60,8 +56,6 @@ const FarmerCommunity = () => {
         alert('좋아요 등록에 실패했습니다.');
       });
   };
-  
-  
   
   const deleteLike = (boardNum) => {
     const token = localStorage.getItem('accessToken');
@@ -86,8 +80,6 @@ const FarmerCommunity = () => {
         alert('좋아요 취소 실패');
       });
   }
-  
-
 
   const getUserEmailFromToken = () => {
     const token = localStorage.getItem('accessToken');
@@ -105,41 +97,54 @@ const FarmerCommunity = () => {
     return decodedPayload.sub;  // 여기 key 중요!!
   }
   
-  
-
-
-  const handleFollow = (toUserEmail) => {
+  const handleUnFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
-  
-    console.log("팔로우 요청 데이터", {
-      fromUserEmail: fromUserEmail,
-      toUserEmail: toUserEmail
-    });
-  
+
+    console.log(fromUserEmail);
+    console.log(toUserEmail);
+
     if (!fromUserEmail) {
       alert('로그인이 필요합니다.');
       return;
     }
-  
-    axiosInstance.post('/follow/insert', {
+
+    axiosInstance.delete(`/follow/unfollow`, {
+      params: {
+        fromUserEmail: fromUserEmail,
+        toUserEmail: toUserEmail
+      }
+    })
+    .then(() => {
+      alert('언팔로우 성공!');
+      setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
+    })
+    .catch((error) => {
+      console.error('언팔로우 실패:', error);
+      alert('언팔로우 실패');
+    });
+  };
+
+  const handleFollow = (toUserEmail) => {
+    const fromUserEmail = getUserEmailFromToken();
+
+    if (!fromUserEmail) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    axiosInstance.post(`/follow/insert`, {
       fromUserEmail: fromUserEmail,
       toUserEmail: toUserEmail
     })
     .then(() => {
       alert('팔로우 성공!');
+      setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
     })
     .catch((error) => {
-      console.log(error);
-      alert('이미 팔로우 했습니다.');
+      console.error('언팔로우 실패:', error);
+      alert('팔로우 실패');
     });
-  }
-  
-  
-  
-  
-  
-
-
+  };
 
   // 모든 이미지 중 첫 번째 이미지 추출
   const getFirstImage = (content) => {
@@ -197,36 +202,69 @@ const FarmerCommunity = () => {
                   <p className={styles.preview}>{preview}</p>
                 </div>
 
-
-          
-
                 <div className={styles.infoDiv}>
                   {/* 좋아요 & 댓글 아이콘 */}
                   <div className={styles.iconDiv}>
                     {
                       story.isLike === 'Y'
                         ? (
-                          <span onClick={() => deleteLike(story.boardNum)} className={styles.like}>
-                            <i className="bi bi-heart-fill"></i> {story.likeCnt}
-                          </span>
+                          <div onClick={(e) => {
+                            e.stopPropagation();
+                            deleteLike(story.boardNum)
+                          }} className={styles.like}>
+                            <i className="bi bi-heart-fill"></i>
+                            <span>{story.likeCnt}</span> 
+                          </div>
                         )
                         : (
-                          <span onClick={() => like(story.boardNum)} className={styles.like}>
+                          <div onClick={(e) => {
+                            e.stopPropagation();
+                            like(story.boardNum);
+                          }} className={styles.like}>
                             <i className="bi bi-heart"></i>
-                          </span>
+                            <span>{story.likeCnt}</span> 
+                          </div>
                         )
                     }
 
-                    <span className={styles.reply} onClick={() => nav(`/detail-community/${story.boardNum}`)}>
-                      <img src="/chat.png" alt="댓글" />
-                      {story.replyCnt}
-                    </span>
+                    <div className={styles.reply} onClick={() => nav(`/detail-community/${story.boardNum}`)}>
+                      <i class="bi bi-chat-left-dots"></i>
+                      <span>{story.replyCnt}</span>
+                    </div>
+
+                    {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}
+                    {
+                      getUserEmailFromToken() !== story.userEmail && 
+                      
+                      <div className={styles.userDiv}>
+                      {
+                        story.isFollow === 'Y'
+                        ?
+                        <>
+                          <div className={styles.follow} onClick={(e)=>{
+                            e.stopPropagation();
+                            handleUnFollow(story.userEmail);
+                          }} >Following</div>
+                        </>
+                        :
+                        <>
+                          <div className={styles.unfollow} onClick={(e)=>{
+                            e.stopPropagation();
+                            handleFollow(story.userEmail);
+                          }} >Follow</div>
+                        </>
+
+                        
+                      } 
+                      </div>
+                    }
+                    
+
+
+
                   </div>
 
-                  {/* 유저 프로필 */}
-                  <div className={styles.userDiv}>
-                    <img src="/User.png" alt="작성자" onClick={() => handleFollow(story.userEmail)} />
-                  </div>
+                  
                 </div>
               </div>
 

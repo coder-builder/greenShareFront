@@ -6,6 +6,7 @@
 }
 
 .contentBox {
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
@@ -19,6 +20,7 @@
 }
 
 .imgDiv {
+  width: 100%;
   position: relative;
   height: 140px;
   background-color: #f5f5f5;
@@ -85,25 +87,29 @@
   text-overflow: ellipsis;
 }
 
-.iconDiv img {
+/* .iconDiv img {
   width: 23px;
   height: 20px;
   cursor: pointer;
-}
+} */
 
-.iconDiv {
+/* .iconDiv {
   display: flex;
   gap: 10px;
   align-items: center;
   color: #777;
   font-size: 0.75rem;
+} */
+
+.userDiv{
+  margin-left: 60px;
 }
 
-.userDiv img {
+/* .userDiv img {
   width: 26px;
   height: 26px;
   cursor: pointer;
-}
+} */
 
 .infoDiv {
   display: flex;
@@ -137,30 +143,54 @@ button:hover {
 
 .iconDiv {
   display: flex;
-  gap: 10px;
+  gap: 16px;
   align-items: center;
 }
 
-.like {
-  color: red;
-  font-size: 1.2rem;
-  cursor: pointer;
+.like, .reply{
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.like i{
+  color: red;
+  /* font-size: 1.2rem; */
+  cursor: pointer;
+  /* display: flex; */
+  /* align-items: center; */
   gap: 3px;
 }
 
-.reply {
+/* .reply {
   color: rgb(36, 36, 37);
   font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 3px;
-}
+} */
 
 .userDiv img {
   width: 24px;
   height: 24px;
+  cursor: pointer;
+}
+
+.follow{
+  font-size: 0.7rem;
+  background-color: lightgreen;
+  padding: 4px 10px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.unfollow{
+  font-size: 0.7rem;
+  background-color: lightgray;
+  padding: 4px 10px;
+  color: white;
+  border-radius: 8px;
   cursor: pointer;
 }
