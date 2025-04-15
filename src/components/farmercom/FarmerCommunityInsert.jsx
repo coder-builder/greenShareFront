@@ -39,7 +39,7 @@ const FarmerCommunityInsert = () => {
         console.log(error);
       });
   };
-  console.log(insertStory);
+
 
   console.log(content);
 

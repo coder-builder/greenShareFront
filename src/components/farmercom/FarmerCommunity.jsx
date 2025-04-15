@@ -196,11 +196,9 @@ console.log(isUpdate);
                   <p className={styles.title}>{story.title}</p>
                   <p className={styles.preview}>{preview}</p>
                 </div>
-              </div>
 
-              <div className={styles.titleDiv}>
-                <p>{story.title}</p>
-                <p>{story.content}</p>
+
+          
 
                 <div className={styles.infoDiv}>
                   {/* 좋아요 & 댓글 아이콘 */}
@@ -231,11 +229,13 @@ console.log(isUpdate);
                   </div>
                 </div>
               </div>
+
+              
             </>
           );
         })}
       </div>
-       
+      
 
       <div>
         <button type="button" onClick={handleWriteClick}>
