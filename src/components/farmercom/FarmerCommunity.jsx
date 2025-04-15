@@ -8,9 +8,26 @@ import { isAuthenticated } from "../../redux/authCheck";
 
 const FarmerCommunity = () => {
   const nav = useNavigate();
+  const [getPlantStory, setGetPlantStory] = useState([]);
 
-  const [plantStories, setPlantStories] = useState([]);
-  const [isUpdate, setIsUpdate] = useState(0)
+  // ✅ 이메일 & 권한 상태 저장
+  const [userEmail, setUserEmail] = useState(null);
+  const [userRole, setUserRole] = useState(null);
+
+  // ✅ 토큰에서 이메일, 권한 디코딩
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      try {
+        const base64Payload = token.split(".")[1];
+        const decodedPayload = JSON.parse(atob(base64Payload));
+        setUserEmail(decodedPayload.sub);  // 이메일
+        setUserRole(decodedPayload.role);  // ROLE_ADMIN 등
+      } catch (e) {
+        console.error("토큰 디코딩 실패", e);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     getStories()
@@ -123,68 +140,104 @@ console.log(isUpdate);
 
 
 
+  // 모든 이미지 중 첫 번째 이미지 추출
+  const getFirstImage = (content) => {
+    const matches = [...content.matchAll(/<img[^>]+src=["']?([^"'>]+)["']?/g)];
+    return matches.length > 0 ? matches[0][1] : null;
+  };
+
+  // 텍스트만 추출
+  const getTextPreview = (content, maxLength = 50) => {
+    const text = content.replace(/<[^>]+>/g, ""); // 태그 제거
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  };
+
+  const handleWriteClick = () => {
+    if (!userEmail) {
+      alert("회원가입 후 이용해주세요.");
+      return;
+    }
+    nav("/reg-community");
+  };
+
   return (
     <>
-      <h2>식물 이야기</h2>
+      <h2>🌿 식물 이야기</h2>
 
       <div className={styles.container}>
-        {plantStories.map((story) => (
-          <div
-            className={styles.contentBox}
-            key={story.boardNum}
-            
-          >
-            <div className={styles.imgDiv}>
-              {story.imgUrl ? (
-                <img src={story.imgUrl} alt="식물 이미지" />
-              ) : (
-                <div>이미지</div>
-              )}
-              <p>{story.userEmail}</p>
-            </div>
 
-            <div className={styles.titleDiv}>
-              <p>{story.title}</p>
-              <p>{story.content}</p>
+        {getPlantStory.map((story, i) => {
+          const thumbnail = getFirstImage(story.content);
+          const preview = getTextPreview(story.content);
 
-              <div className={styles.infoDiv}>
-                {/* 좋아요 & 댓글 아이콘 */}
-                <div className={styles.iconDiv}>
-                  {
-                    story.isLike === 'Y'
-                      ? (
-                        <span onClick={() => deleteLike(story.boardNum)} className={styles.like}>
-                          <i className="bi bi-heart-fill"></i> {story.likeCnt}
-                        </span>
-                      )
-                      : (
-                        <span onClick={() => like(story.boardNum)} className={styles.like}>
-                          <i className="bi bi-heart"></i>
-                        </span>
-                      )
-                  }
+          const isMine = story.userEmail === userEmail;
+          const isAdmin = userRole === "ROLE_ADMIN";
 
-                  <span className={styles.reply} onClick={() => nav(`/detail-community/${story.boardNum}`)}>
-                    <img src="/chat.png" alt="댓글" />
-                    {story.replyCnt}
-                  </span>
+          return (
+            <>
+              <div
+                className={styles.contentBox}
+                key={i}
+                onClick={() => nav(`/detail-community/${story.boardNum}`)}
+              >
+                <div className={styles.imgDiv}>
+                  {thumbnail ? (
+                    <img src={thumbnail} alt="썸네일" className={styles.thumbnail} />
+                  ) : (
+                    <div className={styles.noImage}>이미지 없음</div>
+                  )}
+                  <p className={styles.user}>
+                    {story.userEmail}
+                    {(isMine || isAdmin) && " (내 글)"}
+                  </p>
                 </div>
-
-                {/* 유저 프로필 */}
-                <div className={styles.userDiv}>
-                  <img src="/User.png" alt="작성자" onClick={() => handleFollow(story.userEmail)} />
+                <div className={styles.titleDiv}>
+                  <p className={styles.title}>{story.title}</p>
+                  <p className={styles.preview}>{preview}</p>
                 </div>
               </div>
 
+              <div className={styles.titleDiv}>
+                <p>{story.title}</p>
+                <p>{story.content}</p>
 
+                <div className={styles.infoDiv}>
+                  {/* 좋아요 & 댓글 아이콘 */}
+                  <div className={styles.iconDiv}>
+                    {
+                      story.isLike === 'Y'
+                        ? (
+                          <span onClick={() => deleteLike(story.boardNum)} className={styles.like}>
+                            <i className="bi bi-heart-fill"></i> {story.likeCnt}
+                          </span>
+                        )
+                        : (
+                          <span onClick={() => like(story.boardNum)} className={styles.like}>
+                            <i className="bi bi-heart"></i>
+                          </span>
+                        )
+                    }
 
-            </div>
-          </div>
-        ))}
+                    <span className={styles.reply} onClick={() => nav(`/detail-community/${story.boardNum}`)}>
+                      <img src="/chat.png" alt="댓글" />
+                      {story.replyCnt}
+                    </span>
+                  </div>
+
+                  {/* 유저 프로필 */}
+                  <div className={styles.userDiv}>
+                    <img src="/User.png" alt="작성자" onClick={() => handleFollow(story.userEmail)} />
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </div>
+       
 
       <div>
-        <button type="button" onClick={() => nav("/reg-community")}>
+        <button type="button" onClick={handleWriteClick}>
           글쓰기
         </button>
       </div>

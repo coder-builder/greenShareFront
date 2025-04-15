@@ -48,7 +48,26 @@
   padding: 10px;
 }
 
-.titleDiv > p:first-child {
+.imgDiv{
+  border-bottom: 1px solid lightgray;
+}
+
+.imgDiv > div:first-child{
+  margin-bottom: 10px;
+}
+
+.imgDiv > p{
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.imgDiv > img{
+  width: 100%;
+  height: 200px;
+}
+
+.titleDiv > p:first-child{
+  margin-bottom: 10px;
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 5px;

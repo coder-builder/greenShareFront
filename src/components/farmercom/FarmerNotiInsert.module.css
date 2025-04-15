@@ -34,18 +34,15 @@
   padding: 14px 24px;
   font-size: 18px;
   color: white;
-  background-color: #06D001;
+  background-color: #27B06E;
   border: none;
   border-radius: 8px;
 }
 
-button:hover {
-  transition: all 0.2s;
-  background-color: #16C47F;
+.insert:hover{
+  background-color:#11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+
 }
 
-.mainContainer input:focus,
-.mainContainer textarea:focus {
-  outline: none;
-  border-color: #198754;
-}
