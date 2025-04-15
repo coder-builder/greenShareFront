@@ -27,12 +27,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .imgDiv img {
   width: 100%;
-  height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .imgDiv p {
@@ -121,10 +122,9 @@
 button {
   width: 120px;
   padding: 12px;
-  margin: 30px auto;
   display: block;
   color: white;
-  background-color: brown;
+  background-color: green;
   border: none;
   border-radius: 8px;
   cursor: pointer;

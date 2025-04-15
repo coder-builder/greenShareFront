@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styles from "./FarmerCommunity.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
-import axios from "axios";
 import { axiosInstance } from "../../redux/axiosInstance";
 import { isAuthenticated } from "../../redux/authCheck";
 
@@ -57,6 +56,7 @@ const FarmerCommunity = () => {
       });
   };
   
+
   const deleteLike = (boardNum) => {
     const token = localStorage.getItem('accessToken');
     if(!isAuthenticated(token)){
@@ -81,6 +81,7 @@ const FarmerCommunity = () => {
       });
   }
 
+
   const getUserEmailFromToken = () => {
     const token = localStorage.getItem('accessToken');
     
@@ -97,6 +98,7 @@ const FarmerCommunity = () => {
     return decodedPayload.sub;  // 여기 key 중요!!
   }
   
+
   const handleUnFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
@@ -124,6 +126,7 @@ const FarmerCommunity = () => {
     });
   };
 
+
   const handleFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
@@ -144,7 +147,12 @@ const FarmerCommunity = () => {
       console.error('언팔로우 실패:', error);
       alert('팔로우 실패');
     });
+
   };
+
+  }
+  
+
 
   // 모든 이미지 중 첫 번째 이미지 추출
   const getFirstImage = (content) => {

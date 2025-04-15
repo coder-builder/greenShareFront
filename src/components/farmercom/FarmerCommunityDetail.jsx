@@ -77,7 +77,6 @@ const FarmerCommunityDetail = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <p>{storyDetail.userEmail}</p>
-        <p>팔로우</p>
       </div>
 
       <div className={styles.titleDiv}>
@@ -85,7 +84,6 @@ const FarmerCommunityDetail = () => {
         <div className={styles.likeDiv}>
           <p>{dayjs(storyDetail.regDate).format("YYYY-MM-DD")}</p>
           <p>조회수: {storyDetail.readCnt}</p>
-          <p>좋아요 누르기</p>
         </div>
       </div>
 
@@ -120,7 +118,7 @@ const FarmerCommunityDetail = () => {
             <FarmerCoummnityReplyEdit
               content={reply.content}
               commentId={reply.commentId}
-              writerEmail={reply.userEmail} // ✅ 추가!
+              writerEmail={reply.userEmail} 
               setRefresh={setRefresh}
             />
           </div>
@@ -137,6 +135,10 @@ const FarmerCommunityDetail = () => {
             <button
               type="button"
               onClick={() => {
+                if(!userEmail){
+                  alert("회원가입 후 이용하세요")
+                  return;
+                }
                 if (!comment.content) {
                   alert("내용을 입력하세요");
                   return;
