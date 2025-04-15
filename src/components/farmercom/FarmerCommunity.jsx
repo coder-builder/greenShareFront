@@ -21,8 +21,8 @@ const FarmerCommunity = () => {
       try {
         const base64Payload = token.split(".")[1];
         const decodedPayload = JSON.parse(atob(base64Payload));
-        setUserEmail(decodedPayload.sub);  // 이메일
-        setUserRole(decodedPayload.role);  // ROLE_ADMIN 등
+        setUserEmail(decodedPayload.sub); // 이메일
+        setUserRole(decodedPayload.role); // ROLE_ADMIN 등
       } catch (e) {
         console.error("토큰 디코딩 실패", e);
       }
@@ -38,66 +38,65 @@ const FarmerCommunity = () => {
   console.log(setPlantStory);
 
   const like = (boardNum) => {
-    const token = localStorage.getItem('accessToken');
-    if(!isAuthenticated(token)){
-      return ;
+    const token = localStorage.getItem("accessToken");
+    if (!isAuthenticated(token)) {
+      return;
     }
 
-    axiosInstance.post('/plantStories/like-insert', { boardNum: boardNum })
+    axiosInstance
+      .post("/plantStories/like-insert", { boardNum: boardNum })
       .then(() => {
-        alert('좋아요 등록');
-  
+        alert("좋아요 등록");
+
         // 상태 업데이트
         setIsUpdate(isUpdate + 1);
       })
       .catch((error) => {
-        console.error('좋아요 등록 실패:', error);
-        alert('좋아요 등록에 실패했습니다.');
+        console.error("좋아요 등록 실패:", error);
+        alert("좋아요 등록에 실패했습니다.");
       });
   };
-  
 
   const deleteLike = (boardNum) => {
-    const token = localStorage.getItem('accessToken');
-    if(!isAuthenticated(token)){
-      return ;
+    const token = localStorage.getItem("accessToken");
+    if (!isAuthenticated(token)) {
+      return;
     }
 
-    axiosInstance.delete(`/plantStories/like-delete/${boardNum}`)
-    .then((res) => {
-        alert('좋아요 취소되었습니다');
+    axiosInstance
+      .delete(`/plantStories/like-delete/${boardNum}`)
+      .then((res) => {
+        alert("좋아요 취소되었습니다");
         // 좋아요 상태 갱신
         setPlantStory((prevStories) =>
           prevStories.map((story) =>
             story.boardNum === boardNum
-              ? { ...story, isLike: 'N', likeCount: story.likeCount - 1 }
+              ? { ...story, isLike: "N", likeCount: story.likeCount - 1 }
               : story
           )
         );
       })
       .catch((error) => {
-        console.error('좋아요 취소 실패:', error);
-        alert('좋아요 취소 실패');
+        console.error("좋아요 취소 실패:", error);
+        alert("좋아요 취소 실패");
       });
-  }
-
+  };
 
   const getUserEmailFromToken = () => {
-    const token = localStorage.getItem('accessToken');
-    
+    const token = localStorage.getItem("accessToken");
+
     if (!token) {
       console.log("토큰 없음!");
       return null;
     }
-  
-    const payload = token.split('.')[1];
+
+    const payload = token.split(".")[1];
     const decodedPayload = JSON.parse(atob(payload));
-  
+
     console.log("디코딩된 토큰 payload", decodedPayload);
-  
-    return decodedPayload.sub;  // 여기 key 중요!!
-  }
-  
+
+    return decodedPayload.sub; // 여기 key 중요!!
+  };
 
   const handleUnFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
@@ -106,53 +105,49 @@ const FarmerCommunity = () => {
     console.log(toUserEmail);
 
     if (!fromUserEmail) {
-      alert('로그인이 필요합니다.');
+      alert("로그인이 필요합니다.");
       return;
     }
 
-    axiosInstance.delete(`/follow/unfollow`, {
-      params: {
-        fromUserEmail: fromUserEmail,
-        toUserEmail: toUserEmail
-      }
-    })
-    .then(() => {
-      alert('언팔로우 성공!');
-      setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
-    })
-    .catch((error) => {
-      console.error('언팔로우 실패:', error);
-      alert('언팔로우 실패');
-    });
+    axiosInstance
+      .delete(`/follow/unfollow`, {
+        params: {
+          fromUserEmail: fromUserEmail,
+          toUserEmail: toUserEmail,
+        },
+      })
+      .then(() => {
+        alert("언팔로우 성공!");
+        setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
+      })
+      .catch((error) => {
+        console.error("언팔로우 실패:", error);
+        alert("언팔로우 실패");
+      });
   };
-
 
   const handleFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
     if (!fromUserEmail) {
-      alert('로그인이 필요합니다.');
+      alert("로그인이 필요합니다.");
       return;
     }
 
-    axiosInstance.post(`/follow/insert`, {
-      fromUserEmail: fromUserEmail,
-      toUserEmail: toUserEmail
-    })
-    .then(() => {
-      alert('팔로우 성공!');
-      setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
-    })
-    .catch((error) => {
-      console.error('언팔로우 실패:', error);
-      alert('팔로우 실패');
-    });
-
+    axiosInstance
+      .post(`/follow/insert`, {
+        fromUserEmail: fromUserEmail,
+        toUserEmail: toUserEmail,
+      })
+      .then(() => {
+        alert("팔로우 성공!");
+        setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
+      })
+      .catch((error) => {
+        console.error("언팔로우 실패:", error);
+        alert("팔로우 실패");
+      });
   };
-
-  }
-  
-
 
   // 모든 이미지 중 첫 번째 이미지 추출
   const getFirstImage = (content) => {
@@ -179,7 +174,6 @@ const FarmerCommunity = () => {
       <h2>🌿 식물 이야기</h2>
 
       <div className={styles.container}>
-
         {getPlantStory.map((story, i) => {
           const thumbnail = getFirstImage(story.content);
           const preview = getTextPreview(story.content);
@@ -196,7 +190,11 @@ const FarmerCommunity = () => {
               >
                 <div className={styles.imgDiv}>
                   {thumbnail ? (
-                    <img src={thumbnail} alt="썸네일" className={styles.thumbnail} />
+                    <img
+                      src={thumbnail}
+                      alt="썸네일"
+                      className={styles.thumbnail}
+                    />
                   ) : (
                     <div className={styles.noImage}>이미지 없음</div>
                   )}
@@ -213,75 +211,75 @@ const FarmerCommunity = () => {
                 <div className={styles.infoDiv}>
                   {/* 좋아요 & 댓글 아이콘 */}
                   <div className={styles.iconDiv}>
-                    {
-                      story.isLike === 'Y'
-                        ? (
-                          <div onClick={(e) => {
-                            e.stopPropagation();
-                            deleteLike(story.boardNum)
-                          }} className={styles.like}>
-                            <i className="bi bi-heart-fill"></i>
-                            <span>{story.likeCnt}</span> 
-                          </div>
-                        )
-                        : (
-                          <div onClick={(e) => {
-                            e.stopPropagation();
-                            like(story.boardNum);
-                          }} className={styles.like}>
-                            <i className="bi bi-heart"></i>
-                            <span>{story.likeCnt}</span> 
-                          </div>
-                        )
-                    }
+                    {story.isLike === "Y" ? (
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteLike(story.boardNum);
+                        }}
+                        className={styles.like}
+                      >
+                        <i className="bi bi-heart-fill"></i>
+                        <span>{story.likeCnt}</span>
+                      </div>
+                    ) : (
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          like(story.boardNum);
+                        }}
+                        className={styles.like}
+                      >
+                        <i className="bi bi-heart"></i>
+                        <span>{story.likeCnt}</span>
+                      </div>
+                    )}
 
-                    <div className={styles.reply} onClick={() => nav(`/detail-community/${story.boardNum}`)}>
+                    <div
+                      className={styles.reply}
+                      onClick={() => nav(`/detail-community/${story.boardNum}`)}
+                    >
                       <i class="bi bi-chat-left-dots"></i>
                       <span>{story.replyCnt}</span>
                     </div>
 
                     {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}
-                    {
-                      getUserEmailFromToken() !== story.userEmail && 
-                      
+                    {getUserEmailFromToken() !== story.userEmail && (
                       <div className={styles.userDiv}>
-                      {
-                        story.isFollow === 'Y'
-                        ?
-                        <>
-                          <div className={styles.follow} onClick={(e)=>{
-                            e.stopPropagation();
-                            handleUnFollow(story.userEmail);
-                          }} >Following</div>
-                        </>
-                        :
-                        <>
-                          <div className={styles.unfollow} onClick={(e)=>{
-                            e.stopPropagation();
-                            handleFollow(story.userEmail);
-                          }} >Follow</div>
-                        </>
-
-                        
-                      } 
+                        {story.isFollow === "Y" ? (
+                          <>
+                            <div
+                              className={styles.follow}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleUnFollow(story.userEmail);
+                              }}
+                            >
+                              Following
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div
+                              className={styles.unfollow}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleFollow(story.userEmail);
+                              }}
+                            >
+                              Follow
+                            </div>
+                          </>
+                        )}
                       </div>
-                    }
-                    
-
-
-
+                    )}
                   </div>
-
-                  
                 </div>
               </div>
-
-              
             </>
           );
         })}
       </div>
-      
 
       <div>
         <button type="button" onClick={handleWriteClick}>
