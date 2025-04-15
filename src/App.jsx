@@ -23,7 +23,7 @@ import UserQnaInsert from "./components/user/UserQnaInsert";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
-
+import QnaNotiList from "./components/farmercom/QnaNotiList";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -50,9 +50,12 @@ function App() {
       <Routes>
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
+
+        <Route path="/list" element={<QnaNotiList />} />
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
+
           {/* 목록 페이지 */}
           <Route path="plants" element={<FarmerPlantList />} />
           {/* 상세페이지 */}
@@ -72,22 +75,17 @@ function App() {
 
           <Route path="noti" element={<FarmerNoti />} />
 
+          <Route path="/noti/:num" element={<FarmerNotiDetail />} />
 
-          <Route path="noti" element={<FarmerNoti/>} />
-          
-          <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
-         
-          <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
-          
-          <Route path='/qna' element={<UserQna/>}/>
-         
-          <Route path='/qna/:num' element={<UserQnaDetail/>}/>
+          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
 
-          <Route path='/qnaInsert' element={<UserQnaInsert/>}/>
-          
+          <Route path="/qna" element={<UserQna />} />
 
-          <Route path='/userQnaInsert' element={<UserQnaInsert/>}/>
+          <Route path="/qna/:num" element={<UserQnaDetail />} />
 
+          <Route path="/qnaInsert" element={<UserQnaInsert />} />
+
+          <Route path="/userQnaInsert" element={<UserQnaInsert />} />
 
           {/* 로그인 페이지 */}
 

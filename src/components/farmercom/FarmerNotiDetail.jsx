@@ -19,7 +19,7 @@ const FarmerNotiDetail = () => {
       .get(`/api/farmers/${boardNum.num}`)
       .then((res) => {
         setData(res.data);
-        console.log(boardNum.num)
+        console.log(boardNum.num);
       })
       .catch((error) => {
         console.log(error);
@@ -54,12 +54,11 @@ const FarmerNotiDetail = () => {
   // 게시글 삭제 기능
   const deleteBoard = () => {
     const result = confirm("삭제하겠습니까?");
-    if (!result){
-       return;
-      }
+    if (!result) {
+      return;
+    }
 
-    axios
-      .delete(`/api/farmers/${boardNum.num}`)
+    axios.delete(`/api/farmers/${boardNum.num}`);
 
     axios
       .delete(`/api/farmers/${boardNum.num}`)
@@ -164,7 +163,6 @@ const FarmerNotiDetail = () => {
             </tr>
             <tr className={styles.secondContainer}>
               <td>작성자 :{data.writer}</td>
-
               <td>날짜:{dayjs(data.date).format("YYYY년 MM월 DD일")}</td>
               <td>조회수:{data.views}</td>
             </tr>
@@ -194,8 +192,11 @@ const FarmerNotiDetail = () => {
           >
             {isEdit ? "수정 완료" : "수정하기"}
           </button>
-          <button type="button" onClick={deleteBoard}
-          className={styles.replyDelteBtn}>
+          <button
+            type="button"
+            onClick={deleteBoard}
+            className={styles.replyDelteBtn}
+          >
             삭제하기
           </button>
         </div>
@@ -227,11 +228,11 @@ const FarmerNotiDetail = () => {
         {replyList.map((reply, i) => {
           return (
             <div key={i} className={styles.comment}>
-              <di>{reply.writer}</di>
-              <div></div>
-
-              <div>{reply.content}</div>
-              <div className={styles.deleteBtnContainer}>
+              <div className={styles.b}>
+                <div>{reply.writer}</div>
+                <div>{reply.content}</div>
+              </div>
+              <div className={styles.c}>
                 {dayjs(reply.regDate).format("YYYY.MM.DD")}
                 <button
                   type="button"
