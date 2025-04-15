@@ -14,12 +14,9 @@ const MyPage = () => {
       
       <Follow />
 
-      <h1>마이 페이지</h1>
+    
 
-      <Link to={"/follow"}>
-        <p>팔로우</p>
-      </Link>
-
+    
     </>
   );
 };

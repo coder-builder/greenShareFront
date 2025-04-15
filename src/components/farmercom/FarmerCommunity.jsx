@@ -150,7 +150,7 @@ const FarmerCommunity = () => {
 
   };
 
-  }
+  
   
 
 
@@ -260,23 +260,13 @@ const FarmerCommunity = () => {
                             e.stopPropagation();
                             handleFollow(story.userEmail);
                           }} >Follow</div>
-                        </>
-
-                        
+                        </>                       
                       } 
                       </div>
-                    }
-                    
-
-
-
-                  </div>
-
-                  
+                    }                   
+                  </div>                 
                 </div>
-              </div>
-
-              
+              </div>             
             </>
           );
         })}
@@ -291,5 +281,6 @@ const FarmerCommunity = () => {
     </>
   );
 };
+
 
 export default FarmerCommunity;
