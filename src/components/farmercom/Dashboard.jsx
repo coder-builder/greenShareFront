@@ -65,10 +65,10 @@ const Dashboard = ({
     setShowInfo(!showInfo); // 클릭하면
   };
 
-  // 컴포넌트가 처음 렌더링될 때 데이터 가져오기 + 5초마다 갱신
+  // 컴포넌트가 처음 렌더링될 때 데이터 가져오기 + 30초마다 갱신
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 5000); // 5초마다 업데이트
+    const interval = setInterval(fetchData, 30000); // 30초마다 업데이트
     return () => clearInterval(interval); // 언마운트 시 인터벌 제거
   }, []);
 
