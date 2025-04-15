@@ -110,7 +110,7 @@ const Header = () => {
                   className={`${styles.cursor} ${styles.darkGrey}`} 
                   onClick={() => nav('/mypage')}
                 >
-                  마이 페이지
+                  팔로우
                 </p>
 
                 <p 
