@@ -8,7 +8,6 @@ import { loginReducer } from "../../redux/authSlice";
 import { jwtDecode } from "jwt-decode";
 import { icon } from "./../../consts/icons";
 
-
 const Login = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -89,9 +88,14 @@ const Login = () => {
           </div>
         </div>
 
-        <Link to={"/join"}>
-          <div>회원가입</div>
-        </Link>
+        <div
+          onClick={() => {
+            nav("/join");
+          }}
+          className={styles.cursor}
+        >
+          회원가입
+        </div>
 
         <div>
           <button

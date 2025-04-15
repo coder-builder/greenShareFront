@@ -62,3 +62,7 @@
   border-style: none;
   height: 50px;
 }
+
+.cursor{
+  cursor: pointer;
+}
