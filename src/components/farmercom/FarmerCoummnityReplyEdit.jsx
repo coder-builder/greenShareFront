@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { axiosInstance } from "../../redux/axiosinstance";
+import { axiosInstance } from "../../redux/axiosInstance";
 import styles from "./FarmerCoummintyReplyEdit.module.css";
 
-const FarmerCommunityReplyEdit = ({ commentId, content, writerEmail, setRefresh }) => {
+const FarmerCommunityReplyEdit = ({
+  commentId,
+  content,
+  writerEmail,
+  setRefresh,
+}) => {
   const [editContent, setEditContent] = useState(content);
   const [isUpdate, setIsUpdate] = useState(false);
   const [userEmail, setUserEmail] = useState(null);
@@ -40,7 +45,8 @@ const FarmerCommunityReplyEdit = ({ commentId, content, writerEmail, setRefresh 
       });
   };
 
-  const canEdit = userEmail && (userEmail === writerEmail || role === "ROLE_ADMIN");
+  const canEdit =
+    userEmail && (userEmail === writerEmail || role === "ROLE_ADMIN");
 
   return (
     <div className={styles.editBox}>

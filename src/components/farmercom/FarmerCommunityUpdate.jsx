@@ -5,7 +5,7 @@ import { detailStory } from "../../apis/plantStory";
 import axios from "axios";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css"; // 스타일도 꼭 import 해줘야 함
-import { axiosInstance } from "../../redux/axiosinstance";
+import { axiosInstance } from "../../redux/axiosInstance";
 
 const FarmerCommunityUpdate = () => {
   const modules = {
@@ -42,7 +42,7 @@ const FarmerCommunityUpdate = () => {
   const handleUpdateDataContent = (value) => {
     setUpdateDetail({
       ...updateDetail,
-      content: value
+      content: value,
     });
   };
 

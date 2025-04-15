@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../header/Header";
 import SideBar from "../side/SideBar";
 import styles from "./Main.module.css";
+import Weather from "./Weather";
 
 const FarmerMain = ({ isVisible }) => {
   return (

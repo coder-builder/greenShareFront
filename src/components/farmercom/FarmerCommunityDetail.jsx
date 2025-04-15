@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { detailStory } from "../../apis/plantStory";
 import styles from "./FamerCommunityDetail.module.css";
 import dayjs from "dayjs";
-import { axiosInstance } from "../../redux/axiosinstance";
+import { axiosInstance } from "../../redux/axiosInstance";
 import FarmerCoummnityReplyEdit from "./FarmerCoummnityReplyEdit";
 
 const FarmerCommunityDetail = () => {
@@ -32,6 +32,7 @@ const FarmerCommunityDetail = () => {
     }
   }, []);
 
+  console.log(storyDetail);
   useEffect(() => {
     detailStory(boardNum)
       .then((res) => setStoryDetail(res.data))
@@ -70,6 +71,7 @@ const FarmerCommunityDetail = () => {
       .then((res) => setReplyList(res.data))
       .catch((error) => console.log(error));
   }, [refresh]);
+
 
   return (
     <div className={styles.container}>
