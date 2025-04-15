@@ -23,8 +23,10 @@ import UserQnaInsert from "./components/user/UserQnaInsert";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
+import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
+
 
 
 function App() {
@@ -62,6 +64,7 @@ function App() {
           <Route path="follow" element={<Follow />} />
 
           {/* 목록 페이지 */}
+          <Route path="/" element={<MainPage />} />
           <Route path="plants" element={<FarmerPlantList />} />
           {/* 상세페이지 */}
           <Route path="/plant/:id" element={<FarmerPlantDetail />} />
@@ -81,21 +84,16 @@ function App() {
           <Route path="noti" element={<FarmerNoti />} />
 
 
-          <Route path="noti" element={<FarmerNoti/>} />
-          
-          <Route path='/noti/:num' element={<FarmerNotiDetail/>}/>
-        
-          <Route path='/FarmerNotiInsert' element={<FarmerNotiInsert/>}/>
-          
-          <Route path='/qna' element={<UserQna/>}/>
-        
-          <Route path='/qna/:num' element={<UserQnaDetail/>}/>
 
-          <Route path='/qnaInsert' element={<UserQnaInsert/>}/>
-          
+          <Route path="/noti/:num" element={<FarmerNotiDetail />} />
 
-          <Route path='/userQnaInsert' element={<UserQnaInsert/>}/>
+          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
 
+          <Route path="/qna/:num" element={<UserQnaDetail />} />
+
+          <Route path="/qnaInsert" element={<UserQnaInsert />} />
+
+          <Route path="/userQnaInsert" element={<UserQnaInsert />} />
 
           {/* 로그인 페이지 */}
 

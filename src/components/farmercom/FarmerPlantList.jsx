@@ -47,7 +47,7 @@ const FarmerPlantList = () => {
                 <div className={styles.titleCon}>
                   <p
                     className={[
-                      styles.green,
+                      styles.grey,
                       styles.fontBold,
                       styles.font15rem,
                       styles.cursor,
