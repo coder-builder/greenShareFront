@@ -11,6 +11,7 @@
 }
 
 .selCon {
+  /* 셀렉트 박스의 컨테이너  */
   padding-left: 5%;
   display: flex;
   width: 100%;
@@ -19,24 +20,27 @@
   justify-content: space-between;
 }
 .selCon > div {
+  /* 셀렉트 박스의 DIV를 설정해 맨 오른쪽으로 보냄 */
   display: flex;
   align-items: end;
 }
 
 select {
+  /* 셀렉트박스 높이를 위한 css */
   height: 20px;
 }
 
 .statusBox {
+  /* 상태 표시 박스 */ /* 이미지와 적정환경인지 표시함 */
   position: relative; /* 자식의 absolute 기준점으로 설정 */
-  width: 100%;
+  width: 100%; /* 넓이 */
   display: flex;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.178);
-  margin-bottom: 20px;
-  border-radius: 20px;
-  align-items: center;
-  justify-content: center;
-  height: 150px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.178); /* 박스 쉐도우 */
+  margin-bottom: 20px; /* 아래 마진 */
+  border-radius: 20px; /* 모서리 둥글게하기 */
+  align-items: center; /* 메인축의 수직 중앙정렬 */
+  justify-content: center; /* 메인축의 수평 중앙정렬 */
+  height: 150px; /* 높이 */
 }
 
 .statusGood {
@@ -69,6 +73,7 @@ select {
   cursor: pointer;
   border-radius: 20px;
   background-color: #27b06e;
+  font-family: "Pretendard-Bold";
 }
 
 .backButton:hover {

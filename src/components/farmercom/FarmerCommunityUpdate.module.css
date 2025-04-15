@@ -1,10 +1,10 @@
 .container{
-  margin-top: 10px;
   border: 1px solid black;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  height: 100vh;
 }
 
 .title > p{
@@ -38,5 +38,11 @@
   border: none;
 }
 
-
-
+.ql-editor img {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

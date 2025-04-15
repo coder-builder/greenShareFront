@@ -1,4 +1,13 @@
 import logoImg from "../assets/picture/greenshare.png";
+import mainImg from "../assets/picture/mainpage.png";
+import image1 from "../assets/picture/main1.png";
+import image2 from "../assets/picture/main2.png";
+import image3 from "../assets/picture/main3.png";
+
 export const pic = {
   logo: logoImg,
+  main: mainImg,
+  image1: image1,
+  image2: image2,
+  image3: image3,
 };

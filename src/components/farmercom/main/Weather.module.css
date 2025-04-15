@@ -1,0 +1,53 @@
+/* App.module.css */
+
+.app {
+  width: 100%;
+  text-align: center;
+  color: #333;
+}
+
+.title {
+  color: #27b06e;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cardGrid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* 모바일 대응용 */
+}
+
+.weatherCard {
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  flex: 1 1 22%; /* 기본은 25%인데 gap 때문에 22~23%로 줄여야 맞아떨어짐 */
+  min-width: 200px; /* 모바일에서 카드 줄바꿈 시 기준 */
+  box-sizing: border-box;
+}
+
+.weatherCard:hover {
+  transform: translateY(-5px);
+}
+
+.cardTitle {
+  font-family: "Pretendard-Black";
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.cardContent {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.loading,
+.error {
+  font-size: 1.2rem;
+  padding-top: 40vh;
+  color: white;
+}

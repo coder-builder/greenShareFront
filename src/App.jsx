@@ -24,6 +24,11 @@ import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert"
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
 import QnaNotiList from "./components/farmercom/QnaNotiList";
+import MainPage from "./components/farmercom/main/MainPage";
+import MyPage from "./components/farmercom/MyPage";
+import Follow from "./components/farmercom/Follow";
+import ProtectedRoute from "./components/farmercom/ProtectedRoute";
+import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
 
 function App() {
   const [viewSide, setSide] = useState(false);
@@ -47,6 +52,7 @@ function App() {
   return (
     <div className="appCon">
       {/* 홈화면 */}
+
       <Routes>
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
@@ -56,24 +62,82 @@ function App() {
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
 
+          {/* 마이 페이지 */}
+          <Route path="mypage" element={<MyPage />} />
+
+          {/* 마이 페이지 */}
+          <Route path="follow" element={<Follow />} />
+
           {/* 목록 페이지 */}
+          <Route path="/" element={<MainPage />} />
+
           <Route path="plants" element={<FarmerPlantList />} />
           {/* 상세페이지 */}
-          <Route path="/plant/:id" element={<FarmerPlantDetail />} />
+          <Route
+            path="/plant/:id"
+            element={
+              <ProtectedRoute>
+                <FarmerPlantDetail />
+              </ProtectedRoute>
+            }
+          />
 
           {/* 각 작물 상세 온도 */}
-          <Route path="/plant/:id/temperature" element={<TempDetail />} />
+          {/* 관리자만 접근 허용 */}
+          <Route
+            path="/plant/:id/temperature"
+            element={
+              <ProtectedAdminRoute>
+                <TempDetail />
+              </ProtectedAdminRoute>
+            }
+          />
 
           {/* 각 작물 상세 조도 */}
-          <Route path="/plant/:id/illuminance" element={<LuxDetail />} />
+          {/* 관리자만 접근 허용 */}
+          <Route
+            path="/plant/:id/illuminance"
+            element={
+              <ProtectedAdminRoute>
+                <LuxDetail />
+              </ProtectedAdminRoute>
+            }
+          />
 
           {/* 각 작물 상세 습도 */}
-          <Route path="/plant/:id/humidity" element={<HumidDetail />} />
+          {/* 관리자만 접근 허용 */}
+          <Route
+            path="/plant/:id/humidity"
+            element={
+              <ProtectedAdminRoute>
+                <HumidDetail />
+              </ProtectedAdminRoute>
+            }
+          />
 
           {/* 각 작물 상세 토양 수분 */}
-          <Route path="/plant/:id/soilMoisture" element={<SoilDetail />} />
+          {/* 관리자만 접근 허용 */}
+          <Route
+            path="/plant/:id/soilMoisture"
+            element={
+              <ProtectedAdminRoute>
+                <SoilDetail />
+              </ProtectedAdminRoute>
+            }
+          />
 
+          {/* 구분선 */}
+          {/* 여기서부터 공지사항 & QnA게시판*/}
+          {/* 공지사항 */}
           <Route path="noti" element={<FarmerNoti />} />
+          {/* 공지사항 세부조회 */}
+          <Route path="/noti/:num" element={<FarmerNotiDetail />} />
+          {/* 공지사항 */}
+          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
+          {/* QnA게시판 */}
+          <Route path="/qna/:num" element={<UserQnaDetail />} />
+          {/* QnA등록 */}
+          <Route path="/qnaInsert" element={<UserQnaInsert />} />
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
 
@@ -88,7 +152,6 @@ function App() {
           <Route path="/userQnaInsert" element={<UserQnaInsert />} />
 
           {/* 로그인 페이지 */}
-
           <Route path="login" element={<Login />} />
 
           {/* 회원가입 페이지 */}

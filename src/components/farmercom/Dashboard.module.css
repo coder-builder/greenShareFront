@@ -4,6 +4,8 @@
 }
 
 .dashboardTitle {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.2rem;
   font-family: "Pretendard-Bold";
   margin-bottom: 1rem;
@@ -33,7 +35,7 @@
   background-color: #fff;
   padding: 1.75rem;
   border-radius: 1.25rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -41,6 +43,10 @@
   align-items: flex-start;
   min-width: 250px;
   cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.158);
 }
 
 .cardTitle {
@@ -53,4 +59,16 @@
   font-weight: 700;
   color: #333;
   margin: 0;
+}
+
+.backButton {
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: #27b06e;
+  font-family: "Pretendard-Bold";
+}
+
+.backButton:hover {
+  background-color: #11c6ab;
+  transition: 0.2s;
 }

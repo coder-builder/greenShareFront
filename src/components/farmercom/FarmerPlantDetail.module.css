@@ -10,16 +10,10 @@
   display: flex;
 }
 
-.textCon {
-  /* 왼쪽 이미지 위에 있는 박스 텍스트 */
-  display: flex;
-  flex-direction: column;
-}
-
 .imgCon {
   /* 이미지 컨테이너 */
   padding-top: 20px;
-  width: 40%;
+  width: 44%;
   display: flex;
   flex-direction: column;
 }
@@ -44,13 +38,16 @@
 }
 
 .title {
-  /* 타이틀(사진 위에 있는 초록 글자입니다) */
+  /* 타이틀(사진 위에 있는 글자입니다) */
   font-family: "Pretendard-Black";
   font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #27b06e;
+  margin-top: 20px;
+  color: rgb(87, 87, 87);
+  margin-bottom: -20px;
+  margin-top: 40px;
 }
+
 .subTitle {
   /* 서브 타이틀 : 영어 이름입니다 */
   font-family: "Pretendard-ExtraLight";
@@ -62,7 +59,7 @@
   margin: 2rem auto;
   border-collapse: separate;
   border-spacing: 0;
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.13);
   border-radius: 12px;
   overflow: hidden;
   font-size: 1rem;
@@ -77,8 +74,7 @@
 }
 
 .detailTable th {
-  background-color: #11c6ab;
-  color: white;
+  color: rgb(87, 87, 87);
   font-weight: 600;
   font-size: 1.05rem;
 }

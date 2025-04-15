@@ -29,10 +29,6 @@ const FarmerPlantDetail = () => {
     <div className={styles.container}>
       <div className={styles.subContainer}>
         <div className={styles.imgCon}>
-          <div className={styles.textCon}>
-            <p className={styles.title}>{cropDetail.crop} 환경 정보</p>
-          </div>
-
           <div className={styles.imgCon1}>
             <img
               src={`${IMAGE_PATH}/${cropDetail.imgName}`}
@@ -51,37 +47,40 @@ const FarmerPlantDetail = () => {
       </div>
 
       {/* 식물 적정 데이터  */}
-      <table className={styles.detailTable}>
-        <thead>
-          <tr>
-            <th>온도(°C)</th>
-            <th>습도(%)</th>
-            <th>조도(lux)</th>
-            <th>토양수분(%)</th>
-            <th>조도ADC</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {cropDetail.tempMin} ~ {cropDetail.tempMax}
-            </td>
-            <td>
-              {cropDetail.humidMin} ~ {cropDetail.humidMax}
-            </td>
-            <td>
-              {cropDetail.luxMin} ~ {cropDetail.luxMax}
-            </td>
-            <td>
-              {cropDetail.soilMin} ~ {cropDetail.soilMax}
-            </td>
-            <td>
-              {cropDetail.adcMin} ~ {cropDetail.adcMax}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className={styles.textCon}>
+        <p className={styles.title}>{cropDetail.crop} 환경 정보</p>
 
+        <table className={styles.detailTable}>
+          <thead>
+            <tr>
+              <th>온도(°C)</th>
+              <th>습도(%)</th>
+              <th>조도(lux)</th>
+              <th>토양수분(%)</th>
+              <th>조도ADC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {cropDetail.tempMin} ~ {cropDetail.tempMax}
+              </td>
+              <td>
+                {cropDetail.humidMin} ~ {cropDetail.humidMax}
+              </td>
+              <td>
+                {cropDetail.luxMin} ~ {cropDetail.luxMax}
+              </td>
+              <td>
+                {cropDetail.soilMin} ~ {cropDetail.soilMax}
+              </td>
+              <td>
+                {cropDetail.adcMin} ~ {cropDetail.adcMax}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       {/* 작물의 기본 정보를 보여줌 */}
       <div className={styles.description}>
         <h3>Information</h3>
