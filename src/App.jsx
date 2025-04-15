@@ -26,10 +26,11 @@ import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate"
 import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
-
-
+import MessageSocket from "./components/messageSocket/MessageSocket";
+import TestMessage from "./components/messageSocket/TestMessage";
 
 function App() {
+ 
   const [viewSide, setSide] = useState(false);
   const handleOn = (e) => {
     /* 마우스의 위치를 판단하는 함수 */
@@ -49,8 +50,11 @@ function App() {
   }, []);
 
   return (
-    
     <div className="appCon">
+
+      {/* 메세지 소캣 */}
+      {/* <MessageSocket /> */}
+
       {/* 홈화면 */}
       <Routes>
         {/* -------- 구분선 -------- */}
@@ -58,6 +62,8 @@ function App() {
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
+          
+          <Route path="/soket-test" element={<TestMessage />} />
           {/* 마이 페이지 */}
           <Route path="mypage" element={<MyPage />} />
           {/* 마이 페이지 */}
@@ -82,8 +88,6 @@ function App() {
           <Route path="/plant/:id/soilMoisture" element={<SoilDetail />} />
 
           <Route path="noti" element={<FarmerNoti />} />
-
-
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
 
