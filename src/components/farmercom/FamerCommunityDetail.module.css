@@ -1,46 +1,36 @@
+/* ==================== 헤더 영역 ==================== */
 .header {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid lightgray;
+  gap: 12px;
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .titleDiv {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  gap: 12px;
+  padding: 16px;
 }
 
 .likeDiv {
   display: flex;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* 본문 내용 */
+
+/* ==================== 본문 영역 ==================== */
 .contentDiv {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  line-height: 1.6;
+  padding: 24px;
+  line-height: 1.7;
   font-size: 16px;
 }
 
-/* ================================================ */
-/* 본문 내용 css 적용하기 => react - quill전용*/
-/* 태그들이라서 태그에 맞게 css 주기 */
-
-/* 첨부된 파일 크기 조절 */
-.contentDiv img {
-  width: 80%;
-}
-
-/* 본문 안의 텍스트 요소 정렬 */
 .contentDiv p,
 .contentDiv li,
 .contentDiv h1,
@@ -50,85 +40,124 @@
   margin-bottom: 1em;
 }
 
-/* 이미지 정렬 및 크기 */
 .contentDiv img {
   max-width: 100%;
+  width: 80%;
   height: auto;
   display: block;
   margin: 16px auto;
   border-radius: 6px;
 }
 
-/* 리스트 스타일 */
 .contentDiv ul,
 .contentDiv ol {
   padding-left: 1.5em;
 }
 
-/* ==================================== */
 
-
-/* 댓글 영역  */
-
+/* ==================== 댓글 영역 ==================== */
 .replyDiv {
-  margin-top: 100px;
-  margin-bottom: 20px;
+  margin: 80px auto 20px;
+  max-width: 800px;
 }
 
-/* 각 댓글의 영역 */
+/* 댓글 한 개 박스 */
 .reply_content {
-  margin-top: 10px;
-  border-top: 1px solid lightgray;
-  padding: 15px;
+  margin-top: 20px; /* 댓글들 간 간격 더 넉넉하게 */
+  border-top: 1px solid #e0e0e0;
+  padding: 16px 0;
 }
 
-/* 각 댓글의 작성자와 등록기간, 삭제버튼 */
+/* 댓글 상단 정보 정렬 */
 .reply_content > div:first-child {
   display: flex;
-  font-size: 0.8rem;
-  color: lightgray;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: gray;
+  margin-bottom: 10px;
 }
 
-/* 댓글 삭제 버튼 */
+/* 삭제 버튼 스타일 수정 */
 .reply_content > div:first-child > button {
-  width: 80px;
-  padding: 2px;
+  height: 30px;
+  padding: 6px 14px;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ffdddd;  /* 연한 붉은색 */
+  color: #cc0000;
+  transition: background-color 0.3s;
 }
 
-/* 댓글 등록 구역 */
+.reply_content > div:first-child > button:hover {
+  background-color: #ffbbbb;
+}
+
+/* 댓글 본문 텍스트 */
+.reply_content p {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 댓글 등록창과 댓글 목록 사이 간격 */
 .reply_reg {
-  background-color: lightgray;
-  padding: 10px;
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 40px auto 0; /* ⬅ 위쪽 간격 확보 */
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
 }
 
-.reply_reg > input {
-  width: 30%;
-}
-
+/* 입력창 + 버튼 정렬 */
 .reply_reg_detail {
-  width: 100%;
   display: flex;
-  height: 100px;
+  width: 100%;
+  height: 120px;
+  gap: 12px;
 }
 
+/* 댓글 입력창 넓게! */
 .reply_reg_detail > textarea {
-  flex: 7;
+  flex: 5;              /* 넓이 비중을 키움 */
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+  box-sizing: border-box;
 }
 
+/* 댓글 등록 버튼 */
 .reply_reg_detail > button {
   flex: 1;
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 하단의 버튼영역 */
 
+
+/* ==================== 하단 버튼 ==================== */
 .bottom_btn {
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .update_delete_btn {

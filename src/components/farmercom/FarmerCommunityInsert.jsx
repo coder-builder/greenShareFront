@@ -4,6 +4,7 @@ import { insertStories } from "../../apis/plantStory";
 import styles from "./FarmerCommunityInsert.module.css";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css"; // 스타일도 꼭 import 해줘야 함
+import Toolbar from "quill/modules/toolbar";
 
 const FarmerCommunityInsert = () => {
   const nav = useNavigate();
@@ -40,7 +41,6 @@ const FarmerCommunityInsert = () => {
       });
   };
 
-
   console.log(content);
 
   return (
@@ -61,7 +61,7 @@ const FarmerCommunityInsert = () => {
 
         <div>
           <ReactQuill
-            style={{ height: "500px", width: '100%' }}
+            style={{ height: "760px", width: "100%" }}
             value={content}
             onChange={setContent}
             modules={modules}
@@ -69,7 +69,7 @@ const FarmerCommunityInsert = () => {
         </div>
       </div>
 
-      <div className={styles.btn}>
+      <div className={styles.btnDiv}>
         <button type="button" onClick={(e) => nav("/community")}>
           목록 가기
         </button>
