@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router'
 import { useSelector } from 'react-redux'
-import { isAuthenticated } from '../redux/authCheck';
+import { isAuthenticated } from '../../redux/authCheck';
 
 
 const ProtectedRoute = ({children}) => {

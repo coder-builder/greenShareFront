@@ -17,9 +17,7 @@ const FarmerPlantList = () => {
       .then((res) => setCropList(res.data))
       .catch((e) => console.log(e));
   }, []);
-  console.log(cropList);
 
-  console.log(cropList);
   return (
     /* 식물 목록페이지 */
 
