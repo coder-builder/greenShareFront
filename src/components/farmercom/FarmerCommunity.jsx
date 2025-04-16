@@ -213,13 +213,17 @@ const FarmerCommunity = () => {
                 </div>
 
                 <div className={styles.infoDiv}>
+
+
                   {/* 좋아요 & 댓글 아이콘 */}
+                  {/* 구분선 */}
+                  {/*  */}
                   <div className={styles.iconDiv}>
                     {story.isLike === "Y" ? (
                       <span
                         onClick={(e) => deleteLike(story.boardNum)}
                         className={styles.like}
-                      >
+                      >{/* 좋아요 눌렀을때 하트 */}
                         <i className="bi bi-heart-fill"></i> {story.likeCnt}
                       </span>
                     ) : (
@@ -229,8 +233,10 @@ const FarmerCommunity = () => {
                           like(story.boardNum);
                         }}
                         className={styles.like}
-                      >
-                        <i className="bi bi-heart"></i>{story.likeCnt}
+                                          
+                      >{/* 좋아요 누르기전 하트 */}
+                        <i className="bi bi-heart"></i> {story.likeCnt}
+
                       </span>
                     )}
 
@@ -239,7 +245,11 @@ const FarmerCommunity = () => {
                       onClick={(e) =>
                         nav(`/detail-community/${story.boardNum}`)
                       }
-                    >
+
+                    >{/* 댓글 아이콘 */}
+
+ 
+
                       <i class="bi bi-chat-left-dots"></i>
                       {story.replyCnt}
                     </span>
