@@ -132,16 +132,23 @@ function App() {
           <Route path="noti" element={<FarmerNoti />} />
           {/* 공지사항 세부조회 */}
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
+          
           {/* 공지사항 */}
-          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
+          <Route 
+            path="/FarmerNotiInsert" 
+            element={
+              <ProtectedRoute>
+                <FarmerNotiInsert />
+              </ProtectedRoute>
+            } 
+          />
+          
           {/* QnA게시판 */}
           <Route path="/qna/:num" element={<UserQnaDetail />} />
           {/* QnA등록 */}
           <Route path="/qnaInsert" element={<UserQnaInsert />} />
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
-
-          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
 
           <Route path="/qna" element={<UserQna />} />
 
