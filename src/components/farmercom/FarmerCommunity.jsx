@@ -268,28 +268,28 @@ const FarmerCommunity = () => {
                       onClick={() => handleFollow(story.userEmail)}
                     />
 
-                      <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          deleteLike(story.boardNum);
-                        }}
-                        className={styles.like}
-                      >
-                        <i className="bi bi-heart-fill"></i>
-                        <span>{story.likeCnt}</span>
-                      </div>
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteLike(story.boardNum);
+                      }}
+                      className={styles.like}
+                    >
+                      <i className="bi bi-heart-fill"></i>
+                      <span>{story.likeCnt}</span>
+                    </div>
                     ) : (
-                      <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          like(story.boardNum);
-                        }}
-                        className={styles.like}
-                      >
-                        <i className="bi bi-heart"></i>
-                        <span>{story.likeCnt}</span>
-                      </div>
-                    )}
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        like(story.boardNum);
+                      }}
+                      className={styles.like}
+                    >
+                      <i className="bi bi-heart"></i>
+                      <span>{story.likeCnt}</span>
+                    </div>
+                  )}
 
                     <div
                       className={styles.reply}
@@ -371,6 +371,7 @@ const FarmerCommunity = () => {
     </>
   );
 };
+
 
 
 export default FarmerCommunity;
