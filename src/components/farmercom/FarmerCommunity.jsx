@@ -98,6 +98,16 @@ const FarmerCommunity = () => {
     return decodedPayload.sub; // 여기 key 중요!!
   };
 
+
+  const handleFollow = (toUserEmail) => {
+    const fromUserEmail = getUserEmailFromToken();
+
+    console.log("팔로우 요청 데이터", {
+      fromUserEmail: fromUserEmail,
+      toUserEmail: toUserEmail,
+    });
+
+
   const handleUnFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
@@ -129,6 +139,7 @@ const FarmerCommunity = () => {
   const handleFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
+
     if (!fromUserEmail) {
       alert("로그인이 필요합니다.");
       return;
@@ -141,11 +152,18 @@ const FarmerCommunity = () => {
       })
       .then(() => {
         alert("팔로우 성공!");
+
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("이미 팔로우 했습니다.");
+
         setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
       })
       .catch((error) => {
         console.error("언팔로우 실패:", error);
         alert("팔로우 실패");
+
       });
   };
 
@@ -212,6 +230,39 @@ const FarmerCommunity = () => {
                   {/* 좋아요 & 댓글 아이콘 */}
                   <div className={styles.iconDiv}>
                     {story.isLike === "Y" ? (
+
+                      <span
+                        onClick={() => deleteLike(story.boardNum)}
+                        className={styles.like}
+                      >
+                        <i className="bi bi-heart-fill"></i> {story.likeCnt}
+                      </span>
+                    ) : (
+                      <span
+                        onClick={() => like(story.boardNum)}
+                        className={styles.like}
+                      >
+                        <i className="bi bi-heart"></i>
+                      </span>
+                    )}
+
+                    <span
+                      className={styles.reply}
+                      onClick={() => nav(`/detail-community/${story.boardNum}`)}
+                    >
+                      <img src="/chat.png" alt="댓글" />
+                      {story.replyCnt}
+                    </span>
+                  </div>
+
+                  {/* 유저 프로필 */}
+                  <div className={styles.userDiv}>
+                    <img
+                      src="/User.png"
+                      alt="작성자"
+                      onClick={() => handleFollow(story.userEmail)}
+                    />
+
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
@@ -273,6 +324,7 @@ const FarmerCommunity = () => {
                         )}
                       </div>
                     )}
+
                   </div>
                 </div>
               </div>

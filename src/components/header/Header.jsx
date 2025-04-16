@@ -6,11 +6,10 @@ import { pic } from "../../consts/pic";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutReducer } from "../../redux/authSlice";
 
-
 const Header = () => {
-  const token = useSelector(state => state.auth.token);
-  const user = useSelector(state => state.auth.user);
-  const dispatch = useDispatch()
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   const nav = useNavigate();
   /* 열림 닫힘 상태 */
   const [isOpen, setIsOpen] = useState(false);
@@ -44,18 +43,19 @@ const Header = () => {
 
         <span
           className={[
-            styles.green /* 컬러 그린 */,
-            styles.fontBold /* 폰트 굵게 */,
-            styles.font15rem /* 폰트 사이즈 1.5REM */,
-            styles.cursor /* 마우스 호버시 커서 */,
+            styles.cursor,
+            styles.cateCon,
+            /* 마우스 호버시 커서 */
           ].join(" ")}
           onClick={() => {
             /* 온클릭시 메인 페이지로 이동 */
             nav("/");
           }}
         >
-          <img src={pic.logo} />
           {/* 로고 이미지 */}
+          <div className={styles.logoCon}>
+            <img src={pic.logo} className={styles.logoImg} />
+          </div>
         </span>
 
         {/* 여기서부터 오른쪽 카테고리 컨테이너 */}
@@ -66,7 +66,7 @@ const Header = () => {
               /* 클릭시 작물리스트로 이동 */
               nav("/plants");
             }}
-            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+            className={[styles.cursor, styles.darkGrey, styles.fontWidth].join(
               " "
             )}
           >
@@ -74,33 +74,45 @@ const Header = () => {
           </span>
 
           <span
-            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
+            className={[styles.cursor, styles.darkGrey, styles.fontWidth].join(
               " "
             )}
-            onClick={(e)=>{
-              nav('/community')
+            onClick={(e) => {
+              nav("/community");
             }}
           >
             커뮤니티
           </span>
           <span
-            className={[styles.cursor, styles.darkGrey /* 컬러 그린 */].join(
-              " "
-            )}
-            onClick={(e)=>{
-              nav('/noti')
+            className={[
+              styles.cursor,
+              styles.darkGrey,
+              styles.fontWidth,
+              /* 컬러 그린 */
+            ].join(" ")}
+            onClick={(e) => {
+              nav("/noti");
             }}
           >
             공지사항
           </span>
-          {
-          token === null 
-            ? 
-            (
-              <span
-                onClick={() => nav("/login")}
-                className={`${styles.cursor} ${styles.darkGrey}`}
+          {token === null ? (
+            <span
+              onClick={() => nav("/login")}
+              className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
+            >
+              로그인
+            </span>
+          ) : (
+            <div style={{ display: "flex", gap: "20px" }}>
+              <p
+                className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
+                onClick={() => nav("/mypage")}
               >
+
+                마이 페이지
+              </p>
+
                 로그인
               </span>
             ) 
@@ -130,10 +142,16 @@ const Header = () => {
         
             
 
-          
+     
 
-
-
+              <p
+                className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
+                onClick={() => dispatch(logoutReducer())}
+              >
+                로그아웃 {user?.userName && `(${user.userName})`}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>
