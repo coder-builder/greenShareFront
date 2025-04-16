@@ -158,16 +158,11 @@ const FarmerCommunity = () => {
         console.log(error);
         alert("이미 팔로우 했습니다.");
 
-
-  
-  
-
         setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
       })
       .catch((error) => {
         console.error("언팔로우 실패:", error);
         alert("팔로우 실패");
-
 
       });
   };
@@ -302,30 +297,6 @@ const FarmerCommunity = () => {
                     {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}
                     {getUserEmailFromToken() !== story.userEmail && (
                       <div className={styles.userDiv}>
-
-                      {
-                        story.isFollow === 'Y'
-                        ?
-                        <>
-                          <div className={styles.follow} onClick={(e)=>{
-                            e.stopPropagation();
-                            handleUnFollow(story.userEmail);
-                          }} >Following</div>
-                        </>
-                        :
-                        <>
-                          <div className={styles.unfollow} onClick={(e)=>{
-                            e.stopPropagation();
-                            handleFollow(story.userEmail);
-                          }} >Follow</div>
-                        </>                       
-                      } 
-                      </div>
-                    }                   
-                  </div>                 
-                </div>
-              </div>             
-
                         {story.isFollow === "Y" ? (
                           <>
                             <div
@@ -357,7 +328,6 @@ const FarmerCommunity = () => {
                   </div>
                 </div>
               </div>
-
             </>
           );
         })}
@@ -371,6 +341,5 @@ const FarmerCommunity = () => {
     </>
   );
 };
-
 
 export default FarmerCommunity;
