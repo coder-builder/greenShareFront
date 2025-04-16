@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SideBar.module.css";
 
 const SideBar = ({ isVisible }) => {
+  
+  const [isShow, setIsShow] = useState(false)
+
   return (
     <div
       style={{
@@ -16,8 +19,7 @@ const SideBar = ({ isVisible }) => {
       }}
       className={styles.mainCon}
     >
-      <h3>Sidebar</h3>
-      <p>쪽지함</p>
+      <div>쪽지함</div>
     </div>
   );
 };
