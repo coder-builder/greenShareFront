@@ -99,13 +99,7 @@ const FarmerCommunity = () => {
   };
 
 
-  const handleFollow = (toUserEmail) => {
-    const fromUserEmail = getUserEmailFromToken();
 
-    console.log("팔로우 요청 데이터", {
-      fromUserEmail: fromUserEmail,
-      toUserEmail: toUserEmail,
-    });
 
 
   const handleUnFollow = (toUserEmail) => {
@@ -158,16 +152,11 @@ const FarmerCommunity = () => {
         console.log(error);
         alert("이미 팔로우 했습니다.");
 
-
-  
-  
-
         setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
       })
       .catch((error) => {
         console.error("언팔로우 실패:", error);
         alert("팔로우 실패");
-
 
       });
   };
@@ -237,7 +226,7 @@ const FarmerCommunity = () => {
                     {story.isLike === "Y" ? (
 
                       <span
-                        onClick={() => deleteLike(story.boardNum)}
+                        onClick={(e) => deleteLike(story.boardNum)}
                         className={styles.like}
                       >
                         <i className="bi bi-heart-fill"></i> {story.likeCnt}
@@ -250,7 +239,7 @@ const FarmerCommunity = () => {
                         <i className="bi bi-heart"></i>
                       </span>
                     )}
-
+        
                     <span
                       className={styles.reply}
                       onClick={() => nav(`/detail-community/${story.boardNum}`)}
@@ -259,7 +248,7 @@ const FarmerCommunity = () => {
                       {story.replyCnt}
                     </span>
                   </div>
-
+        
                   {/* 유저 프로필 */}
                   <div className={styles.userDiv}>
                     <img
@@ -267,7 +256,7 @@ const FarmerCommunity = () => {
                       alt="작성자"
                       onClick={() => handleFollow(story.userEmail)}
                     />
-
+                    {story.isLike === "Y" ? (
                     <div
                       onClick={(e) => {
                         e.stopPropagation();
@@ -278,6 +267,7 @@ const FarmerCommunity = () => {
                       <i className="bi bi-heart-fill"></i>
                       <span>{story.likeCnt}</span>
                     </div>
+                    
                     ) : (
                     <div
                       onClick={(e) => {
@@ -302,30 +292,6 @@ const FarmerCommunity = () => {
                     {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}
                     {getUserEmailFromToken() !== story.userEmail && (
                       <div className={styles.userDiv}>
-
-                      {
-                        story.isFollow === 'Y'
-                        ?
-                        <>
-                          <div className={styles.follow} onClick={(e)=>{
-                            e.stopPropagation();
-                            handleUnFollow(story.userEmail);
-                          }} >Following</div>
-                        </>
-                        :
-                        <>
-                          <div className={styles.unfollow} onClick={(e)=>{
-                            e.stopPropagation();
-                            handleFollow(story.userEmail);
-                          }} >Follow</div>
-                        </>                       
-                      } 
-                      </div>
-                    }                   
-                  </div>                 
-                </div>
-              </div>             
-
                         {story.isFollow === "Y" ? (
                           <>
                             <div
@@ -357,7 +323,6 @@ const FarmerCommunity = () => {
                   </div>
                 </div>
               </div>
-
             </>
           );
         })}
@@ -371,7 +336,5 @@ const FarmerCommunity = () => {
     </>
   );
 };
-
-
 
 export default FarmerCommunity;
