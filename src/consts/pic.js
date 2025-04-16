@@ -3,6 +3,8 @@ import mainImg from "../assets/picture/mainpage.png";
 import image1 from "../assets/picture/main1.png";
 import image2 from "../assets/picture/main2.png";
 import image3 from "../assets/picture/main3.png";
+import cropBanner from "../assets/picture/crop.png";
+import comBanner from "../assets/picture/commu.png";
 
 export const pic = {
   logo: logoImg,
@@ -10,4 +12,6 @@ export const pic = {
   image1: image1,
   image2: image2,
   image3: image3,
+  crop: cropBanner,
+  com: comBanner,
 };

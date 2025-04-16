@@ -104,23 +104,22 @@ const Header = () => {
               로그인
             </span>
           ) : (
-            
-            <>
-                <span
-                  className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
-                  onClick={() => nav("/mypage")}
-                >
-                  마이 페이지
-                </span>
-  
-                <span
-                  className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
-                  onClick={() => dispatch(logoutReducer())}
-                >
-                  로그아웃 {user?.userName && `(${user.userName})`}
-                </span>
+          <>
+              <span
+                className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
+                onClick={() => nav("/mypage")}
+              >
+                팔로우 목록
+              </span>
+
+              <span
+                className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
+                onClick={() => dispatch(logoutReducer())}
+              >
+                로그아웃 {user?.userName && `(${user.userName})`}
+              </span>
             </>
-        
+
           )}
         </div>
       </div>
