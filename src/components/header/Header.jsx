@@ -104,7 +104,7 @@ const Header = () => {
               로그인
             </span>
           ) : (
-            <>
+          <>
               <span
                 className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
                 onClick={() => nav("/mypage")}
@@ -119,6 +119,7 @@ const Header = () => {
                 로그아웃 {user?.userName && `(${user.userName})`}
               </span>
             </>
+
           )}
         </div>
       </div>

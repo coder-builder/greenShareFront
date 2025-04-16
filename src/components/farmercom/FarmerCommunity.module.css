@@ -9,6 +9,7 @@
 .width100 {
   /*  */
   width: 100%;
+
   border-bottom: 1px solid rgb(194, 194, 194);
   border-top: 1px solid rgb(194, 194, 194);
   margin-bottom: 30px;
@@ -25,7 +26,19 @@
 
 .contentBox:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.301);
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 10px;
+  background-color: #ffffffcc; /* 살짝 투명감 */
+  box-shadow: 0 4px 16px rgba(120, 120, 120, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.contentBox:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(80, 120, 100, 0.1);
 }
 
 .imgDiv {
@@ -68,6 +81,7 @@
   padding: 10px;
 }
 
+
 .imgDiv{
   border-bottom: 1px solid lightgray;
 }
@@ -76,7 +90,9 @@
   margin-bottom: 10px;
 }
 
-.imgDiv > p{
+
+.imgDiv > div:first-child {
+  /* 이미지가 없을때 나타나는 영역 */
   margin-bottom: 10px;
   font-size: 0.9rem;
 }
@@ -84,6 +100,27 @@
 .imgDiv > img{
   width: 100%;
   height: 200px;
+}
+
+
+.imgDiv > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  filter: brightness(0.95);
+}
+
+.imgDiv .user {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: #444;
 }
 
 .titleDiv > p:first-child{
@@ -114,7 +151,7 @@
   border: 1px solid black;
 }
 
-/* .userDiv img {
+.userDiv img {
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -126,6 +163,7 @@
   align-items: center;
   /* margin-top: 10px; */
 }
+
 
 button {
   background-color: #76eb6f;
@@ -189,4 +227,8 @@ button:hover {
   color: white;
   border-radius: 8px;
   cursor: pointer;
+
 }
+
+
+

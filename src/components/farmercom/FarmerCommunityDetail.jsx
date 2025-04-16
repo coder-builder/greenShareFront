@@ -32,7 +32,6 @@ const FarmerCommunityDetail = () => {
     }
   }, []);
 
-  console.log(storyDetail);
   useEffect(() => {
     detailStory(boardNum)
       .then((res) => setStoryDetail(res.data))
