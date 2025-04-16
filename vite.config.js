@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  define: {
+    'global': 'window',
+  },
   server:{
     proxy: {
       // 경로가 "/api" 로 시작하는 요청을 대상으로 proxy 설정
@@ -13,7 +16,12 @@ export default defineConfig({
         changeOrigin: true,
         // 요청 경로에서 '/api' 제거
         rewrite: (path) => path.replace(/^\/api/, ''),
-      }
+      },
+      '/ws': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        ws: true, // ✅ 이거 필수! WebSocket 프록시
+      },
     }
   }
 })
