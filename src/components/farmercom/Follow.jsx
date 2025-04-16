@@ -129,7 +129,7 @@ const Follow = () => {
                 {filteredPosts.map(post => (
                   <div key={post.boardNum} className={styles.postItem}>
                     <p className={styles.writer}>
-                      <strong>{post.writer}</strong> {}님의 STORY
+                      <strong>{post.writer}</strong> {}
                     </p>
                     <p className={styles.userEmail}>
                       사용자 이메일 : {post.userEmail}

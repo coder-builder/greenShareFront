@@ -98,10 +98,6 @@ const FarmerCommunity = () => {
     return decodedPayload.sub; // 여기 key 중요!!
   };
 
-
-
-
-
   const handleUnFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
@@ -323,7 +319,7 @@ const FarmerCommunity = () => {
       </div>
 
       <div>
-        <button type="button" onClick={handleWriteClick}>
+        <button type="button" onClick={handleWriteClick} >
           글쓰기
         </button>
       </div>
