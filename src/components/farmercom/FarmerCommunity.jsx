@@ -233,8 +233,10 @@ const FarmerCommunity = () => {
                           like(story.boardNum);
                         }}
                         className={styles.like}
+                                          
                       >{/* 좋아요 누르기전 하트 */}
                         <i className="bi bi-heart"></i> {story.likeCnt}
+
                       </span>
                     )}
 
