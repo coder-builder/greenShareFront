@@ -64,8 +64,10 @@
 .backButton {
   cursor: pointer;
   border-radius: 20px;
+  color: white;
   background-color: #27b06e;
   font-family: "Pretendard-Bold";
+  border: none  ;
 }
 
 .backButton:hover {
