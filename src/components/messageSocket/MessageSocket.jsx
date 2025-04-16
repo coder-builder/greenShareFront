@@ -37,7 +37,9 @@ const MessageSocket = () => {
 
       client.subscribe("/user/queue/messages", (message) => {
         const msg = JSON.parse(message.body);
-        alert(`📨 새 쪽지!\n보낸사람: ${msg.senderEmail}\n내용: ${msg.content}`);
+        alert(
+          `📨 새 쪽지!\n보낸사람: ${msg.senderEmail}\n내용: ${msg.content}`
+        );
       });
 
       setStompClient(client);
@@ -66,18 +68,14 @@ const MessageSocket = () => {
 
     //수신자 정보 검사
     getReciverId(receiverEmail)
-    .then(res => {
-      if(res.data){
-        messageProcess(senderEmail);
-      }
-      else{
-        alert('입력하신 수신자 정보는 없는 정보입니다.');
-      }
-    })
-    .catch(error =>console.log(error));
-
-
-
+      .then((res) => {
+        if (res.data) {
+          messageProcess(senderEmail);
+        } else {
+          alert("입력하신 수신자 정보는 없는 정보입니다.");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   const messageProcess = (senderEmail) => {
@@ -97,10 +95,18 @@ const MessageSocket = () => {
     } else {
       alert("⚠️ WebSocket이 아직 연결되지 않았습니다.");
     }
-  }
+  };
 
   return (
-    <div style={{ padding: "20px", border: "1px solid #ccc", borderRadius: "10px", maxWidth: "400px", margin: "0 auto" }}>
+    <div
+      style={{
+        padding: "20px",
+        border: "1px solid #ccc",
+        borderRadius: "10px",
+        maxWidth: "400px",
+        margin: "0 auto",
+      }}
+    >
       <h2>💌 쪽지 보내기</h2>
 
       <input
@@ -119,7 +125,16 @@ const MessageSocket = () => {
         style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
       />
 
-      <button onClick={sendMessage} style={{ width: "100%", padding: "10px", backgroundColor: "#4CAF50", color: "white", border: "none" }}>
+      <button
+        onClick={sendMessage}
+        style={{
+          width: "100%",
+          padding: "10px",
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "none",
+        }}
+      >
         쪽지 보내기
       </button>
     </div>

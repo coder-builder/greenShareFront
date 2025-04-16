@@ -9,7 +9,6 @@
 .width100 {
   /*  */
   width: 100%;
-
   border-bottom: 1px solid rgb(194, 194, 194);
   border-top: 1px solid rgb(194, 194, 194);
   margin-bottom: 30px;
@@ -29,13 +28,13 @@
   cursor: pointer;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.301);
   border: 1px solid #ccc;
-  border-radius: 16px;
   padding: 10px;
   background-color: #ffffffcc; /* 살짝 투명감 */
   box-shadow: 0 4px 16px rgba(120, 120, 120, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(4px);
 }
+
 
 .contentBox:hover {
   transform: translateY(-6px);
@@ -144,7 +143,6 @@
 
 .userDiv {
   margin-left: 60px;
-  border: 1px solid black;
 }
 
 .userDiv img {
@@ -183,7 +181,6 @@ button:hover {
 }
 .like,
 .reply {
-  border: 1px solid black;
   display: flex;
   align-items: center;
 }
@@ -220,3 +217,11 @@ button:hover {
   border-radius: 8px;
   cursor: pointer;
 }
+
+
+.iconDiv{
+  display: flex; 
+  gap: 10px;
+
+}
+
