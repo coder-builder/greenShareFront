@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
 import { axiosInstance } from "../../redux/axiosInstance";
 import { isAuthenticated } from "../../redux/authCheck";
-import { pic } from "../../consts/pic";
 
 const FarmerCommunity = () => {
   const nav = useNavigate();
@@ -50,7 +49,6 @@ const FarmerCommunity = () => {
         alert("좋아요 등록");
 
         // 상태 업데이트
-        setIsUpdate(isUpdate + 1);
       })
       .catch((error) => {
         console.error("좋아요 등록 실패:", error);
@@ -177,17 +175,13 @@ const FarmerCommunity = () => {
 
   return (
     <>
+      <h2>🌿 식물 이야기</h2>
+
       <div className={styles.container}>
-        {" "}
-        {/* 메인 컨테이너 */}
-        <div>
-          {/* 배너 이미지 */}
-          <img className={styles.width100} src={pic.com} alt="" />
-        </div>
         {getPlantStory.map((story, i) => {
-          /* 커뮤니티 글 맵 돌림 */
           const thumbnail = getFirstImage(story.content);
           const preview = getTextPreview(story.content);
+
           const isMine = story.userEmail === userEmail;
           const isAdmin = userRole === "ROLE_ADMIN";
 
@@ -196,9 +190,7 @@ const FarmerCommunity = () => {
               <div
                 className={styles.contentBox}
                 key={i}
-                onClick={() =>
-                  nav(`/detail-community/${story.boardNum}`)
-                } /* 커뮤니티 상세글로 들어감 */
+                onClick={() => nav(`/detail-community/${story.boardNum}`)}
               >
                 <div className={styles.imgDiv}>
                   {thumbnail ? (
@@ -212,7 +204,6 @@ const FarmerCommunity = () => {
                   )}
                   <p className={styles.user}>
                     {story.userEmail}
-                    {/* 글쓴이메일 표시 */}
                     {(isMine || isAdmin) && " (내 글)"}
                   </p>
                 </div>
@@ -226,14 +217,17 @@ const FarmerCommunity = () => {
                   <div className={styles.iconDiv}>
                     {story.isLike === "Y" ? (
                       <span
-                        onClick={() => deleteLike(story.boardNum)}
+                        onClick={(e) => deleteLike(story.boardNum)}
                         className={styles.like}
                       >
                         <i className="bi bi-heart-fill"></i> {story.likeCnt}
                       </span>
                     ) : (
                       <span
-                        onClick={() => like(story.boardNum)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          like(story.boardNum);
+                        }}
                         className={styles.like}
                       >
                         <i className="bi bi-heart"></i>
@@ -242,31 +236,25 @@ const FarmerCommunity = () => {
 
                     <span
                       className={styles.reply}
-                      onClick={() => nav(`/detail-community/${story.boardNum}`)}
+                      onClick={(e) =>
+                        nav(`/detail-community/${story.boardNum}`)
+                      }
                     >
-                      <img src="/chat.png" alt="댓글" />
+                      <i class="bi bi-chat-left-dots"></i>
                       {story.replyCnt}
                     </span>
                   </div>
 
                   {/* 유저 프로필 */}
                   <div className={styles.userDiv}>
-                    <img
-                      src="/User.png"
-                      alt="작성자"
-                      onClick={() => handleFollow(story.userEmail)}
-                    />
-                    {story.isFollow === "Y" ? (
+                    {story.isLike === "Y" ? (
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
                           deleteLike(story.boardNum);
                         }}
                         className={styles.like}
-                      >
-                        <i className="bi bi-heart-fill"></i>
-                        <span>{story.likeCnt}</span>
-                      </div>
+                      ></div>
                     ) : (
                       <div
                         onClick={(e) => {
@@ -274,19 +262,13 @@ const FarmerCommunity = () => {
                           like(story.boardNum);
                         }}
                         className={styles.like}
-                      >
-                        <i className="bi bi-heart"></i>
-                        <span>{story.likeCnt}</span>
-                      </div>
+                      ></div>
                     )}
 
                     <div
                       className={styles.reply}
                       onClick={() => nav(`/detail-community/${story.boardNum}`)}
-                    >
-                      <i class="bi bi-chat-left-dots"></i>
-                      <span>{story.replyCnt}</span>
-                    </div>
+                    ></div>
 
                     {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}
                     {getUserEmailFromToken() !== story.userEmail && (
