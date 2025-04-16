@@ -1,15 +1,11 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import styles from "./FarmerNotiInsert.module.css";
+import { axiosInstance } from '../../redux/axiosInstance';
 
 const FarmerNotiInsert = () => {
   const nav = useNavigate();
-  const[insertNoti,setInsertNoti] = useState({
-    writer: '',
-    title: '',
-    content: ''
-  });
+  const[insertNoti,setInsertNoti] = useState({});
 
   const insertChange = (e) =>{
     setInsertNoti({
@@ -20,7 +16,7 @@ const FarmerNotiInsert = () => {
 
   //게시글 등록기능
   const insertFarmers = () =>{
-    axios.post('api/farmers',insertNoti)
+    axiosInstance.post('/farmers',insertNoti)
           .then((res)=>{
             alert('등록성공!')
             nav('/noti')
@@ -34,14 +30,6 @@ const FarmerNotiInsert = () => {
       <div >
         <table className={styles.mainContainer}>
           <tbody>
-            <tr>
-              <td>
-                작성자
-              </td>
-              <td>
-                <input type="text"  name='writer' value={insertNoti.writer} onChange={e=>{insertChange(e)}} />
-              </td>
-            </tr>
             <tr>
               <td>
                 제목

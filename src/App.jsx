@@ -23,6 +23,7 @@ import UserQnaInsert from "./components/user/UserQnaInsert";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
+import QnaNotiList from "./components/farmercom/QnaNotiList";
 import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
@@ -59,12 +60,15 @@ function App() {
       <Routes>
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
+
+        <Route path="/list" element={<QnaNotiList />} />
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
 
           {/* 마이 페이지 */}
           <Route path="mypage" element={<MyPage />} />
+
           {/* 마이 페이지 */}
           <Route path="follow" element={<Follow />} />
 
@@ -134,16 +138,32 @@ function App() {
           {/* 공지사항 세부조회 */}
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
+          
           {/* 공지사항 */}
-          <Route path="/FarmerNotiInsert" element={<FarmerNotiInsert />} />
+          <Route 
+            path="/FarmerNotiInsert" 
+            element={
+              <ProtectedRoute>
+                <FarmerNotiInsert />
+              </ProtectedRoute>
+            } 
+          />
+          
           {/* QnA게시판 */}
           <Route path="/qna/:num" element={<UserQnaDetail />} />
           {/* QnA등록 */}
           <Route path="/qnaInsert" element={<UserQnaInsert />} />
 
+          <Route path="/noti/:num" element={<FarmerNotiDetail />} />
+
+          <Route path="/qna" element={<UserQna />} />
+
+          <Route path="/qna/:num" element={<UserQnaDetail />} />
+
+          <Route path="/qnaInsert" element={<UserQnaInsert />} />
+
           <Route path="/userQnaInsert" element={<UserQnaInsert />} />
 
-          {/* 구분선 */}
           {/* 로그인 페이지 */}
           <Route path="login" element={<Login />} />
 

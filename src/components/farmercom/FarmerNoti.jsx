@@ -3,15 +3,19 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FarmerNoti.module.css";
+import { useSelector } from "react-redux";
+import { isAdmin, isAuthenticated } from "../../redux/authCheck";
+import { axiosInstance } from "../../redux/axiosInstance";
 
 const FarmerNoti = () => {
   const nav = useNavigate();
+  const token = useSelector((state) => state.auth.token);
 
   // 자바에서 불러온 데이터를 저장할 변수
   const [list, setList] = useState([]);
   useEffect(() => {
-    axios
-      .get("/api/farmers")
+    axiosInstance
+      .get("farmers")
       .then((res) => {
         setList(res.data);
         console.log(res.data);
@@ -36,9 +40,9 @@ const FarmerNoti = () => {
 
   //찾기 버튼
   const searchList = () => {
-    axios
+    axiosInstance
       .get(
-        `/api/farmers?selectWord=${search.selectWord}&searchLog=${search.searchLog}`
+        `farmers?selectWord=${search.selectWord}&searchLog=${search.searchLog}`
       )
       .then((res) => {
         setList(res.data);
@@ -81,52 +85,55 @@ const FarmerNoti = () => {
             검색
           </button>
         </div>
-        <table className={styles.table}>
-          <colgroup>
-            <col width={"10"} />
-            <col width={"50%"} />
-            <col width={"20%"} />
-            <col width={"8%"} />
-            <col width={"12%"} />
-          </colgroup>
-          <tbody>
-            <tr className={styles.header}>
-              <td>번호</td>
-              <td className={styles.title}>제목</td>
-              <td>작성자</td>
-              <td>조회수</td>
-              <td className={styles.date}>날짜</td>
-            </tr>
-            {list.map((list, i) => {
-              return (
+        {/* 게시글이 없을 때 */}
+        {list.length === 0 ? (
+          <div className={styles.noData}>게시글이 없습니다.</div>
+        ) : (
+          <table className={styles.table}>
+            <colgroup>
+              <col width={"10%"} />
+              <col width={"38%"} />
+              <col width={"5%"} />
+              <col width={"5%"} />
+              <col width={"10%"} />
+            </colgroup>
+            <tbody>
+              <tr className={styles.header}>
+                <td>번호</td>
+                <td className={styles.title}>제목</td>
+                <td>작성자</td>
+                <td>조회수</td>
+                <td className={styles.date}>날짜</td>
+              </tr>
+              {list.map((item, i) => (
                 <tr
                   key={i}
                   className={styles.list}
-                  onClick={(e) => {
-                    nav(`/noti/${list.boardNum}`);
-                  }}
+                  onClick={() => nav(`/noti/${item.boardNum}`)}
                 >
-                  <td>{list.boardNum}</td>
-                  <td className={styles.mapTitle}>{list.title}</td>
-                  <td>{list.writer}</td>
-                  <td>{list.views}</td>
+                  <td>{item.boardNum}</td>
+                  <td className={styles.mapTitle}>{item.title}</td>
+                  <td>{item.userEmail}</td>
+                  <td>{item.views}</td>
                   <td className={styles.insertDate}>
-                    {dayjs(list.date).format("YYYY년 MM월 DD일")}
+                    {dayjs(item.date).format("YYYY년 MM월 DD일")}
                   </td>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div className={styles.secondBtn}>
-          <button
-            type="button"
-            className={styles.insertBtn}
-            onClick={(e) => nav("/FarmerNotiInsert")}
-          >
-            등록하기
-          </button>
-        </div>
+              ))}
+            </tbody>
+          </table>
+        )}
+        {isAdmin(token) && (
+          <div className={styles.secondBtn}>
+            <button
+              type="button"
+              className={styles.insertBtn}
+              onClick={(e) => nav("/FarmerNotiInsert")}
+            >
+              등록하기
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
