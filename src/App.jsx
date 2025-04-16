@@ -27,7 +27,6 @@ import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
 import MessageSocket from "./components/messageSocket/MessageSocket";
-import TestMessage from "./components/messageSocket/TestMessage";
 
 function App() {
  
@@ -53,7 +52,7 @@ function App() {
     <div className="appCon">
 
       {/* 메세지 소캣 */}
-      {/* <MessageSocket /> */}
+      <MessageSocket />
 
       {/* 홈화면 */}
       <Routes>
@@ -63,7 +62,6 @@ function App() {
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
           
-          <Route path="/soket-test" element={<TestMessage />} />
           {/* 마이 페이지 */}
           <Route path="mypage" element={<MyPage />} />
           {/* 마이 페이지 */}
