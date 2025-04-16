@@ -17,7 +17,7 @@ const SideBar = ({ isVisible }) => {
       className={styles.mainCon}
     >
       <h3>Sidebar</h3>
-      <p>menu1</p>
+      <p>쪽지함</p>
     </div>
   );
 };
