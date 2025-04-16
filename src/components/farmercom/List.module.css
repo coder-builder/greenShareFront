@@ -1,4 +1,10 @@
 /*리스트 영역*/
+.mainCon {
+  width: 100%;
+}
+.mainCon img {
+  width: 100%;
+}
 .subCon {
   display: flex;
   justify-content: space-between;
@@ -11,22 +17,32 @@
   width: calc(48% - 1%); /* 2개씩 배치하려면 50% 너비에서 간격을 빼야 한다 */
   display: flex;
   align-items: center;
-  height: 200px;
-  margin-bottom: 10px;
+  height: 30%;
   border-radius: 15px;
+  width: 48%;
   margin-bottom: 30px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.082); /* X축 이동, Y축 이동, 흐림 정도, 색상 */
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.144); /* X축 이동, Y축 이동, 흐림 정도, 색상 */
 }
 
 .infoCon:hover {
   /* 마우스 호버시 그림자 짙게 */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.219);
-  transition: 0.3s;
+  box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.267);
+  transition: 0.4s ease-in-out;
 }
 
-@media (max-width: 768px) {
-  .box {
+@media (max-width: 1100px) {
+  .infoCon {
     width: 100%; /* 작은 화면에서 세로로 쌓이게 설정 */
+  }
+
+  .font08rem {
+    font-size: 0.9rem !important;
+  }
+  .font15rem {
+    font-size: 1.4rem !important;
+  }
+  .textBoxSon span{
+    font-size: 1rem !important;
   }
 }
 
@@ -54,6 +70,7 @@
   height: 100px; /* 원하는 세로 크기 */
   flex-direction: column;
   justify-content: space-between;
+  width: 60%;
 }
 
 /* 오른쪽 제목영역 작물이름+작물영어이름 */
@@ -66,11 +83,13 @@
 /* 적정생육환경 내용 */
 .textBox {
   display: flex;
+  width: 100%;
 }
 
 /* 생육환경 각 요소  */
 .textBoxSon {
   display: flex;
+  width: 100%;
   flex-direction: column;
   border-top: 1px solid #b1b1b1;
   padding-top: 5px;
@@ -89,8 +108,8 @@
   color: white;
   display: flex;
   justify-content: center;
-  padding: 3px 15px;
   margin-right: 3px;
+  
 }
 .textBoxSon > span:nth-child(2):hover {
   background-color: #11c6ab;
@@ -105,7 +124,9 @@
 .colorSub {
   color: #11c6ab;
 }
-
+.textBoxSon span{
+  font-size: clamp(15px, 1vw, 16px);
+}
 /* 폰트 */
 
 .fontBold {
@@ -117,19 +138,16 @@
 
 .font15rem {
   /* 폰트사이즈 1.4rem */
-  font-size: 1.4rem;
+  font-size: clamp(8px, 1.1vw, 30px);
 }
 .font08rem {
   /* 폰트사이즈 0.8rem */
-  font-size: 0.9rem;
+  font-size: clamp(8px, 1vw, 14px);
 }
 
 .maginTop10 {
   /* 위쪽 마진 10px */
   margin-top: 10px;
-}
-
-.letterSpace2 {
 }
 
 .cursor {

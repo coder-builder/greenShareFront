@@ -12,7 +12,6 @@
   font-size: 70px;
   font-family: "Pretendard-Black";
   line-height: 20px;
-
 }
 
 .title p {
@@ -28,7 +27,6 @@
   align-items: center;
   margin-bottom: 30px;
 }
-
 
 .button {
   margin: 20px auto;
@@ -61,4 +59,8 @@
   width: 80%;
   border-style: none;
   height: 50px;
+}
+
+.cursor {
+  cursor: pointer;
 }

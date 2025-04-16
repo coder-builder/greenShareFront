@@ -17,14 +17,14 @@ const FarmerPlantList = () => {
       .then((res) => setCropList(res.data))
       .catch((e) => console.log(e));
   }, []);
-  console.log(cropList);
 
-  console.log(cropList);
   return (
     /* 식물 목록페이지 */
 
     <div className={styles.mainCon}>
-      <div>나의 농작물</div>
+      <div>
+        <img src={pic.crop} alt="작물 리스트 배너" />
+      </div>
 
       <div className={styles.subCon}>
         {/* */}
@@ -78,11 +78,11 @@ const FarmerPlantList = () => {
                     <span>{`${crop.humidMin} ~ ${crop.humidMax}%`}</span>
                   </div>
                   <div className={styles.textBoxSon}>
-                    <span>적정 조도</span>
+                    <span>조도</span>
                     <span>{`${crop.adcMin} ~ ${crop.adcMax}`}</span>
                   </div>
                   <div className={styles.textBoxSon}>
-                    <span>적정 토양수분</span>
+                    <span>토양</span>
                     <span>{`${crop.soilMin} ~ ${crop.soilMax}%`}</span>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate } from 'react-router'
 import { useSelector } from 'react-redux'
-import { isAuthenticated } from '../redux/authCheck';
+import { isAuthenticated } from '../../redux/authCheck';
 
 
 const ProtectedRoute = ({children}) => {
@@ -10,7 +10,7 @@ const ProtectedRoute = ({children}) => {
 
   useEffect(() => {
     if(!isAuthenticated(token)) {
-      alert('로그인이 필요합니다.\n첫 화면으로 이동합니다.');
+      alert('로그인이 필요합니다.');
       setIsAccessible(false);
     }else{
       setIsAccessible(true);
@@ -18,7 +18,7 @@ const ProtectedRoute = ({children}) => {
   }, []);
 
   if(isAccessible === null) return null;
-  return isAccessible ? children : <Navigate to={'/'}/>;
+  return isAccessible ? children : <Navigate to={'/plants'}/>;
 }
 
 export default ProtectedRoute
