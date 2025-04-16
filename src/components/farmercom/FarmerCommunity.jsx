@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
 import { axiosInstance } from "../../redux/axiosInstance";
 import { isAuthenticated } from "../../redux/authCheck";
+import { pic } from "../../consts/pic";
 
 const FarmerCommunity = () => {
   const nav = useNavigate();
@@ -98,16 +99,6 @@ const FarmerCommunity = () => {
     return decodedPayload.sub; // 여기 key 중요!!
   };
 
-
-  const handleFollow = (toUserEmail) => {
-    const fromUserEmail = getUserEmailFromToken();
-
-    console.log("팔로우 요청 데이터", {
-      fromUserEmail: fromUserEmail,
-      toUserEmail: toUserEmail,
-    });
-
-
   const handleUnFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
@@ -139,7 +130,6 @@ const FarmerCommunity = () => {
   const handleFollow = (toUserEmail) => {
     const fromUserEmail = getUserEmailFromToken();
 
-
     if (!fromUserEmail) {
       alert("로그인이 필요합니다.");
       return;
@@ -152,7 +142,6 @@ const FarmerCommunity = () => {
       })
       .then(() => {
         alert("팔로우 성공!");
-
       })
       .catch((error) => {
         console.log(error);
@@ -163,7 +152,6 @@ const FarmerCommunity = () => {
       .catch((error) => {
         console.error("언팔로우 실패:", error);
         alert("팔로우 실패");
-
       });
   };
 
@@ -189,13 +177,17 @@ const FarmerCommunity = () => {
 
   return (
     <>
-      <h2>🌿 식물 이야기</h2>
-
       <div className={styles.container}>
+        {" "}
+        {/* 메인 컨테이너 */}
+        <div>
+          {/* 배너 이미지 */}
+          <img className={styles.width100} src={pic.com} alt="" />
+        </div>
         {getPlantStory.map((story, i) => {
+          /* 커뮤니티 글 맵 돌림 */
           const thumbnail = getFirstImage(story.content);
           const preview = getTextPreview(story.content);
-
           const isMine = story.userEmail === userEmail;
           const isAdmin = userRole === "ROLE_ADMIN";
 
@@ -204,7 +196,9 @@ const FarmerCommunity = () => {
               <div
                 className={styles.contentBox}
                 key={i}
-                onClick={() => nav(`/detail-community/${story.boardNum}`)}
+                onClick={() =>
+                  nav(`/detail-community/${story.boardNum}`)
+                } /* 커뮤니티 상세글로 들어감 */
               >
                 <div className={styles.imgDiv}>
                   {thumbnail ? (
@@ -218,6 +212,7 @@ const FarmerCommunity = () => {
                   )}
                   <p className={styles.user}>
                     {story.userEmail}
+                    {/* 글쓴이메일 표시 */}
                     {(isMine || isAdmin) && " (내 글)"}
                   </p>
                 </div>
@@ -230,7 +225,6 @@ const FarmerCommunity = () => {
                   {/* 좋아요 & 댓글 아이콘 */}
                   <div className={styles.iconDiv}>
                     {story.isLike === "Y" ? (
-
                       <span
                         onClick={() => deleteLike(story.boardNum)}
                         className={styles.like}
@@ -262,7 +256,7 @@ const FarmerCommunity = () => {
                       alt="작성자"
                       onClick={() => handleFollow(story.userEmail)}
                     />
-
+                    {story.isFollow === "Y" ? (
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
@@ -324,7 +318,6 @@ const FarmerCommunity = () => {
                         )}
                       </div>
                     )}
-
                   </div>
                 </div>
               </div>
