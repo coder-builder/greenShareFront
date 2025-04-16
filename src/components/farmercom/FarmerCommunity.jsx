@@ -230,7 +230,7 @@ const FarmerCommunity = () => {
                         }}
                         className={styles.like}
                       >
-                        <i className="bi bi-heart"></i>
+                        <i className="bi bi-heart"></i>{story.likeCnt}
                       </span>
                     )}
 
