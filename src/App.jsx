@@ -30,6 +30,7 @@ import Follow from "./components/farmercom/Follow";
 
 import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
+import MessageIcon from "./components/messageSocket/MessageIcon";
 
 
 function App() {
@@ -192,6 +193,11 @@ function App() {
           <Route />
         </Route>
       </Routes>
+
+      {/* 쪽지함 모든 페이지에서 보이게 */}
+      <MessageIcon />
+    
+      
     </div>
   );
 }

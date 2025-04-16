@@ -19,7 +19,7 @@ const MessageList = () => {
       });
   }, [refresh]);
 
-  const handleDelte = (id) => {
+  const handleDelete = (id) => {
     if (!confirm("쪽지를 삭제할까요?")) {
       return;
     }
@@ -50,12 +50,12 @@ const MessageList = () => {
               </div>
               <div>
                 <strong>보낸 시각:</strong>
-                {dayjs(note.sentAt).format("YYYY/MM/DD HH시mm분")}
+                {dayjs(note.sentAt).format("YYYY년 MM월 DD일 HH시 mm분")}
               </div>
               <button
                 type="button"
                 onClick={(e) => {
-                  handleDelte(note.id);
+                  handleDelete(note.id);
                 }}
               >
                 삭제

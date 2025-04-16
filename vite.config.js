@@ -7,6 +7,7 @@ export default defineConfig({
     'global': 'window',
   },
   server:{
+    host : '0.0.0.0',
     proxy: {
       // 경로가 "/api" 로 시작하는 요청을 대상으로 proxy 설정
       '/api': {
