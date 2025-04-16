@@ -49,7 +49,7 @@ const FarmerCommunity = () => {
         alert("좋아요 등록");
 
         // 상태 업데이트
-        setIsUpdate(isUpdate + 1);
+        
       })
       .catch((error) => {
         console.error("좋아요 등록 실패:", error);
@@ -233,7 +233,10 @@ const FarmerCommunity = () => {
                       </span>
                     ) : (
                       <span
-                        onClick={() => like(story.boardNum)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          like(story.boardNum);
+                        }}
                         className={styles.like}
                       >
                         <i className="bi bi-heart"></i>
@@ -242,20 +245,16 @@ const FarmerCommunity = () => {
         
                     <span
                       className={styles.reply}
-                      onClick={() => nav(`/detail-community/${story.boardNum}`)}
+                      onClick={(e) => nav(`/detail-community/${story.boardNum}`)}
                     >
-                      <img src="/chat.png" alt="댓글" />
+                    <i class="bi bi-chat-left-dots"></i>
                       {story.replyCnt}
                     </span>
                   </div>
         
                   {/* 유저 프로필 */}
                   <div className={styles.userDiv}>
-                    <img
-                      src="/User.png"
-                      alt="작성자"
-                      onClick={() => handleFollow(story.userEmail)}
-                    />
+                    
                     {story.isLike === "Y" ? (
                     <div
                       onClick={(e) => {
@@ -264,8 +263,7 @@ const FarmerCommunity = () => {
                       }}
                       className={styles.like}
                     >
-                      <i className="bi bi-heart-fill"></i>
-                      <span>{story.likeCnt}</span>
+                      
                     </div>
                     
                     ) : (
@@ -275,9 +273,7 @@ const FarmerCommunity = () => {
                         like(story.boardNum);
                       }}
                       className={styles.like}
-                    >
-                      <i className="bi bi-heart"></i>
-                      <span>{story.likeCnt}</span>
+                    >                      
                     </div>
                   )}
 
@@ -285,8 +281,6 @@ const FarmerCommunity = () => {
                       className={styles.reply}
                       onClick={() => nav(`/detail-community/${story.boardNum}`)}
                     >
-                      <i class="bi bi-chat-left-dots"></i>
-                      <span>{story.replyCnt}</span>
                     </div>
 
                     {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}

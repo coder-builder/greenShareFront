@@ -88,29 +88,13 @@
   text-overflow: ellipsis;
 }
 
-/* .iconDiv img {
-  width: 23px;
-  height: 20px;
-  cursor: pointer;
-} */
 
-/* .iconDiv {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  color: #777;
-  font-size: 0.75rem;
-} */
 
 .userDiv{
   margin-left: 60px;
 }
 
-/* .userDiv img {
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-} */
+
 
 .infoDiv {
   display: flex;
@@ -162,14 +146,7 @@ button:hover {
   gap: 3px;
 }
 
-/* .reply {
-  color: rgb(36, 36, 37);
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-} */
+
 
 .userDiv img {
   width: 24px;
