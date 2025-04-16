@@ -94,7 +94,7 @@ const Follow = () => {
                 onClick={() => setSelectedUser(user.toUserEmail)}
                 style={{ cursor: 'pointer' }}
               >
-                <p className={styles.userEmail}>이메일 : {user.fromUserEmail}</p>
+                <p className={styles.userEmail}>이메일 : {user.toUserEmail}</p>
                 <button
                   className={styles.followBtn}
                   onClick={(e) => {
