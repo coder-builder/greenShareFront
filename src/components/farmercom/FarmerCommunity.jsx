@@ -49,7 +49,6 @@ const FarmerCommunity = () => {
         alert("좋아요 등록");
 
         // 상태 업데이트
-        setIsUpdate(isUpdate + 1);
       })
       .catch((error) => {
         console.error("좋아요 등록 실패:", error);
@@ -141,6 +140,11 @@ const FarmerCommunity = () => {
       })
       .then(() => {
         alert("팔로우 성공!");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("이미 팔로우 했습니다.");
+
         setIsUpdate(isUpdate + 1); // 상태 갱신으로 다시 리스트 불러오기
       })
       .catch((error) => {
@@ -209,8 +213,50 @@ const FarmerCommunity = () => {
                 </div>
 
                 <div className={styles.infoDiv}>
+
+
                   {/* 좋아요 & 댓글 아이콘 */}
+                  {/* 구분선 */}
+                  {/*  */}
                   <div className={styles.iconDiv}>
+                    {story.isLike === "Y" ? (
+                      <span
+                        onClick={(e) => deleteLike(story.boardNum)}
+                        className={styles.like}
+                      >{/* 좋아요 눌렀을때 하트 */}
+                        <i className="bi bi-heart-fill"></i> {story.likeCnt}
+                      </span>
+                    ) : (
+                      <span
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          like(story.boardNum);
+                        }}
+                        className={styles.like}
+                                          
+                      >{/* 좋아요 누르기전 하트 */}
+                        <i className="bi bi-heart"></i> {story.likeCnt}
+
+                      </span>
+                    )}
+
+                    <span
+                      className={styles.reply}
+                      onClick={(e) =>
+                        nav(`/detail-community/${story.boardNum}`)
+                      }
+
+                    >{/* 댓글 아이콘 */}
+
+ 
+
+                      <i class="bi bi-chat-left-dots"></i>
+                      {story.replyCnt}
+                    </span>
+                  </div>
+
+                  {/* 유저 프로필 */}
+                  <div className={styles.userDiv}>
                     {story.isLike === "Y" ? (
                       <div
                         onClick={(e) => {
@@ -218,10 +264,7 @@ const FarmerCommunity = () => {
                           deleteLike(story.boardNum);
                         }}
                         className={styles.like}
-                      >
-                        <i className="bi bi-heart-fill"></i>
-                        <span>{story.likeCnt}</span>
-                      </div>
+                      ></div>
                     ) : (
                       <div
                         onClick={(e) => {
@@ -229,19 +272,13 @@ const FarmerCommunity = () => {
                           like(story.boardNum);
                         }}
                         className={styles.like}
-                      >
-                        <i className="bi bi-heart"></i>
-                        <span>{story.likeCnt}</span>
-                      </div>
+                      ></div>
                     )}
 
                     <div
                       className={styles.reply}
                       onClick={() => nav(`/detail-community/${story.boardNum}`)}
-                    >
-                      <i class="bi bi-chat-left-dots"></i>
-                      <span>{story.replyCnt}</span>
-                    </div>
+                    ></div>
 
                     {/* 로그인한 사람과 게시글 작성자가 같으면 follow 글자 안보임 */}
                     {getUserEmailFromToken() !== story.userEmail && (

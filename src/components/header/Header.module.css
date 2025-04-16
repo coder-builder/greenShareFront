@@ -4,6 +4,7 @@
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 .cateCon {
   display: flex;
@@ -15,16 +16,13 @@
   font-family: "Pretendard-Light", sans-serif;
   display: flex;
   padding: 5px 10px;
-  font-size: 1.1rem;
 }
 .cateCon > span:hover {
-  color: #27B06E;
-  border: 1px solid #27B06E;
-  padding: 5px 10px;
-
+  color: #27b06e;
+  border: 1px solid #27b06e;
   font-family: "Pretendard-Black", sans-serif;
   font-weight: 400;
-  transition: 0.1s;
+  transition: 0.2s;
   border-radius: 20px;
 }
 /* 컬러 css */
@@ -47,6 +45,7 @@
 .font15rem {
   font-size: 1.5rem;
 }
+
 /* icon css */
 .icon {
   display: flex;
@@ -54,4 +53,19 @@
 
 .cursor {
   cursor: pointer;
+}
+
+/* 헤더 반응형 사이즈 컨트롤 */
+.fontWidth {
+  font-size: clamp(8px, 1vw, 16px) !important;
+}
+
+.logoCon {
+  width: 40%;
+}
+
+.logoImg {
+  width: 100%;
+  object-fit: cover;
+  width: 100%;
 }

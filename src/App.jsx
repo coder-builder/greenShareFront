@@ -27,10 +27,13 @@ import QnaNotiList from "./components/farmercom/QnaNotiList";
 import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
+
 import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
 
+
 function App() {
+ 
   const [viewSide, setSide] = useState(false);
   const handleOn = (e) => {
     /* 마우스의 위치를 판단하는 함수 */
@@ -51,6 +54,7 @@ function App() {
 
   return (
     <div className="appCon">
+
       {/* 홈화면 */}
 
       <Routes>
@@ -130,7 +134,9 @@ function App() {
           {/* 여기서부터 공지사항 & QnA게시판*/}
           {/* 공지사항 */}
           <Route path="noti" element={<FarmerNoti />} />
+
           {/* 공지사항 세부조회 */}
+
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
           
           {/* 공지사항 */}
