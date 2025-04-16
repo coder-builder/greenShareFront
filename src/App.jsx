@@ -26,7 +26,6 @@ import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate"
 import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
-import MessageSocket from "./components/messageSocket/MessageSocket";
 
 function App() {
  
@@ -50,9 +49,6 @@ function App() {
 
   return (
     <div className="appCon">
-
-      {/* 메세지 소캣 */}
-      <MessageSocket />
 
       {/* 홈화면 */}
       <Routes>

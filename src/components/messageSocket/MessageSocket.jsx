@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
+import { axiosInstance } from "../../redux/axiosInstance";
+import { getReciverId } from "../../apis/userApi";
 
 const MessageSocket = () => {
   const [stompClient, setStompClient] = useState(null);
@@ -62,6 +64,23 @@ const MessageSocket = () => {
       return;
     }
 
+    //수신자 정보 검사
+    getReciverId(receiverEmail)
+    .then(res => {
+      if(res.data){
+        messageProcess(senderEmail);
+      }
+      else{
+        alert('입력하신 수신자 정보는 없는 정보입니다.');
+      }
+    })
+    .catch(error =>console.log(error));
+
+
+
+  };
+
+  const messageProcess = (senderEmail) => {
     if (stompClient && stompClient.connected) {
       stompClient.publish({
         destination: "/app/message/send",
@@ -78,7 +97,7 @@ const MessageSocket = () => {
     } else {
       alert("⚠️ WebSocket이 아직 연결되지 않았습니다.");
     }
-  };
+  }
 
   return (
     <div style={{ padding: "20px", border: "1px solid #ccc", borderRadius: "10px", maxWidth: "400px", margin: "0 auto" }}>
