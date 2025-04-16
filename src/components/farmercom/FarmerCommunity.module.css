@@ -35,6 +35,12 @@
   backdrop-filter: blur(4px);
 }
 
+
+.contentBox:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(80, 120, 100, 0.1);
+}
+
 .imgDiv {
   /* 게시글에서 이미지 영역 */
   width: 100%;
@@ -212,8 +218,10 @@ button:hover {
   cursor: pointer;
 }
 
+
 .iconDiv{
   display: flex; 
   gap: 10px;
 
 }
+

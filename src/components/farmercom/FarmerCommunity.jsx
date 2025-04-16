@@ -243,7 +243,11 @@ const FarmerCommunity = () => {
                       onClick={(e) =>
                         nav(`/detail-community/${story.boardNum}`)
                       }
+
                     >{/* 댓글 아이콘 */}
+
+ 
+
                       <i class="bi bi-chat-left-dots"></i>
                       {story.replyCnt}
                     </span>
