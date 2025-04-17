@@ -65,7 +65,7 @@ const FarmerNoti = () => {
             }}
           >
             <option value="title">제목</option>
-            <option value="writer">작성자</option>
+            <option value="userEmail">작성자</option>
           </select>
           <input
             type="text"

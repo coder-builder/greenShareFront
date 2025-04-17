@@ -90,6 +90,7 @@ const FarmerNotiDetail = () => {
     boardNum: boardNum.num
   });
 
+  // 댓글 등록 기능
   const insertReply = () => {
     if (!isAuthenticated(token)) {
       alert("로그인 후 댓글을 입력할 수 있습니다.");
@@ -103,7 +104,7 @@ const FarmerNotiDetail = () => {
 
     axiosInstance
       .post("/replyFarmers", replyInfo)
-      .then(() => {
+      .then((res) => {
         alert("댓글 등록되었습니다.");
         setSum(sum + 1);
         setReplyInfo({

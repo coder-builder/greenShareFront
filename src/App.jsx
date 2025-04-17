@@ -23,13 +23,14 @@ import UserQnaInsert from "./components/user/UserQnaInsert";
 import FarmerCommunityInsert from "./components/farmercom/FarmerCommunityInsert";
 import FarmerCommunityDetail from "./components/farmercom/FarmerCommunityDetail";
 import FarmerCommunityUpdate from "./components/farmercom/FarmerCommunityUpdate";
-import QnaNotiList from "./components/farmercom/QnaNotiList";
 import MainPage from "./components/farmercom/main/MainPage";
 import MyPage from "./components/farmercom/MyPage";
 import Follow from "./components/farmercom/Follow";
 
 import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
+import QnaList from "./components/farmercom/main/QnaList";
+import NotiList from "./components/farmercom/main/NotiList";
 
 
 function App() {
@@ -60,8 +61,6 @@ function App() {
       <Routes>
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
-
-        <Route path="/list" element={<QnaNotiList />} />
         <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
