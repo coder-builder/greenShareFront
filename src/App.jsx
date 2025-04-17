@@ -31,12 +31,7 @@ import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
 
 import MessageIcon from "./components/messageSocket/MessageIcon";
-import MessageSocket from "./components/messageSocket/MessageSocket";
-import ChatSocket from "./components/messageSocket/ChatSocket";
-import NoteBox from "./components/messageSocket/NoteBox";
 
-import QnaList from "./components/farmercom/main/QnaList";
-import NotiList from "./components/farmercom/main/NotiList";
 
 
 
@@ -203,9 +198,7 @@ function App() {
       </Routes>
 
       {/* 쪽지함 모든 페이지에서 보이게 */}
-      {/* <MessageSocket setRefresh={setRefresh}/>*/}
-      <MessageIcon refresh={refresh} setRefresh={setRefresh} /> 
-      {/* <NoteBox /> */}
+      <MessageIcon /> 
     </div>
   );
 }
