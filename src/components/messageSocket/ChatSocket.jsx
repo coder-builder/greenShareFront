@@ -14,6 +14,7 @@ const ChatSocket = ({ onMessageReceive }) => {
 
     client.onConnect = () => {
       console.log("✅ 쪽지 WebSocket 연결 성공");
+      //반드시 "/user/queue/notes"
       client.subscribe("/user/queue/notes", (message) => {
         const msg = JSON.parse(message.body);
         console.log("💌 수신된 쪽지:", message.body);

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SideBar.module.css";
-import MessageSocket from "../messageSocket/MessageSocket";
-import MessageList from "../messageSocket/MessageList";
+
 
 const SideBar = ({ isVisible }) => {
 

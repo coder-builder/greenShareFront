@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import MessageList from "./MessageList";
-import MessageSocket from "./MessageSocket";
 import { FaEnvelope } from "react-icons/fa"; // react-icons 설치 필요: npm install react-icons
-import MessageSend from "./MessageSend";
 import NoteBox from "./NoteBox";
 
-const MessageIcon = ({ refresh, setRefresh }) => {
+const MessageIcon = () => {
   const user = useSelector((state) => state.auth.user); // 로그인 정보
   const [open, setOpen] = useState(false);
 
@@ -73,8 +70,6 @@ const MessageIcon = ({ refresh, setRefresh }) => {
             zIndex: 999,
           }}
         >
-          {/* <MessageSend />
-          <MessageList refresh={refresh} setRefresh={setRefresh} /> */}
           <NoteBox />
         </div>
       )}
