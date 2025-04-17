@@ -16,18 +16,16 @@
 
 .contentBox {
   width: 24%;
-  border: 1px solid #ccc;
   border-radius: 8px;
   margin-bottom: 20px;
   padding: 10px;
   background-color: white;
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.1);
 }
 
 .contentBox:hover {
   cursor: pointer;
-  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.247);
-  border: 1px solid #ccc;
+  box-shadow: 0 0px 15px rgba(0, 0, 0, 0.315);
   padding: 10px;
   background-color: #ffffffcc; /* 살짝 투명감 */
   transition: transform 0.3s ease, box-shadow 0.3s ease;

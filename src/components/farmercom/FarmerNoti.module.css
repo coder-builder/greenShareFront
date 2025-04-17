@@ -1,19 +1,22 @@
 .container {
   margin: 0 auto;
   width: 100%;
-  margin-top: 120px;
+}
+
+.banCon {
+  width: 100%;
 }
 
 /* 공지사항 글자 */
-.container h1{
+.container h1 {
   text-align: center;
 }
 /* 공지사항 모든 리스트 */
- .table {
+.table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
-  margin:  3px; ;
+  margin: 3px;
   cursor: pointer;
 }
 
@@ -24,33 +27,33 @@
 }
 
 /* 상단 제목 컬럼 */
-.title{
+.title {
   text-align: center;
 }
 
 /* 날짜 글씨 */
-.date{
+.date {
   text-align: center;
 }
 
 /* 등록한 날짜 */
-.insertDate{
+.insertDate {
   font-size: 0.8rem;
 }
 /* 작성한 공지사항 리스트 */
-.list{
+.list {
   /* cursor: pointer; */
 }
 
 /* 상단 검색기능 */
-.fuction{
+.fuction {
   display: flex;
   justify-content: end;
   margin-top: 30px;
 }
 
 /* 상단 검색기능에 있는 select */
-.fuction select{
+.fuction select {
   height: 36px;
   width: 130px;
   color: black;
@@ -58,28 +61,27 @@
 }
 
 /* 상단 검색기능에 있는 input */
-.fuction input{
+.fuction input {
   margin-right: 10px;
- width: 250px;
- height: 36px;
+  width: 250px;
+  height: 36px;
 }
-
 
 /* 검색버튼 */
 .firstBtn {
   width: 7rem;
   padding: 6px;
-  background-color: #27B06E;
+  background-color: #27b06e;
   border: none;
   border-radius: 6px;
-  color: white;  
-} 
+  color: white;
+}
 
 /* 검색버튼에 마우스올렸을때 반응 */
-.firstBtn:hover{
+.firstBtn:hover {
   cursor: pointer;
-  background-color: #11C6AB;
-  transition: all 0.5s
+  background-color: #11c6ab;
+  transition: all 0.5s;
 }
 /* 등록버튼 */
 .insertBtn {
@@ -87,21 +89,21 @@
   margin-left: 20px;
   padding: 10px;
   width: 100px;
-  background-color: #27B06E;
+  background-color: #27b06e;
   color: white;
   color: white;
   border: none;
 }
 
 /* 등록버튼에 마우스올렸을때 반응 */
-.insertBtn:hover{
+.insertBtn:hover {
   cursor: pointer;
-  background-color: #11C6AB;
-  transition: all 0.5s
+  background-color: #11c6ab;
+  transition: all 0.5s;
 }
 
 /* 등록버튼 부모태그 */
-.secondBtn{
+.secondBtn {
   display: flex;
   justify-content: end;
 }
@@ -116,7 +118,7 @@
   background-color: #f0f0f0;
   cursor: pointer;
 }
-.nodata{
+.nodata {
   display: flex;
   justify-content: center;
 }

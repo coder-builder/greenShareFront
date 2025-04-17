@@ -42,6 +42,7 @@
 }
 
 .button:hover {
+  cursor: pointer;
   background-color: #27b06e;
   color: white;
   transition: 0.35s;

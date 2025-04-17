@@ -14,6 +14,7 @@
 
 /*작물 하나하나의 영역*/
 .infoCon {
+  justify-content: space-evenly;
   width: calc(48% - 1%); /* 2개씩 배치하려면 50% 너비에서 간격을 빼야 한다 */
   display: flex;
   align-items: center;
@@ -41,7 +42,7 @@
   .font15rem {
     font-size: 1.4rem !important;
   }
-  .textBoxSon span{
+  .textBoxSon span {
     font-size: 1rem !important;
   }
 }
@@ -66,10 +67,13 @@
 
 /* 오른쪽 전체 영역 */
 .textCon {
+  margin-right: 20px;
+  margin-bottom: 10px;
   display: flex;
   height: 100px; /* 원하는 세로 크기 */
   flex-direction: column;
   justify-content: space-between;
+
   width: 60%;
 }
 
@@ -109,7 +113,6 @@
   display: flex;
   justify-content: center;
   margin-right: 3px;
-  
 }
 .textBoxSon > span:nth-child(2):hover {
   background-color: #11c6ab;
@@ -124,7 +127,7 @@
 .colorSub {
   color: #11c6ab;
 }
-.textBoxSon span{
+.textBoxSon span {
   font-size: clamp(15px, 1vw, 16px);
 }
 /* 폰트 */
