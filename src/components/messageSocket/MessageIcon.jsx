@@ -5,7 +5,7 @@ import NoteBox from "./NoteBox";
 
 const MessageIcon = () => {
   const user = useSelector((state) => state.auth.user); // 로그인 정보
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   if (!user) return null; // 로그인 안 했으면 아무것도 보여주지 않음
 

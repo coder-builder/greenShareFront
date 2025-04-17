@@ -70,6 +70,17 @@ const NoteBox = () => {
                 content: input,
               }),
             });
+
+            setNotes((prev) => [
+              ...prev,
+              {
+                senderEmail,
+                receiverEmail: receiver,
+                content: input,
+                sendDate: new Date().toISOString(),
+              },
+            ]);
+
             setInput("");
           } else {
             alert("❌ WebSocket 연결이 되지 않았습니다.");
@@ -82,6 +93,7 @@ const NoteBox = () => {
         console.error("수신자 확인 실패", err);
       });
   };
+
 
   useEffect(() => {
     notesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -107,10 +119,42 @@ const NoteBox = () => {
         }}
       >
         {notes.map((msg, idx) => (
-          <div key={idx}>
-            <strong>{msg.sender}</strong> → <strong>{msg.receiverEmail}</strong>
-            : {msg.content}
-          </div>
+          <>
+            {
+              getUserEmail() !==  msg.senderEmail && 
+              <>
+                <div 
+                  style={{
+                    marginBottom:'4px',
+                    fontStyle : 'italic',
+                    fontSize : '0.7rem'
+                  }}
+                >
+                  {msg.senderEmail}
+                </div> 
+              </>
+            }
+          
+            <div 
+              key={idx}
+              style={{
+                width:'80%',
+                padding:'10px',
+                borderRadius:'8px',
+                fontSize : '0.8rem',
+                marginBottom:'10px',
+                backgroundColor : getUserEmail() ===  msg.senderEmail?'green':'lightskyblue',
+                marginLeft:getUserEmail() ===  msg.senderEmail? 'auto' : '0px' ,
+                color:getUserEmail() ===  msg.senderEmail? 'white' : 'black' 
+              }}
+            >
+              
+              <div>{msg.content}</div>
+
+              {/* <strong>{msg.senderEmail}</strong>  <strong>{msg.receiverEmail}</strong>
+              : {msg.content} * */}
+            </div>
+          </>
         ))}
         <div ref={notesEndRef} />
       </div>
@@ -127,7 +171,7 @@ const NoteBox = () => {
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && sendNote()}
         style={{ width: "100%", marginBottom: "10px" }}
-        placeholder="쪽지 내용을 입력하세요"
+        placeholder="채팅 내용을 입력하세요"
       />
       <button onClick={sendNote} style={{ padding: "8px 12px" }}>
         보내기
