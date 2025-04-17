@@ -103,8 +103,8 @@ const Header = () => {
             >
               로그인
             </span>
-          ) : (
-          <>
+            ) : (
+            <>
               <span
                 className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
                 onClick={() => nav("/mypage")}
@@ -114,13 +114,18 @@ const Header = () => {
 
               <span
                 className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
-                onClick={() => dispatch(logoutReducer())}
+                onClick={() => {
+                  const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
+                  if (confirmLogout) {
+                    dispatch(logoutReducer());
+                  }
+                }}
               >
                 로그아웃 {user?.userName && `(${user.userName})`}
               </span>
             </>
-
           )}
+
         </div>
       </div>
     </>
