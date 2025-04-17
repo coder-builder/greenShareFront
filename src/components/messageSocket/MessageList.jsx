@@ -3,10 +3,8 @@ import { axiosInstance } from "../../redux/axiosInstance";
 import dayjs from "dayjs";
 import styles from "./MessageList.module.css";
 
-const MessageList = () => {
+const MessageList = ({ refresh, setRefresh }) => {
   const [message, setMessage] = useState([]);
-
-  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
     axiosInstance
@@ -19,7 +17,7 @@ const MessageList = () => {
       });
   }, [refresh]);
 
-  const handleDelte = (id) => {
+  const handleDelete = (id) => {
     if (!confirm("쪽지를 삭제할까요?")) {
       return;
     }
@@ -28,9 +26,9 @@ const MessageList = () => {
       .delete(`/notes/${id}`)
       .then((res) => {
         alert("삭제가 완료 되었습니다");
-        setRefresh((prev) => prev + 1);
       })
       .catch((error) => console.log(error));
+    setRefresh((prev) => prev + 1);
   };
 
   return (
@@ -50,12 +48,12 @@ const MessageList = () => {
               </div>
               <div>
                 <strong>보낸 시각:</strong>
-                {dayjs(note.sentAt).format("YYYY/MM/DD HH시mm분")}
+                {dayjs(note.sentAt).format("YYYY년 MM월 DD일 HH시 mm분")}
               </div>
               <button
                 type="button"
                 onClick={(e) => {
-                  handleDelte(note.id);
+                  handleDelete(note.id);
                 }}
               >
                 삭제
@@ -63,6 +61,7 @@ const MessageList = () => {
             </div>
           ))
         )}
+        <button onClick={() => setRefresh(prev => prev + 1)}>🔄 새로고침</button>
       </div>
     </>
   );

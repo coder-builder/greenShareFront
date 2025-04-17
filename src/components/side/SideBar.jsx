@@ -4,7 +4,6 @@ import MessageSocket from "../messageSocket/MessageSocket";
 import MessageList from "../messageSocket/MessageList";
 
 const SideBar = ({ isVisible }) => {
-  const [isShow, setIsShow] = useState(false);
 
   return (
     <div
@@ -20,20 +19,6 @@ const SideBar = ({ isVisible }) => {
       }}
       className={styles.mainCon}
     >
-      <div
-        onClick={(e) => {
-          setIsShow(!isShow);
-        }}
-      >
-        쪽지함
-      </div>
-
-      {isShow ? (
-        <>
-          <MessageSocket />
-          <MessageList />
-        </>
-      ) : null}
     </div>
   );
 };
