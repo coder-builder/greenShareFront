@@ -29,7 +29,7 @@ const UserQnaInsert = () => {
       axiosInstance.post('/qna', insertQna)
         .then((res) => {
           alert('등록성공!');
-          nav('/noti');
+          nav('/qna');
         })
         .catch((error) => {
           console.log(error);

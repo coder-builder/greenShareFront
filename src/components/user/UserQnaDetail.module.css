@@ -11,10 +11,6 @@
   border-collapse: collapse;
 }
 
-.mainContainer table td {
-  text-align: start;
-}
-
 
 .mainContainer table tr:not(:first-child) {
   border-top: 1px solid #e5e5e5;

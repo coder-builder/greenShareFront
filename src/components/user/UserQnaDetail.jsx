@@ -13,6 +13,7 @@ const UserQnaDetail = () => {
   const qnaNum = useParams();
   const token = useSelector(state => state.auth.token);
   const userEmail = token ? jwtDecode(token).sub : null;
+  console.log(qnaNum.num);
 
   //수정 여부를 묻는 데이터를 저장
   const [isEdit, setIsEdit] = useState(false);
@@ -67,8 +68,8 @@ const UserQnaDetail = () => {
     if (!result){
        return;
       }
-    axios
-      .delete(`/api/qna/${qnaNum.num}`)
+    axiosInstance
+      .delete(`qna/${qnaNum.num}`)
       .then((res) => {
         alert("삭제가 완료되었습니다.");
         nav("/qna");
@@ -90,9 +91,10 @@ const UserQnaDetail = () => {
   // 댓글 목록 가져오기
     useEffect(() => {
       axiosInstance
-        .get(`/replyFarmers/${qnaNum.num}`)
+        .get(`/replyQna/${qnaNum.num}`)
         .then((res) => {
           setReplyList(res.data);
+          console.log(res.data);
         })
         .catch((error) => {
           console.error(error);
@@ -101,23 +103,33 @@ const UserQnaDetail = () => {
   
     const [replyInfo, setReplyInfo] = useState({
       content: "",
-      boardNum: qnaNum.num
+      qnaNum: qnaNum.num
     });
+
+    const replyChange = (e) => {
+      setReplyInfo({
+        ...replyInfo,
+        [e.target.name]: e.target.value,
+      });
+    };
   
+  
+    // 댓글 등록
     const insertReply = () => {
       if (!isAuthenticated(token)) {
         alert("로그인 후 댓글을 입력할 수 있습니다.");
         return;
       }
   
+      //공백일때 유효성검사
       if (!replyInfo.content.trim()) {
         alert("댓글 내용을 입력해주세요.");
         return;
       }
   
       axiosInstance
-        .post("/replyFarmers", replyInfo)
-        .then(() => {
+        .post("/replyQna", replyInfo)
+        .then((res) => {
           alert("댓글 등록되었습니다.");
           setNum(num + 1);
           setReplyInfo({
@@ -129,21 +141,17 @@ const UserQnaDetail = () => {
           console.error(error);
           alert("댓글 등록에 실패했습니다.");
         });
+      
     };
   
-    const replyChange = (e) => {
-      setReplyInfo({
-        ...replyInfo,
-        [e.target.name]: e.target.value,
-      });
-    };
+  
   
     const deleteReply = (replyNum) => {
       const result = confirm("삭제하시겠습니까?");
       if (!result) return;
   
       axiosInstance
-        .delete(`/replyFarmers/${replyNum}`)
+        .delete(`/replyQna/${replyNum}`)
         .then(() => {
           setNum(num + 1);
         })
@@ -151,8 +159,9 @@ const UserQnaDetail = () => {
           console.error(error);
           alert("댓글 삭제에 실패했습니다.");
         });
-    };
-  
+      };
+      
+      console.log(qnaNum)
 
    return (
       <div>
