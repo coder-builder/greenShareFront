@@ -129,6 +129,7 @@ const UserQnaDetail = () => {
           </button>
         </div>
       </div>
+      
     </div>
   );
 };

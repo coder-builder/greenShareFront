@@ -51,15 +51,19 @@
 
 /* 상단 검색기능에 있는 select */
 .fuction select{
-  width: 7rem;
-  padding: 6px;
+  height: 36px;
+  width: 130px;
+  color: black;
+  margin-right: 10px;
 }
 
 /* 상단 검색기능에 있는 input */
 .fuction input{
-  width: 300px;
-  padding: 6px;
+  margin-right: 10px;
+ width: 250px;
+ height: 36px;
 }
+
 
 /* 검색버튼 */
 .firstBtn {
@@ -111,4 +115,8 @@
 .table tbody tr:not(:first-child):hover {
   background-color: #f0f0f0;
   cursor: pointer;
+}
+.nodata{
+  display: flex;
+  justify-content: center;
 }

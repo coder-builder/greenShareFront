@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
 import { axiosInstance } from "../../redux/axiosInstance";
 import { isAuthenticated } from "../../redux/authCheck";
+import { pic } from "../../consts/pic";
 
 const FarmerCommunity = () => {
   const nav = useNavigate();
@@ -175,9 +176,10 @@ const FarmerCommunity = () => {
 
   return (
     <>
-      <h2>🌿 식물 이야기</h2>
-
       <div className={styles.container}>
+        <div className={styles.container}>
+          <img className={styles.width100} src={pic.com} alt="" />
+        </div>
         {getPlantStory.map((story, i) => {
           const thumbnail = getFirstImage(story.content);
           const preview = getTextPreview(story.content);
@@ -213,8 +215,6 @@ const FarmerCommunity = () => {
                 </div>
 
                 <div className={styles.infoDiv}>
-
-
                   {/* 좋아요 & 댓글 아이콘 */}
                   {/* 구분선 */}
                   {/*  */}
@@ -223,7 +223,8 @@ const FarmerCommunity = () => {
                       <span
                         onClick={(e) => deleteLike(story.boardNum)}
                         className={styles.like}
-                      >{/* 좋아요 눌렀을때 하트 */}
+                      >
+                        {/* 좋아요 눌렀을때 하트 */}
                         <i className="bi bi-heart-fill"></i> {story.likeCnt}
                       </span>
                     ) : (
@@ -233,10 +234,9 @@ const FarmerCommunity = () => {
                           like(story.boardNum);
                         }}
                         className={styles.like}
-                                          
-                      >{/* 좋아요 누르기전 하트 */}
+                      >
+                        {/* 좋아요 누르기전 하트 */}
                         <i className="bi bi-heart"></i> {story.likeCnt}
-
                       </span>
                     )}
 
@@ -245,10 +245,8 @@ const FarmerCommunity = () => {
                       onClick={(e) =>
                         nav(`/detail-community/${story.boardNum}`)
                       }
-
-                    >{/* 댓글 아이콘 */}
-
- 
+                    >
+                      {/* 댓글 아이콘 */}
 
                       <i class="bi bi-chat-left-dots"></i>
                       {story.replyCnt}
@@ -319,7 +317,7 @@ const FarmerCommunity = () => {
       </div>
 
       <div>
-        <button type="button" onClick={handleWriteClick}>
+        <button className={styles.df} type="button" onClick={handleWriteClick}>
           글쓰기
         </button>
       </div>

@@ -61,10 +61,11 @@
 }
 
 .logoCon {
-  width: 40%;
+  width: 30%;
 }
 
 .logoImg {
+  cursor: pointer;
   width: 100%;
   object-fit: cover;
   width: 100%;
