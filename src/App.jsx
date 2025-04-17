@@ -198,7 +198,7 @@ function App() {
       </Routes>
 
       {/* 쪽지함 모든 페이지에서 보이게 */}
-      <MessageIcon refresh={refresh} setRefresh={setRefresh} /> 
+      <MessageIcon /> 
     </div>
   );
 }
