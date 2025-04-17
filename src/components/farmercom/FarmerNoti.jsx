@@ -6,6 +6,7 @@ import styles from "./FarmerNoti.module.css";
 import { useSelector } from "react-redux";
 import { isAdmin, isAuthenticated } from "../../redux/authCheck";
 import { axiosInstance } from "../../redux/axiosInstance";
+import { pic } from "../../consts/pic";
 
 const FarmerNoti = () => {
   const nav = useNavigate();
@@ -55,7 +56,10 @@ const FarmerNoti = () => {
     /* 공지사항 */
     <>
       <div className={styles.container}>
-        <h1>공지사항</h1>
+        <div className={styles.banCon}>
+          <img
+          className={styles.banCon} src={pic.noti} alt="" />
+        </div>
         <div className={styles.fuction}>
           <select
             name="selectWord"
