@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import MessageList from "./MessageList";
 import MessageSocket from "./MessageSocket";
 import { FaEnvelope } from "react-icons/fa"; // react-icons 설치 필요: npm install react-icons
+import MessageSend from "./MessageSend";
+import NoteBox from "./NoteBox";
 
-
-const MessageIcon = () => {
+const MessageIcon = ({ refresh, setRefresh }) => {
   const user = useSelector((state) => state.auth.user); // 로그인 정보
   const [open, setOpen] = useState(false);
 
@@ -13,6 +14,7 @@ const MessageIcon = () => {
 
   return (
     <>
+   
       {/* 쪽지 아이콘 */}
       <div
         style={{
@@ -29,13 +31,29 @@ const MessageIcon = () => {
           alignItems: "center",
           cursor: "pointer",
           boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-          zIndex: 1000,
+          zIndex: 100,
         }}
         onClick={() => setOpen((prev) => !prev)}
+
         title="쪽지함 열기"
       >
         <FaEnvelope size={28} />
       </div>
+      <div style={{
+        position:'fixed',
+        bottom: "66px",
+        right: "30px",
+        zIndex : 200,
+        display:'block',
+        padding : '2px 8px',
+        borderRadius:'8px',
+        fontSize:'0.8rem',
+        backgroundColor:'crimson',
+        color:'white'
+      }}>
+        new
+      </div>
+    
 
       {/* 쪽지함 박스 */}
       {open && (
@@ -55,12 +73,13 @@ const MessageIcon = () => {
             zIndex: 999,
           }}
         >
-          <MessageSocket />
-          <MessageList />
+          {/* <MessageSend />
+          <MessageList refresh={refresh} setRefresh={setRefresh} /> */}
+          <NoteBox />
         </div>
       )}
     </>
   );
 };
 
-export default MessageIcon
+export default MessageIcon;

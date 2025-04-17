@@ -31,9 +31,13 @@ import Follow from "./components/farmercom/Follow";
 import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
 import MessageIcon from "./components/messageSocket/MessageIcon";
+import MessageSocket from "./components/messageSocket/MessageSocket";
+import ChatSocket from "./components/messageSocket/ChatSocket";
+import NoteBox from "./components/messageSocket/NoteBox";
 
 
 function App() {
+  const [refresh, setRefresh] = useState(0)
  
   const [viewSide, setSide] = useState(false);
   const handleOn = (e) => {
@@ -195,9 +199,9 @@ function App() {
       </Routes>
 
       {/* 쪽지함 모든 페이지에서 보이게 */}
-      <MessageIcon />
-    
-      
+      {/* <MessageSocket setRefresh={setRefresh}/>*/}
+      <MessageIcon refresh={refresh} setRefresh={setRefresh} /> 
+      {/* <NoteBox /> */}
     </div>
   );
 }
