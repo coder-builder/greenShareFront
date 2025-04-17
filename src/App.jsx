@@ -150,13 +150,15 @@ function App() {
           />
           
           {/* QnA게시판 */}
+          <Route path="/qna" element={<UserQna />} />
+
           <Route path="/qna/:num" element={<UserQnaDetail />} />
+          
           {/* QnA등록 */}
           <Route path="/qnaInsert" element={<UserQnaInsert />} />
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
 
-          <Route path="/qna" element={<UserQna />} />
 
           <Route path="/qna/:num" element={<UserQnaDetail />} />
 
