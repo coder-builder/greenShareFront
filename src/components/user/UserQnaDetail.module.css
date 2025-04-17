@@ -4,7 +4,6 @@
   width: 80%;
   margin: 30px auto;
   border-top: 1px solid black;
-  padding: 30px;
 }
 
 .mainContainer table {
@@ -19,7 +18,7 @@
 
 /* 제목 */
 .title{
-  padding: 10px;
+  text-align: start;
 }
 
 /* 작성자 날짜 조회수 박스 */
@@ -29,8 +28,9 @@
 }
 
 /* 수정할때 내용박스 */
-table textarea{
-  resize: none
+.insertContent{
+  resize: none;
+  text-align: start;
 }
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */
@@ -77,6 +77,12 @@ table textarea{
 
 /* ----------------------------------버튼css --------------------------- */
 
+.btnContainer{
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 20px;
+}
 
 /* 댓글 삭제버튼 컨테이너(댓글 날짜도 같이 묶여있음) */
 .changeButton{
@@ -109,4 +115,49 @@ table textarea{
 
 
 
+.replySection {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
 
+.replyTitle {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+
+
+.replyForm {
+  display: flex;
+  margin-top: 15px;
+}  
+
+.commentInput {
+  width: 100%;
+  border:  solid black 1px;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: none;
+  margin-right: 10px;
+}
+.replyBox {
+  width: 80%;
+  margin: 30px auto; 
+}
+
+.replyBtn{
+  background-color: #27B06E;
+
+}
+.replyBtn:hover{
+  background-color: #11C6AB;
+}
+.replyDate{
+  gap: 15px;
+  display: flex;
+  justify-content: end;
+  border-bottom: #eee 1px solid;
+}

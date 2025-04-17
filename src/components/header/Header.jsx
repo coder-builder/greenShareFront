@@ -43,18 +43,20 @@ const Header = () => {
 
         <span
           className={[
-            styles.cursor,
             styles.cateCon,
             /* 마우스 호버시 커서 */
           ].join(" ")}
-          onClick={() => {
-            /* 온클릭시 메인 페이지로 이동 */
-            nav("/");
-          }}
         >
           {/* 로고 이미지 */}
           <div className={styles.logoCon}>
-            <img src={pic.logo} className={styles.logoImg} />
+            <img
+              src={pic.logo}
+              onClick={() => {
+                /* 온클릭시 메인 페이지로 이동 */
+                nav("/");
+              }}
+              className={styles.logoImg}
+            />
           </div>
         </span>
 
@@ -103,24 +105,33 @@ const Header = () => {
             >
               로그인
             </span>
-          ) : (
-          <>
+
+            ) : (
+
+
+
+            <>
               <span
                 className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
-                onClick={() => nav("/mypage")}
+                onClick={() => nav("/follow")}
               >
                 팔로우 목록
               </span>
 
               <span
                 className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}
-                onClick={() => dispatch(logoutReducer())}
+                onClick={() => {
+                  const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
+                  if (confirmLogout) {
+                    dispatch(logoutReducer());
+                  }
+                }}
               >
                 로그아웃 {user?.userName && `(${user.userName})`}
               </span>
             </>
-
           )}
+
         </div>
       </div>
     </>
