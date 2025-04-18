@@ -8,7 +8,7 @@
 }
 .cateCon {
   display: flex;
-  width: 40%;
+  width: 70%;
   justify-content: space-between;
   align-items: center;
 }
@@ -69,4 +69,14 @@
   width: 100%;
   object-fit: cover;
   width: 100%;
+}
+
+.cateCon > span:last-child:hover {
+  background-color: #27b06e;
+  color: white;
+  border: 1px solid #27b06e;
+  font-family: "Pretendard-Bold" ;
+  font-weight: 400;
+  transition: 0.2s;
+  border-radius: 20px;
 }
