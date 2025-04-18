@@ -1,6 +1,5 @@
 .dashboardContainer {
-  width: 60%;
-  margin: auto;
+  width: 80%;
 }
 
 .dashboardTitle {
@@ -67,7 +66,7 @@
   color: white;
   background-color: #27b06e;
   font-family: "Pretendard-Bold";
-  border: none  ;
+  border: none;
 }
 
 .backButton:hover {
