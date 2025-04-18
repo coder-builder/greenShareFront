@@ -10,6 +10,7 @@ const FarmerCommunity = () => {
   const nav = useNavigate();
   const [getPlantStory, setPlantStory] = useState([]);
   const [isUpdate, setIsUpdate] = useState(0); // 좋아요 상태 업데이트를 위한 상태
+  const [likeLoading, setLikeLoading] = useState({});
 
   // ✅ 이메일 & 권한 상태 저장
   const [userEmail, setUserEmail] = useState(null);
@@ -41,19 +42,41 @@ const FarmerCommunity = () => {
   const like = (boardNum) => {
     const token = localStorage.getItem("accessToken");
     if (!isAuthenticated(token)) {
+      alert("로그인이 필요합니다.");
       return;
     }
-
+  
+    // 좋아요 중복 클릭 방지
+    if (likeLoading[boardNum]) {
+      return;
+    }
+  
+    // 요청 시작 상태로 변경
+    setLikeLoading((prev) => ({ ...prev, [boardNum]: true }));
+  
     axiosInstance
       .post("/plantStories/like-insert", { boardNum: boardNum })
       .then(() => {
-        alert("좋아요 등록");
-
-        // 상태 업데이트
+        // UI에 좋아요 반영
+        setPlantStory((prevStories) =>
+          prevStories.map((story) =>
+            story.boardNum === boardNum
+              ? {
+                  ...story,
+                  isLike: "Y",
+                  likeCnt: story.likeCnt + 1,
+                }
+              : story
+          )
+        );
       })
       .catch((error) => {
         console.error("좋아요 등록 실패:", error);
-        alert("좋아요 등록에 실패했습니다.");
+        alert("이미 좋아요를 눌렀거나 오류가 발생했습니다.");
+      })
+      .finally(() => {
+        // 요청 종료 상태로 변경
+        setLikeLoading((prev) => ({ ...prev, [boardNum]: false }));
       });
   };
 
@@ -231,7 +254,9 @@ const FarmerCommunity = () => {
                       <span
                         onClick={(e) => {
                           e.stopPropagation();
-                          like(story.boardNum);
+                          if (!likeLoading[story.boardNum]) {
+                            like(story.boardNum);
+                          }
                         }}
                         className={styles.like}
                       >
