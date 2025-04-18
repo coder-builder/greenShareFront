@@ -8,7 +8,7 @@ const ChatSocket = ({ onMessageReceive }) => {
   useEffect(() => {
     const client = new Client({
       webSocketFactory: () =>
-        new SockJS(`http://localhost:8080/ws?token=${token}`),
+        new SockJS(`http://192.168.30.166:8080/ws?token=${token}`),
       reconnectDelay: 5000,
     });
 
