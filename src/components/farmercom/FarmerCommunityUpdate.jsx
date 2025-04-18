@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./FarmerCommunityUpdate.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { detailStory } from "../../apis/plantStory";
-import axios from "axios";
 import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.snow.css"; // 스타일도 꼭 import 해줘야 함
+import "react-quill-new/dist/quill.snow.css";
 import { axiosInstance } from "../../redux/axiosInstance";
 
 const FarmerCommunityUpdate = () => {
+  // Quill 에디터 툴바 설정
   const modules = {
     toolbar: {
       container: [
@@ -17,82 +17,85 @@ const FarmerCommunityUpdate = () => {
     },
   };
 
-  const nav = useNavigate();
+  const nav = useNavigate(); // 페이지 이동용
+  const { boardNum } = useParams(); // URL 파라미터 가져오기
 
-  const { boardNum } = useParams();
-
-  //상세 식물 이야기를 가져와서 담는다
-  const [updateDetail, setUpdateDetail] = useState({});
+  // 초기 상태 설정: 제목과 내용은 빈 문자열로 시작
+  const [updateDetail, setUpdateDetail] = useState({
+    title: "",
+    content: "",
+  });
 
   useEffect(() => {
     detailStory(boardNum)
-      .then((res) => setUpdateDetail(res.data))
-      .catch((error) => console.log(error));
+      .then((res) => {
+        setUpdateDetail(res.data);
+      })
+      .catch((error) => console.log("데이터 불러오기 오류", error));
   }, [boardNum]);
 
-  //상세 제목 수정 함수
-  const handleUpdateData = (e) => {
-    setUpdateDetail({
-      ...updateDetail,
-      [e.target.name]: e.target.value,
-    });
+  // 제목 입력값 변경 시 호출
+  const handleTitleChange = (e) => {
+    setUpdateDetail((state) => ({
+      ...state,
+      [e.target.name] : e.target.value
+    }));
   };
 
-  //상세내용 수정 함수
-  const handleUpdateDataContent = (value) => {
-    setUpdateDetail({
-      ...updateDetail,
-      content: value,
-    });
+  // 내용 입력값 변경 시 호출
+  const handleContentChange = (value) => {
+    setUpdateDetail((state) => ({
+      ...state,
+      content : value
+    }));
+  };
+
+  // 수정 완료 버튼 클릭 시 호출
+  const handleUpdateSubmit = () => {
+    if (!updateDetail.title || !updateDetail.content) {
+      alert("제목과 내용을 입력하세요");
+      return;
+    }
+
+    axiosInstance
+      .put(`/plantStories/${boardNum}`, updateDetail)
+      .then(() => {
+        alert("수정이 완료되었습니다");
+        nav(`/detail-community/${boardNum}`);
+      })
+      .catch((error) => {
+        console.log("수정 오류", error);
+      });
   };
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.title}>
-          <p>제목</p>
-          <input
-            type="text"
-            name="title"
-            value={updateDetail.title}
-            onChange={(e) => handleUpdateData(e)}
-          />
-        </div>
-        <div className={styles.content}>
-          <p>내용</p>
-          <ReactQuill
-            style={{ height: "750px" }}
-            value={updateDetail.content}
-            onChange={(value) => handleUpdateDataContent(value)}
-            modules={modules}
-          />
-        </div>
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <p>제목</p>
+        <input
+          type="text"
+          name="title"
+          value={updateDetail.title}
+          onChange={e=>handleTitleChange(e)}
+          placeholder="제목을 입력하세요"
+        />
+      </div>
+
+      <div className={styles.content}>
+        <p>내용</p>
+        <ReactQuill
+          style={{ height: "750px" }}
+          value={updateDetail.content}
+          onChange={handleContentChange}
+          modules={modules}
+        />
       </div>
 
       <div className={styles.btn}>
-        <button type="button" onClick={(e) => nav("/community")}>
-          목록 가기
-        </button>
-        <button
-          type="button"
-          onClick={(e) => {
-            if (updateDetail.title === "" || updateDetail.content === "") {
-              alert("제목과 내용을 입력하세요");
-              return;
-            }
-            axiosInstance
-              .put(`/plantStories/${boardNum}`, updateDetail)
-              .then((res) => {
-                alert("수정이 완료되었습니다");
-                nav(`/detail-community/${boardNum}`);
-              })
-              .catch((error) => console.log(error));
-          }}
-        >
-          수정 완료
-        </button>
+        <button onClick={() => nav("/community")}>목록 가기</button>
+        <button onClick={handleUpdateSubmit}>수정 완료</button>
       </div>
-    </>
+    </div>
   );
 };
 
