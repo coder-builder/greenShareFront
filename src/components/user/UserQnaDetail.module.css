@@ -182,3 +182,11 @@
   border-bottom: #eee 1px solid;
 }
 
+.contentDiv img {
+  max-width: 100%;
+  width: 80%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 6px;
+}

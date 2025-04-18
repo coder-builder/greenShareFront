@@ -117,7 +117,7 @@ const Header = () => {
               nav("/qna");
             }}
           >
-            공지사항
+            질의응답(QnA)
           </span>
           {token === null ? (
             <span
