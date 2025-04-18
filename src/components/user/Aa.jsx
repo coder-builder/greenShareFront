@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./UserQnaInsert.module.css";
+import styles from "./Aa.module.css";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css"; // 스타일도 꼭 import 해줘야 함
 import Toolbar from "quill/modules/toolbar";
 import { qna } from "../../apis/qna";
-import UserQna from "./UserQna";
 
-const UserQnaInsert = () => {
+const FarmerCommunityInsert = () => {
   const nav = useNavigate();
 
   const modules = {
@@ -31,7 +30,7 @@ const UserQnaInsert = () => {
     if (data.title === "" || data.content === "") {
       alert("제목과 내용은 필수 작성입니다");
       return;
-    } 
+    }
     qna(data)
       .then((res) => {
         alert("등록되었습니다");
@@ -62,7 +61,7 @@ const UserQnaInsert = () => {
 
         <div>
           <ReactQuill
-            style={{ height: "680px", width: "100%" }}
+            style={{ height: "760px", width: "100%" }}
             value={content}
             onChange={setContent}
             modules={modules}
@@ -82,4 +81,4 @@ const UserQnaInsert = () => {
   );
 };
 
-export default UserQnaInsert;
+export default FarmerCommunityInsert;

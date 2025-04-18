@@ -36,6 +36,19 @@ const Header = () => {
     };
   }, []);
 
+  const goToNoti = () => {
+    if (!token) {
+      // 로그인 안 했으면 로그인 페이지로 리다이렉트
+      nav("/login");
+      alert("로그인 후 이용 가능합니다.");  
+    } else {
+      // 로그인 됐으면 공지사항 페이지로 이동
+      nav("/noti");
+    }
+  };
+  
+  
+
   return (
     <>
       <div className={styles.mainCon}>
@@ -92,8 +105,16 @@ const Header = () => {
               styles.fontWidth,
               /* 컬러 그린 */
             ].join(" ")}
+            onClick={goToNoti} 
+          >
+            공지사항
+          </span>
+          <span
+            className={[styles.cursor, styles.darkGrey, styles.fontWidth].join(
+              " "
+            )}
             onClick={(e) => {
-              nav("/noti");
+              nav("/qna");
             }}
           >
             공지사항
@@ -105,11 +126,7 @@ const Header = () => {
             >
               로그인
             </span>
-
             ) : (
-
-
-
             <>
               <span
                 className={`${styles.cursor} ${styles.darkGrey} ${styles.fontWidth}`}

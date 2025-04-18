@@ -31,6 +31,26 @@
 .insertContent{
   resize: none;
   text-align: start;
+  width: 100%;
+  height: 25rem;
+  transition: height 0.3s ease;
+}
+
+/* 작성내용 박스 css */
+.insertContent.complete {
+  border: none;
+}
+
+
+/* 수정할때 내용박스 */
+.insertContent{
+  resize: none;
+  text-align: start;
+}
+
+/* 실제 보여주는 내용 */
+.contentBox{
+  white-space: pre-wrap;  /* 줄바꿈 유지 */
 }
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */

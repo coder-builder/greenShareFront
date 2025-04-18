@@ -50,6 +50,7 @@ const UserQna = () => {
       });
   };
 
+  //글쓰기 기능
   // 로그인안햇을시 등록 안되기하는 기능
   const loginInfo = () => {
     if (!isLoggedIn) {
@@ -57,6 +58,7 @@ const UserQna = () => {
       nav("/login"); 
     } else {
       nav("/UserQnaInsert"); // 등록 페이지로 이동
+
     }
   };
   return (
