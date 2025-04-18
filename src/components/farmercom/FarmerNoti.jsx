@@ -28,7 +28,7 @@ const FarmerNoti = () => {
 
   // 선택창,검색창 데이터를 저장할 변수
   const [search, setSearch] = useState({
-    selectWord: "title",
+    selectWord: "TITLE",
     searchLog: "",
   });
   const changeSearch = (e) => {
@@ -61,11 +61,11 @@ const FarmerNoti = () => {
             name="selectWord"
             value={search.selectWord}
             onChange={(e) => {
-              changeSearch(e);
+              changeSearch(e);  
             }}
           >
-            <option value="title">제목</option>
-            <option value="userEmail">작성자</option>
+            <option value="TITLE">제목</option>
+            <option value="USER_EMAIL">작성자</option>
           </select>
           <input
             type="text"

@@ -132,7 +132,11 @@ function App() {
           {/* 구분선 */}
           {/* 여기서부터 공지사항 & QnA게시판*/}
           {/* 공지사항 */}
-          <Route path="noti" element={<FarmerNoti />} />
+          <Route path="noti" 
+          element={
+          <ProtectedRoute>
+            <FarmerNoti />
+          </ProtectedRoute>} />
 
           {/* 공지사항 세부조회 */}
 
