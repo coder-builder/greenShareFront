@@ -73,7 +73,6 @@ const FarmerNotiDetail = () => {
   const [replyList, setReplyList] = useState([]);
   const [sum, setSum] = useState(0);
 
-
   useEffect(() => {
     axiosInstance
       .get(`/replyFarmers/${boardNum.num}`)
@@ -87,7 +86,7 @@ const FarmerNotiDetail = () => {
 
   const [replyInfo, setReplyInfo] = useState({
     content: "",
-    boardNum: boardNum.num
+    boardNum: boardNum.num,
   });
 
   // 댓글 등록 기능
@@ -177,7 +176,7 @@ const FarmerNotiDetail = () => {
                     onChange={changeInfo}
                   />
                 ) : (
-                  data.content
+                  <div className={styles.contentBox}>{data.content}</div>
                 )}
               </td>
             </tr>
