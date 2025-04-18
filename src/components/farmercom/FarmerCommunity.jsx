@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./FarmerCommunity.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
-import { axiosInstance } from "../../redux/axiosInstance";
+import { axiosInstance } from "../../redux/axiosinstance";
 import { isAuthenticated } from "../../redux/authCheck";
 import { pic } from "../../consts/pic";
 
@@ -153,6 +153,8 @@ const FarmerCommunity = () => {
         alert("팔로우 실패");
       });
   };
+
+  
 
   // 모든 이미지 중 첫 번째 이미지 추출
   const getFirstImage = (content) => {
