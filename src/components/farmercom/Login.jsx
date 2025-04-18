@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 
 import { Link, useNavigate } from "react-router-dom";
-import { axiosInstance } from "../../redux/axiosInstance";
+import { axiosInstance } from "../../redux/axiosinstance";
 import { useDispatch } from "react-redux";
 import { loginReducer } from "../../redux/authSlice";
 import { jwtDecode } from "jwt-decode";
