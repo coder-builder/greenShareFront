@@ -29,6 +29,7 @@ import Follow from "./components/farmercom/Follow";
 
 import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
+import MessageIcon from "./components/messageSocket/MessageIcon";
 
 function App() {
   return (
@@ -132,10 +133,6 @@ function App() {
             }
           />
 
-
-          <Route path="/a" element={<Aa />} />
-
-
           {/* QnA게시판 */}
           <Route path="/qna" element={<UserQna />} />
 
@@ -173,13 +170,15 @@ function App() {
 
         {/* -------- 구분선 -------- */}
         {/* 관리자가 접속하는 화면 */}
-        <Route path="/admin" element={<AdminMain  />}>
+        <Route path="/admin" element={<AdminMain />}>
           {/* OutLet으로 이동할 페이지 */}
           <Route path="insertplant" element={<AdminPlantInsert />} />
           <Route path="test" element={<Dashboard />} />
           <Route />
         </Route>
       </Routes>
+
+      <MessageIcon />
     </div>
   );
 }
