@@ -8,14 +8,23 @@
   /* 서브컨테이너 왼쪽 사진 + 오른쪽 내용 */
   margin-bottom: 20px;
   display: flex;
+  justify-content: space-around;
+}
+
+.dashboardWrapper {
+  width: 60%;
+  display: flex;
+  justify-content: end;
+}
+
+.imgCon.adminMode {
+  width: 40%;
 }
 
 .imgCon {
   /* 이미지 컨테이너 */
   padding-top: 20px;
-  width: 44%;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
 .imgCon1 {
@@ -104,10 +113,11 @@ table td {
 
 /* 작물의 상세한 설명 */
 .description {
-  font-size: 1.5rem;
+  font-family: "Pretendard-ExtraLight";
+  font-size: 1rem;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  line-height: 1.6;
+  line-height: 2;
   white-space: pre-wrap; /* 줄바꿈과 공백 보존 */
 }
