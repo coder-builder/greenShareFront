@@ -33,36 +33,15 @@ import QnaList from "./components/farmercom/main/QnaList";
 import NotiList from "./components/farmercom/main/NotiList";
 import Aa from "./components/user/Aa";
 
-
 function App() {
- 
-  const [viewSide, setSide] = useState(false);
-  const handleOn = (e) => {
-    /* 마우스의 위치를 판단하는 함수 */
-    if (e.clientX < 200) {
-      setSide(true);
-    } else {
-      setSide(false);
-    }
-  };
-  useEffect(() => {
-    /* 마우스의 움직임을 감지하는 이벤트 리스너 */
-    window.addEventListener("mousemove", handleOn);
-
-    return () => {
-      window.removeEventListener("mousemove", handleOn);
-    };
-  }, []);
-
   return (
     <div className="appCon">
-
       {/* 홈화면 */}
 
       <Routes>
         {/* -------- 구분선 -------- */}
         {/* 농부가 접속하는 화면 */}
-        <Route path="/" element={<FarmerMain isVisible={viewSide} />}>
+        <Route path="/" element={<FarmerMain />}>
           {/* -------- 구분선 -------- */}
           {/* OutLet으로 이동할 페이지 */}
 
@@ -130,50 +109,43 @@ function App() {
             }
           />
 
-         
           {/* 구분선 */}
           {/* 여기서부터 공지사항 & QnA게시판*/}
           {/* 공지사항 */}
-          <Route path="noti" 
-          element={
-          <ProtectedRoute>
-            <FarmerNoti />
-          </ProtectedRoute>} />
+          <Route
+            path="noti"
+            element={
+              <ProtectedRoute>
+                <FarmerNoti />
+              </ProtectedRoute>
+            }
+          />
 
           {/* 공지사항 세부조회 */}
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
-          
+
           {/* 공지사항 */}
-          <Route 
-            path="/FarmerNotiInsert" 
+          <Route
+            path="/FarmerNotiInsert"
             element={
               <ProtectedRoute>
                 <FarmerNotiInsert />
               </ProtectedRoute>
-            } 
+            }
           />
 
-
-
-
-
           <Route path="/a" element={<Aa />} />
-          
-
-
-
 
           {/* QnA게시판 */}
           <Route path="/qna" element={<UserQna />} />
 
           <Route path="/qna/:num" element={<UserQnaDetail />} />
-          
+
           {/* QnA등록 */}
           <Route path="/qnaInsert" element={<UserQnaInsert />} />
 
           <Route path="/noti/:num" element={<FarmerNotiDetail />} />
-
 
           <Route path="/qna/:num" element={<UserQnaDetail />} />
 
@@ -202,7 +174,7 @@ function App() {
 
         {/* -------- 구분선 -------- */}
         {/* 관리자가 접속하는 화면 */}
-        <Route path="/admin" element={<AdminMain isVisible={viewSide} />}>
+        <Route path="/admin" element={<AdminMain  />}>
           {/* OutLet으로 이동할 페이지 */}
           <Route path="insertplant" element={<AdminPlantInsert />} />
           <Route path="test" element={<Dashboard />} />
