@@ -101,85 +101,123 @@ const NoteBox = () => {
 
   return (
     <div
+    style={{
+      border: "1px solid #d6e9d6",
+      borderRadius: "12px",
+      padding: "20px",
+      maxWidth: "460px",
+      margin: "40px auto",
+      backgroundColor: "#f4fcf5",
+      fontFamily: "'Noto Sans KR', sans-serif",
+    }}
+  >
+    <h2
       style={{
-        border: "1px solid #ccc",
-        padding: "20px",
-        maxWidth: "500px",
-        margin: "0 auto",
+        textAlign: "center",
+        marginBottom: "20px",
+        fontSize: "1.2rem",
+        color: "#3b6f47",
       }}
     >
-      <h2>📨 실시간 채팅</h2>
-      <div
-        style={{
-          height: "300px",
-          overflowY: "auto",
-          border: "1px solid #eee",
-          padding: "10px",
-          marginBottom: "10px",
-        }}
-      >
-        {notes.map((msg, idx) => (
-          <>
-            {
-              getUserEmail() !==  msg.senderEmail && 
-              <>
-                <div 
-                  style={{
-                    marginBottom:'4px',
-                    fontStyle : 'italic',
-                    fontSize : '0.7rem'
-                  }}
-                >
-                  {msg.senderEmail}
-                </div> 
-              </>
-            }
-          
-            <div 
-              key={idx}
+      🌱 실시간 채팅
+    </h2>
+
+    <div
+      style={{
+        height: "300px",
+        overflowY: "auto",
+        border: "1px solid #e1f0e4",
+        borderRadius: "10px",
+        padding: "12px",
+        marginBottom: "16px",
+        backgroundColor: "#ffffff",
+      }}
+    >
+      {notes.map((msg, idx) => {
+        const isSender = getUserEmail() === msg.senderEmail;
+
+        return (
+          <div key={idx} style={{ marginBottom: "12px" }}>
+            {!isSender && (
+              <div
+                style={{
+                  marginBottom: "4px",
+                  fontStyle: "italic",
+                  fontSize: "0.75rem",
+                  color: "#6a826e",
+                }}
+              >
+                {msg.senderEmail}
+              </div>
+            )}
+            <div
               style={{
-                width:'80%',
-                padding:'10px',
-                borderRadius:'8px',
-                fontSize : '0.8rem',
-                marginBottom:'10px',
-                backgroundColor : getUserEmail() ===  msg.senderEmail?'green':'lightskyblue',
-                marginLeft:getUserEmail() ===  msg.senderEmail? 'auto' : '0px' ,
-                color:getUserEmail() ===  msg.senderEmail? 'white' : 'black' 
+                maxWidth: "80%",
+                padding: "10px",
+                borderRadius: "10px",
+                fontSize: "0.85rem",
+                backgroundColor: isSender ? "#81c784" : "#e2f5e9",
+                color: isSender ? "#fff" : "#2e5737",
+                marginLeft: isSender ? "auto" : "0",
               }}
             >
-              
-              <div>{msg.content}</div>
-
-              {/* <strong>{msg.senderEmail}</strong>  <strong>{msg.receiverEmail}</strong>
-              : {msg.content} * */}
+              {msg.content}
             </div>
-          </>
-        ))}
-        <div ref={notesEndRef} />
-      </div>
-      <input
-        type="email"
-        value={receiver}
-        onChange={(e) => setReceiver(e.target.value)}
-        placeholder="받는 사람 이메일"
-        style={{ width: "100%", marginBottom: "8px" }}
-      />
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && sendNote()}
-        style={{ width: "100%", marginBottom: "10px" }}
-        placeholder="채팅 내용을 입력하세요"
-      />
-      <button onClick={sendNote} style={{ padding: "8px 12px" }}>
-        보내기
-      </button>
-
-      {/* 수신 소켓 연결 */}
-      <ChatSocket onMessageReceive={handleReceive} />
+          </div>
+        );
+      })}
+      <div ref={notesEndRef} />
     </div>
+
+    <input
+      type="email"
+      value={receiver}
+      onChange={(e) => setReceiver(e.target.value)}
+      placeholder="받는 사람 이메일"
+      style={{
+        width: "100%",
+        padding: "10px",
+        marginBottom: "10px",
+        borderRadius: "8px",
+        border: "1px solid #c8e6c9",
+        fontSize: "0.9rem",
+      }}
+    />
+    <input
+      type="text"
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
+      onKeyDown={(e) => e.key === "Enter" && sendNote()}
+      placeholder="채팅 내용을 입력하세요"
+      style={{
+        width: "100%",
+        padding: "10px",
+        marginBottom: "12px",
+        borderRadius: "8px",
+        border: "1px solid #c8e6c9",
+        fontSize: "0.9rem",
+      }}
+    />
+    <button
+      onClick={sendNote}
+      style={{
+        width: "100%",
+        padding: "12px",
+        borderRadius: "8px",
+        border: "none",
+        backgroundColor: "#66bb6a",
+        color: "#ffffff",
+        fontSize: "1rem",
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      🌼 보내기
+    </button>
+
+    {/* 수신 소켓 연결 */}
+    <ChatSocket onMessageReceive={handleReceive} />
+  </div>
   );
 };
 
