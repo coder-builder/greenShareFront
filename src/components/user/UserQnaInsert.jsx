@@ -69,7 +69,6 @@ const UserQnaInsert = () => {
           />
         </div>
       </div>
-
       <div className={styles.btnDiv}>
         <button type="button" onClick={(e) => nav("/qna")}>
           목록 가기

@@ -29,9 +29,6 @@ import Follow from "./components/farmercom/Follow";
 
 import ProtectedRoute from "./components/farmercom/ProtectedRoute";
 import ProtectedAdminRoute from "./components/farmercom/ProtectedAdminRoute";
-import QnaList from "./components/farmercom/main/QnaList";
-import NotiList from "./components/farmercom/main/NotiList";
-import Aa from "./components/user/Aa";
 
 function App() {
   return (
@@ -135,7 +132,9 @@ function App() {
             }
           />
 
+
           <Route path="/a" element={<Aa />} />
+
 
           {/* QnA게시판 */}
           <Route path="/qna" element={<UserQna />} />

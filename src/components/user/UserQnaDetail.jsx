@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { isAdmin, isAuthenticated } from "../../redux/authCheck";
 import { axiosInstance } from "../../redux/axiosInstance";
 import { jwtDecode } from "jwt-decode";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 
 const UserQnaDetail = () => {
   const nav = useNavigate();
@@ -177,21 +179,25 @@ const UserQnaDetail = () => {
             <tr>
               <td>
                 {isEdit ? (
-                  <textarea
-                    className={styles.insertContent}
-                    rows="25"
-                    cols="150"
-                    name="content"
+                  <ReactQuill
                     value={qnaData.content}
-                    onChange={changeInfo}
+                    onChange={(value) =>
+                      setQnaData({ ...qnaData, content: value })
+                    }
+                    modules={{
+                      toolbar: {
+                        container: [
+                          [{ header: [1, 2, 3, 4, 5, false] }],
+                          ["bold", "underline", "image"],
+                        ],
+                      },
+                    }}
+                    style={{ height: "400px" }}
                   />
                 ) : (
-                  <textarea
-                    className={`${styles.insertContent} ${styles.complete}`} // 수정 완료 후 complete 클래스 추가
-                    name="content"
-                    value={qnaData.content}
-                    // readOnly
-                  />
+                 <div className={styles.contentDiv}>
+                         <p dangerouslySetInnerHTML={{ __html: qnaData.content }}></p>
+                       </div>
                 )}
               </td>
             </tr>
