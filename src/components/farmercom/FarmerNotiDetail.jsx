@@ -169,7 +169,7 @@ const FarmerNotiDetail = () => {
               <td>
                 {isEdit ? (
                   <textarea
-                    className={styles.insertContent}
+                     className={`${styles.insertContent} ${styles.complete}`} 
                     rows="25"
                     cols="150"
                     name="content"
