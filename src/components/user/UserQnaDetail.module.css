@@ -31,10 +31,30 @@
 .insertContent{
   resize: none;
   text-align: start;
+  width: 100%;
+  height: 25rem;
+  transition: height 0.3s ease;
 }
+
+/* 작성내용 박스 css */
+.insertContent.complete {
+  border: none;
+}
+
+.insertContent:focus {
+  outline: none;
+}
+
+
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */
   
+/* 댓글 개수 위치 조정 */
+.contentBox {
+  width: 80%;
+  margin: 10px auto; 
+}
+
 /* 작성자와 댓글 내용의 묶는 부모태그(박스) */
 .replyContainer {
   width: 80%;
@@ -161,3 +181,4 @@
   justify-content: end;
   border-bottom: #eee 1px solid;
 }
+
