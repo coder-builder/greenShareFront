@@ -42,7 +42,7 @@ input {
   width: 100px;
   padding: 10px;
 
-  background-color: #4a90e2;
+  background-color:#27B06E;
   color: white;
   font-size: 14px;
 
@@ -55,7 +55,7 @@ input {
 
 /* 마우스 올렸을 때 */
 .btnDiv button:hover {
-  background-color: #357ab8;
+  background-color: #116c40;
 }
 
 

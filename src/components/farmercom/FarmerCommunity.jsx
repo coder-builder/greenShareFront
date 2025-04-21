@@ -15,6 +15,11 @@ const FarmerCommunity = () => {
   const [userEmail, setUserEmail] = useState(null);
   const [userRole, setUserRole] = useState(null);
 
+  //페이지 네이션 처리
+  const [currentPage, setCurrentPage] = useState(1); //지금 몇번째 페이지를 보고 있는지?
+  const itemsPerPage = 12;
+  //한페이지에 몇 개 글을 보여줄지
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
@@ -136,6 +141,7 @@ const FarmerCommunity = () => {
       })
       .then(() => {
         alert("팔로우 성공!");
+        setIsUpdate((prev) => prev + 1);
       })
       .catch((error) => {
         console.log(error);
@@ -168,13 +174,45 @@ const FarmerCommunity = () => {
     nav("/reg-community");
   };
 
+  //페이지 네이션 2.
+  //보여줄 글을 자르기
+  //전체 글 중에서 현재 체이지에 보여줘야 할 글만 잘라서 보여준다
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = getPlantStory.slice(indexOfFirstItem, indexOfLastItem);
+
+  //페에지 네이션 4
+  //페이지 버튼 만들기 함수
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    //Math.ceil 올림함수
+    const totalPages = Math.ceil(getPlantStory.length / itemsPerPage); // 총 페이지
+
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <button
+          type="button"
+          key={i}
+          onClick={(e) => setCurrentPage(i)} // i번째 페이지 보기
+          className={currentPage === i ? styles.activePage : ""}
+        >
+          {i}
+        </button>
+      );
+    }
+    return <div className={styles.pagination}>{pageNumbers}</div>;
+  };
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.container}>
           <img className={styles.width100} src={pic.com} alt="" />
         </div>
-        {getPlantStory.map((story) => {
+        {/* 페이지네이션3 : map()에서 보여줄 데이터만 사용 */}
+        {/* 글 목록 랜더링을 getPlantStory가 아닌 자른 데이터(currentItems)로만 보여줌. */}
+        {currentItems.map((story) => {
           const thumbnail = getFirstImage(story.content);
           const preview = getTextPreview(story.content);
           const isMine = story.userEmail === userEmail;
@@ -192,6 +230,7 @@ const FarmerCommunity = () => {
                     src={thumbnail}
                     alt="썸네일"
                     className={styles.thumbnail}
+                    loading="lazy"
                   />
                 ) : (
                   <div className={styles.noImage}>이미지 없음</div>
@@ -246,7 +285,7 @@ const FarmerCommunity = () => {
                 </div>
 
                 <div className={styles.userDiv}>
-                  {getUserEmailFromToken() !== story.userEmail && (
+                  {userEmail !== story.userEmail && (
                     <div className={styles.userDiv}>
                       {story.isFollow === "Y" ? (
                         <div
@@ -277,7 +316,8 @@ const FarmerCommunity = () => {
           );
         })}
       </div>
-
+      {/* 페이지 이동 버튼 보이게 */}
+      {renderPageNumbers()}
       <div>
         <button className={styles.df} type="button" onClick={handleWriteClick}>
           글쓰기

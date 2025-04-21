@@ -133,7 +133,6 @@ const UserQna = () => {
             </tbody>
           </table>
         )}
-
         <div className={styles.secondBtn}>
           <button
               type="button"

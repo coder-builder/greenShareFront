@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserQnaInsert.module.css";
 import ReactQuill from "react-quill-new";
@@ -6,21 +6,63 @@ import "react-quill-new/dist/quill.snow.css"; // 스타일도 꼭 import 해줘�
 import Toolbar from "quill/modules/toolbar";
 import { qna } from "../../apis/qna";
 import UserQna from "./UserQna";
+import imageCompression from "browser-image-compression";
 
 const UserQnaInsert = () => {
   const nav = useNavigate();
+  const quillRef = useRef(null);
 
-  const modules = {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  // 이미지 업로드 핸들러 정의
+  const imageHandler = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files[0];
+
+      if (file) {
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        };
+
+        try {
+          const compressed = await imageCompression(file, options);
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            const base64 = reader.result;
+            const editor = quillRef.current.getEditor();
+            const range = editor.getSelection(true);
+            editor.insertEmbed(range.index, "image", base64);
+            editor.setSelection(range.index + 1);
+          };
+
+          reader.readAsDataURL(compressed);
+        } catch (err) {
+          console.error("이미지 압축 중 에러 발생:", err);
+        }
+      }
+    };
+  };
+
+  const modules = useMemo(() => ({
     toolbar: {
       container: [
         [{ header: [1, 2, 3, 4, 5, false] }],
         ["bold", "underline", "image"],
       ],
+      handlers: {
+        image: imageHandler
+      }
     },
-  };
-
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  }), []);
 
   const sendInsert = () => {
     const data = {
@@ -33,12 +75,13 @@ const UserQnaInsert = () => {
       return;
     } 
     qna(data)
-      .then((res) => {
+      .then((response) => {
         alert("등록되었습니다");
         nav("/qna");
       })
       .catch((error) => {
         console.log(error);
+        console.log(data);
       });
   };
 
@@ -62,14 +105,14 @@ const UserQnaInsert = () => {
 
         <div>
           <ReactQuill
-            style={{ height: "680px", width: "100%" }}
+            style={{ height: "1050px", width: "100%" }}
             value={content}
             onChange={setContent}
             modules={modules}
+            ref={quillRef}
           />
         </div>
       </div>
-
       <div className={styles.btnDiv}>
         <button type="button" onClick={(e) => nav("/qna")}>
           목록 가기
@@ -83,3 +126,4 @@ const UserQnaInsert = () => {
 };
 
 export default UserQnaInsert;
+

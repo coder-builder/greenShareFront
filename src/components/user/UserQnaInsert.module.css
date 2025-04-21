@@ -50,11 +50,9 @@ input {
 .btnDiv button {
   width: 100px;
   padding: 10px;
-
-  background-color: #4a90e2;
+  background-color: #27B06E;
   color: white;
   font-size: 14px;
-
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -62,15 +60,19 @@ input {
 
 /* 마우스 올렸을 때 */
 .btnDiv button:hover {
-  background-color: #357ab8;
+  background-color: #11C6AB;
 }
 
 /* 에디터 안의 이미지 스타일 */
-.ql-editor img {
-  max-width: 80%;
+.ql-editor img{
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 16px auto;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ql-editor {
+  text-align: left;
 }

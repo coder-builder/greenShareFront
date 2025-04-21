@@ -29,7 +29,6 @@
 
 /* 수정할때 내용박스 */
 .insertContent{
-  resize: none;
   text-align: start;
   width: 100%;
   height: 25rem;
@@ -38,7 +37,8 @@
 
 /* 작성내용 박스 css */
 .insertContent.complete {
-  border: none;
+  /* border: none; */
+  text-align: start;
 }
 
 
@@ -46,11 +46,15 @@
 .insertContent{
   resize: none;
   text-align: start;
+  
 }
 
 /* 실제 보여주는 내용 */
+/* 실제 보여주는 내용 */
 .contentBox{
-  white-space: pre-wrap;  /* 줄바꿈 유지 */
+  height: auto;
+  white-space: pre-wrap; 
+  text-align: start;
 }
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */
@@ -133,7 +137,18 @@
   transition: all 0.5s
 }
 
-
+.deleteReplyBtn{
+  background-color: #27B06E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+}
+.deleteReplyBtn:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
 
 .replySection {
   margin-top: 30px;
@@ -169,7 +184,12 @@
 }
 
 .replyBtn{
+  width: 100px;
   background-color: #27B06E;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
 
 }
 .replyBtn:hover{
@@ -180,4 +200,24 @@
   display: flex;
   justify-content: end;
   border-bottom: #eee 1px solid;
+}
+
+.list{
+  background-color: #27B06E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+}
+
+.list:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
+.secondBtn{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
