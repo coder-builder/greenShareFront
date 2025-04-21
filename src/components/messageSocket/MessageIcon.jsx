@@ -9,9 +9,11 @@ const MessageIcon = () => {
 
   if (!user) return null; // 로그인 안 했으면 아무것도 보여주지 않음
 
+  //메세지 알림
+  const [newMessage, setNewMessage] = useState(false);
+
   return (
     <>
-   
       {/* 쪽지 아이콘 */}
       <div
         style={{
@@ -30,27 +32,32 @@ const MessageIcon = () => {
           boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
           zIndex: 100,
         }}
-        onClick={() => setOpen((prev) => !prev)}
-
+        onClick={() => {
+          setOpen((prev) => !prev);
+          setNewMessage(false);
+        }}
         title="쪽지함 열기"
       >
         <FaEnvelope size={28} />
       </div>
-      <div style={{
-        position:'fixed',
-        bottom: "66px",
-        right: "30px",
-        zIndex : 200,
-        display:'block',
-        padding : '2px 8px',
-        borderRadius:'8px',
-        fontSize:'0.8rem',
-        backgroundColor:'crimson',
-        color:'white'
-      }}>
-        new
-      </div>
-    
+      {newMessage && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "66px",
+            right: "30px",
+            zIndex: 200,
+            display: "block",
+            padding: "2px 8px",
+            borderRadius: "8px",
+            fontSize: "0.8rem",
+            backgroundColor: "crimson",
+            color: "white",
+          }}
+        >
+          new
+        </div>
+      )}
 
       {/* 쪽지함 박스 */}
       {open && (
@@ -70,7 +77,7 @@ const MessageIcon = () => {
             zIndex: 999,
           }}
         >
-          <NoteBox />
+          <NoteBox onNewMessage={() => setNewMessage(true)} />
         </div>
       )}
     </>

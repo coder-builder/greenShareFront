@@ -87,7 +87,7 @@
   border-radius: 5px;
   cursor: pointer;
   background-color: #ffdddd;  /* 연한 붉은색 */
-  color: #cc0000;
+  color: #af2828;
   transition: background-color 0.3s;
 }
 
@@ -136,7 +136,7 @@
 /* 댓글 등록 버튼 */
 .reply_reg_detail > button {
   flex: 1;
-  background-color: #4a90e2;
+  background-color: #11C6AB;
   color: white;
   font-weight: bold;
   font-size: 15px;
@@ -153,11 +153,28 @@
 /* ==================== 하단 버튼 ==================== */
 .bottom_btn {
   display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.bottom_btn button {
+  padding: 10px 20px;
+  background-color: #e5fbe5; /* 연한 초록 배경 */
+  border: 1px solid #b2dfdb;
+  border-radius: 8px;
+  color: #27B06E;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.bottom_btn button:hover {
+  background-color: #c8e6c9; /* hover 시 진한 초록 */
+  border-color: #81c784;
+  transform: translateY(-1px);
 }
 
 .update_delete_btn {

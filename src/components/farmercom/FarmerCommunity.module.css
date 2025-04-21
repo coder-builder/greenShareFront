@@ -245,3 +245,34 @@
   display: flex;
   gap: 10px;
 }
+
+
+/* 페이지 이동 버튼 css */
+.pagination {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  margin: 0 6px;
+  padding: 8px 14px;
+  background-color: #e9fbe5;       /* 연한 연두 배경 */
+  color:#27B06E;                  /* 초록 텍스트 */
+  border: 1px solid #c8e6c9;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.pagination button:hover {
+  background-color: #c8e6c9;
+  transform: scale(1.05);
+}
+
+.activePage {
+  background-color: #66bb6a;       /* 진한 초록 */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #4caf50;
+}

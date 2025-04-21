@@ -4,7 +4,7 @@ import SockJS from "sockjs-client";
 import ChatSocket from "./ChatSocket";
 import { getReciverId } from "../../apis/userApi";
 
-const NoteBox = () => {
+const NoteBox = ({onNewMessage}) => {
   const [notes, setNotes] = useState([]);
   const [input, setInput] = useState("");
   const [receiver, setReceiver] = useState("");
@@ -27,6 +27,9 @@ const NoteBox = () => {
 
   const handleReceive = (msg) => {
     setNotes((prev) => [...prev, msg]);
+    if (onNewMessage) {
+      onNewMessage(); // 부모에게 새 메시지 알림!
+    }
   };
 
   useEffect(() => {

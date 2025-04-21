@@ -195,9 +195,11 @@ const UserQnaDetail = () => {
                     style={{ height: "400px" }}
                   />
                 ) : (
-                 <div className={styles.contentDiv}>
-                         <p dangerouslySetInnerHTML={{ __html: qnaData.content }}></p>
-                       </div>
+                  <div className={styles.contentDiv}>
+                    <p
+                      dangerouslySetInnerHTML={{ __html: qnaData.content }}
+                    ></p>
+                  </div>
                 )}
               </td>
             </tr>
@@ -250,6 +252,16 @@ const UserQnaDetail = () => {
               </div>
             ))
           )}
+
+          <div className={styles.secondBtn}>
+            <button
+              type="button"
+              className={styles.list}
+              onClick={() => nav("/qna")}
+            >
+              목록가기
+            </button>
+          </div>
 
           <div className={styles.replyForm}>
             <textarea

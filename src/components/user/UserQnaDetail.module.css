@@ -32,27 +32,18 @@
   resize: none;
   text-align: start;
   width: 100%;
-  height: 25rem;
-  transition: height 0.3s ease;
 }
-
-/* 작성내용 박스 css */
-.insertContent.complete {
-  border: none;
-}
-
-.insertContent:focus {
-  outline: none;
-}
-
 
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */
-  
+
 /* 댓글 개수 위치 조정 */
 .contentBox {
+  border: none;
+  resize: none;
   width: 80%;
   margin: 10px auto; 
+  white-space: pre-wrap; 
 }
 
 /* 작성자와 댓글 내용의 묶는 부모태그(박스) */
@@ -169,7 +160,12 @@
 }
 
 .replyBtn{
+  width: 100px;
   background-color: #27B06E;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
 
 }
 .replyBtn:hover{
@@ -182,6 +178,19 @@
   border-bottom: #eee 1px solid;
 }
 
+.deleteReplyBtn{
+  background-color: #27B06E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+}
+.deleteReplyBtn:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
+
 .contentDiv img {
   max-width: 100%;
   width: 80%;
@@ -189,4 +198,28 @@
   display: block;
   margin: 16px auto;
   border-radius: 6px;
+}
+.contentDiv p{
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.list{
+  background-color: #27B06E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+}
+
+.list:hover{
+  background-color: #11C6AB;
+  cursor: pointer;
+  transition: all 0.5s
+}
+.secondBtn{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
