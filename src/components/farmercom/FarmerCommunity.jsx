@@ -141,6 +141,7 @@ const FarmerCommunity = () => {
       })
       .then(() => {
         alert("팔로우 성공!");
+        setIsUpdate((prev) => prev + 1);
       })
       .catch((error) => {
         console.log(error);
