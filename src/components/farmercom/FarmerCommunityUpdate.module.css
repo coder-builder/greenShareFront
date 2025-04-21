@@ -1,10 +1,10 @@
 .container{
   border: 1px solid black;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: 100vh;
+  height: 1020px;
 }
 
 .title > p{
@@ -12,7 +12,7 @@
 }
 
 .title > input{
-  padding: 5px;
+  padding: 15px;
   width: 100%;
 }
 
@@ -25,18 +25,31 @@
   height: 200px;
 }
 
-.btn{
+/* 버튼 영역  */
+.btn {
   display: flex;
-  margin-top: 20px;
-  gap: 20px;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 30px;
 }
 
-.btn > button{
-  padding: 8px;
-  width: 80px;
-  border: none;
+.btn button {
+  margin-top: 15px;
+  padding: 10px 24px;
+  border: 1px solid #aedaa6;
+  background-color: #e6f5e9; /* 연한 초록 */
+  color: #27B06E;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
 }
+
+.btn button:hover {
+  background-color: #c8e6c9; /* hover 시 더 진한 초록 */
+  transform: scale(1.03);
+}
+
 
 .ql-editor img {
   max-width: 80%;
