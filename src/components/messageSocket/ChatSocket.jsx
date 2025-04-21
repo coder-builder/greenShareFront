@@ -6,7 +6,7 @@ const ChatSocket = ({ onMessageReceive }) => {
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
-    const client = new Client({
+   const client = new Client({
       webSocketFactory: () =>
         new SockJS(`http://localhost:8080/ws?token=${token}`),
       reconnectDelay: 5000,
