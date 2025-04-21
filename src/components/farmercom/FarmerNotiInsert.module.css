@@ -1,48 +1,66 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: 800px;
+  margin-top: 100px;
 
-.mainContainer {
+}
+
+.subContainer {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
   width: 100%;
-  max-width: 600px;
-  margin: 40px auto;
-  border-radius: 12px;
-  border: 1px solid #e5e5e5;
 }
 
-.mainContainer td:first-child {
-  width: 120px;
-  background-color: #e9ecef;
+.header {
+  font-size: 26px;
+  margin-bottom: 30px;
+  color: #212529;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
 }
 
-.mainContainer tr:last-child td {
-  border: none;
+.titleContainer {
+  margin-bottom: 24px;
 }
 
-.mainContainer input,
-.mainContainer textarea {
-  width: calc(100% - 30px);
-  padding: 12px;
-  border: 1px solid #e9ecef;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.insert {
+.title {
   display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.input,
+.textarea {
   width: 100%;
-  max-width: 600px;
-  margin: 25px auto;
-  padding: 14px 24px;
+  padding: 14px 16px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+  transition: border 0.3s ease;
+  resize: none;
+}
+.textarea{
+  height: 600px;
+}
+
+
+.submitBtn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 16px;
   font-size: 18px;
+  font-weight: bold;
   color: white;
   background-color: #27B06E;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
-.insert:hover{
-  background-color:#11C6AB;
+.submitBtn:hover {
+  background-color: #11C6AB;
   cursor: pointer;
-  transition: all 0.5s
-
 }
-

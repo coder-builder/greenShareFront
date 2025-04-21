@@ -190,3 +190,7 @@
   margin: 16px auto;
   border-radius: 6px;
 }
+.contentDiv p{
+  text-align: left;
+  margin-bottom: 1em;
+}
