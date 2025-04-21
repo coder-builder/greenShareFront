@@ -1,21 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./FarmerCommunityUpdate.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { detailStory } from "../../apis/plantStory";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import { axiosInstance } from "../../redux/axiosInstance";
+import imageCompression from "browser-image-compression";
 
 const FarmerCommunityUpdate = () => {
-  // Quill 에디터 툴바 설정
-  const modules = {
-    toolbar: {
-      container: [
-        [{ header: [1, 2, 3, 4, 5, false] }],
-        ["bold", "underline", "image"],
-      ],
-    },
+  const quillRef = useRef(null);
+
+  // 이미지 업로드 핸들러 정의
+  const imageHandler = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files[0];
+
+      if (file) {
+        const options = {
+          maxSizeMB: 2,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+        };
+
+        try {
+          const compressed = await imageCompression(file, options);
+          const reader = new FileReader();
+
+          reader.onload = () => {
+            const base64 = reader.result;
+            const editor = quillRef.current.getEditor();
+            const range = editor.getSelection(true);
+            editor.insertEmbed(range.index, "image", base64);
+            editor.setSelection(range.index + 1);
+          };
+
+          reader.readAsDataURL(compressed);
+        } catch (err) {
+          console.error("이미지 압축 중 에러 발생:", err);
+        }
+      }
+    };
   };
+
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: [1, 2, 3, 4, 5, false] }],
+          ["bold", "underline", "image"],
+        ],
+        handlers: {
+          image: imageHandler,
+        },
+      },
+    }),
+    []
+  );
 
   const nav = useNavigate(); // 페이지 이동용
   const { boardNum } = useParams(); // URL 파라미터 가져오기
@@ -38,7 +83,7 @@ const FarmerCommunityUpdate = () => {
   const handleTitleChange = (e) => {
     setUpdateDetail((state) => ({
       ...state,
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -46,7 +91,7 @@ const FarmerCommunityUpdate = () => {
   const handleContentChange = (value) => {
     setUpdateDetail((state) => ({
       ...state,
-      content : value
+      content: value,
     }));
   };
 
@@ -76,7 +121,7 @@ const FarmerCommunityUpdate = () => {
           type="text"
           name="title"
           value={updateDetail.title}
-          onChange={e=>handleTitleChange(e)}
+          onChange={(e) => handleTitleChange(e)}
           placeholder="제목을 입력하세요"
         />
       </div>
@@ -88,6 +133,7 @@ const FarmerCommunityUpdate = () => {
           value={updateDetail.content}
           onChange={handleContentChange}
           modules={modules}
+          ref={quillRef}
         />
       </div>
 
