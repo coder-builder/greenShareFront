@@ -17,7 +17,6 @@ const UserQnaInsert = () => {
 
   // 이미지 업로드 핸들러 정의
   const imageHandler = () => {
-    alert(1);
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");

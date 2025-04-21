@@ -116,10 +116,7 @@
   background-color: #f0f0f0;
   cursor: pointer;
 }
-.nodata{
-  display: flex;
-  justify-content: center;
-}
+
 .contentDiv img {
   max-width: 1%;
   width: 80%;
@@ -127,4 +124,11 @@
   display: block;
   margin: 16px auto;
   border-radius: 6px;
+}
+
+.noData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;   
 }

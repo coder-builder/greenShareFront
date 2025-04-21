@@ -168,7 +168,7 @@ const FarmerNotiDetail = () => {
               <td>
                 {isEdit ? (
                   <textarea
-                     className={`${styles.insertContent} ${styles.complete}`} 
+                    className={`${styles.insertContent} ${styles.complete}`}
                     rows="25"
                     cols="150"
                     name="content"
@@ -229,7 +229,15 @@ const FarmerNotiDetail = () => {
               </div>
             ))
           )}
-
+          <div className={styles.secondBtn}>
+            <button
+              type="button"
+              className={styles.list}
+              onClick={() => nav("/noti")}
+            >
+              목록가기
+            </button>
+          </div>
           <div className={styles.replyForm}>
             <textarea
               className={styles.commentInput}
