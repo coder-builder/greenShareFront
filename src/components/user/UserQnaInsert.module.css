@@ -50,11 +50,9 @@ input {
 .btnDiv button {
   width: 100px;
   padding: 10px;
-
   background-color: #27B06E;
   color: white;
   font-size: 14px;
-
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -73,4 +71,8 @@ input {
   margin: 16px auto;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ql-editor {
+  text-align: left;
 }
