@@ -224,6 +224,7 @@ const FarmerCommunity = () => {
                     src={thumbnail}
                     alt="썸네일"
                     className={styles.thumbnail}
+                    loading="lazy"
                   />
                 ) : (
                   <div className={styles.noImage}>이미지 없음</div>
@@ -278,7 +279,7 @@ const FarmerCommunity = () => {
                 </div>
 
                 <div className={styles.userDiv}>
-                  {getUserEmailFromToken() !== story.userEmail && (
+                  {userEmail !== story.userEmail && (
                     <div className={styles.userDiv}>
                       {story.isFollow === "Y" ? (
                         <div
