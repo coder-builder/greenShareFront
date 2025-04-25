@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./FarmerCommunity.module.css";
 import { useNavigate } from "react-router-dom";
 import { getStories } from "../../apis/plantStory";
-import { axiosInstance } from "../../redux/axiosinstance";
+import { axiosInstance } from "../../redux/axiosInstance";
 import { isAuthenticated } from "../../redux/authCheck";
 import { pic } from "../../consts/pic";
 
@@ -149,12 +149,6 @@ const FarmerCommunity = () => {
         setIsUpdate(isUpdate + 1);
       });
   };
-
-
-  
-
-  // 모든 이미지 중 첫 번째 이미지 추출
-
 
   const getFirstImage = (content) => {
     const matches = [...content.matchAll(/<img[^>]+src=["']?([^"'>]+)["']?/g)];
