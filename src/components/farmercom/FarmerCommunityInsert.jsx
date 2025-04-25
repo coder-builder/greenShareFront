@@ -18,13 +18,13 @@ const FarmerCommunityInsert = () => {
   const imageHandler = () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
+    input.setAttribute("accept", "image/jpeg"); //  jpg만 허용
     input.click();
 
     input.onchange = async () => {
       const file = input.files[0];
 
-      if (file) {
+      if (file && file.type === "image/jpeg") {
         const options = {
           maxSizeMB: 2,
           maxWidthOrHeight: 1024,
@@ -47,6 +47,8 @@ const FarmerCommunityInsert = () => {
         } catch (err) {
           console.error("이미지 압축 중 에러 발생:", err);
         }
+      }else{
+        alert("JPG 형식의 이미지 파일만 업로드할 수 있습니다.")
       }
     };
   };
