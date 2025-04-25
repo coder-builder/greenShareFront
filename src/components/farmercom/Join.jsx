@@ -109,7 +109,7 @@ const Join = () => {
         <p>비밀번호 확인*</p>
         <input
           type="password"
-          name="confirmPassword" // 👈 추가
+          name="confirmPassword" 
           placeholder="비밀번호를 한번 더 입력하세요"
           value={joinData.confirmPassword}
           onChange={Change}

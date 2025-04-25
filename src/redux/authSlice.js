@@ -20,11 +20,8 @@ const getToken = () => {
     return {
       token: token,
       user: {
-        userEmail: decodedToken.userEmail,
-        userTel: decodedToken.userTel,
-        userRole: decodedToken.userRole,
-        joinDate: decodedToken.joinDate,
         userName: decodedToken.userName,
+        
       },
     };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Follow.module.css';
-import { axiosInstance } from '../../redux/axiosInstance';
+import { axiosInstance } from '../../redux/axiosinstance';
 import { useNavigate } from 'react-router-dom';
 
 const Follow = () => {
