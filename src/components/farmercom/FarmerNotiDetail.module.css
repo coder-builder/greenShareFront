@@ -52,9 +52,8 @@
 /* 실제 보여주는 내용 */
 /* 실제 보여주는 내용 */
 .contentBox{
-  height: auto;
-  white-space: pre-wrap; 
   text-align: start;
+  white-space: pre-wrap;
 }
 
 /* ---------------------------------댓글 등록하기 css -------------------------- */
@@ -202,6 +201,7 @@
   border-bottom: #eee 1px solid;
 }
 
+
 .list{
   background-color: #27B06E;
   color: white;
@@ -209,7 +209,6 @@
   border: none;
   border-radius: 12px;
 }
-
 .list:hover{
   background-color: #11C6AB;
   cursor: pointer;
