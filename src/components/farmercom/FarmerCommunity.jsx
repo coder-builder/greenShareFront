@@ -76,7 +76,7 @@ const FarmerCommunity = () => {
     if (!isAuthenticated(token)) {
       return;
     }
-
+  
     axiosInstance
       .delete(`/plantStories/like-delete/${boardNum}`)
       .then(() => {
@@ -84,7 +84,7 @@ const FarmerCommunity = () => {
         setPlantStory((prevStories) =>
           prevStories.map((story) =>
             story.boardNum === boardNum
-              ? { ...story, isLike: "N", likeCount: story.likeCount - 1 }
+              ? { ...story, isLike: "N", likeCnt: story.likeCnt - 1 } // 여기!!
               : story
           )
         );
@@ -94,6 +94,7 @@ const FarmerCommunity = () => {
         alert("좋아요 취소 실패");
       });
   };
+  
 
   const getUserEmailFromToken = () => {
     const token = localStorage.getItem("accessToken");
@@ -242,7 +243,7 @@ const FarmerCommunity = () => {
 
               <div className={styles.infoDiv}>
                 <div className={styles.iconDiv}>
-                  {story.isLike === "Y" ? (
+                  { story.isLike === "Y" ? (
                     <span
                       onClick={(e) => {
                         e.stopPropagation();
