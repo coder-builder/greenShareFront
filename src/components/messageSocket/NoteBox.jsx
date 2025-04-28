@@ -70,7 +70,7 @@ const NoteBox = ({ incomingNote }) => {
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () => new SockJS(`http://192.168.30.166:8080/ws?token=${token}`), // ✅ Bearer 없이 token만 붙인다
+      webSocketFactory: () => new SockJS(`http://192.168.30.110:8080/ws?token=${token}`), // ✅ Bearer 없이 token만 붙인다
       reconnectDelay: 5000,
     });
   
