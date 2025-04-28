@@ -2,8 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { getReciverId } from "../../apis/userApi";
+import { axiosInstance } from "../../redux/axiosInstance";
 
 const NoteBox = ({ incomingNote }) => {
+  const [followList, setFollowList] = useState([]);
+  const [isShow, setIsShow] = useState(false);
+
   const [notes, setNotes] = useState([]);
   const [input, setInput] = useState("");
   const [receiver, setReceiver] = useState("");
@@ -22,6 +26,48 @@ const NoteBox = ({ incomingNote }) => {
       return null;
     }
   };
+
+  const fetchFollowList = async (userEmail) => {
+    try {
+      // 1. 나를 팔로우한 사용자 리스트 가져오기
+      const response = await axiosInstance.get('/follow', {
+        params: { fromUserEmail: userEmail }
+      });
+  
+      const followList = response.data; // [{ toUserEmail: "xxx@naver.com" }, ...]
+  
+      // 2. 각 사용자의 온라인 여부 확인
+      const updatedList = await Promise.all(
+        followList.map(async (user) => {
+          try {
+            const onlineStatus = await axiosInstance.get('/users/online', {
+              params: { userEmail: user.toUserEmail }
+            });
+  
+            return {
+              ...user,
+              isOnline: onlineStatus.data // true or false
+            };
+          } catch (error) {
+            console.error('온라인 상태 확인 실패', error);
+            return {
+              ...user,
+              isOnline: false // 에러나면 기본값 false
+            };
+          }
+        })
+      );
+  
+      // 3. 최종적으로 온라인 여부까지 추가된 리스트 저장
+      setFollowList(updatedList);
+      
+    } catch (error) {
+      console.error('팔로우 리스트 가져오기 실패', error);
+    }
+  };
+  
+  
+
 
   useEffect(() => {
     const client = new Client({
@@ -108,122 +154,204 @@ const NoteBox = ({ incomingNote }) => {
     }
   }, [incomingNote]);
 
+
+  useEffect(() => {
+    const userEmail = getUserEmail();
+    if (userEmail) {
+      fetchFollowList(userEmail); // ✅ 서버에서 follow list를 가져오는 함수 호출
+    }
+  }, []);
+  
+  
+  const handleReceiverSelect = (email) => {
+    setReceiver(email); // 클릭한 이메일을 수신자 입력창에 자동으로 설정
+  };
+  
+
+
+
   return (
-    <div
-      style={{
-        border: "1px solid #d6e9d6",
-        borderRadius: "12px",
-        padding: "20px",
-        maxWidth: "460px",
-        margin: "40px auto",
-        backgroundColor: "#f4fcf5",
-        fontFamily: "'Noto Sans KR', sans-serif",
-      }}
-    >
-      <h2
-        style={{
-          textAlign: "center",
-          marginBottom: "20px",
-          fontSize: "1.2rem",
-          color: "#3b6f47",
-        }}
-      >
-        🌱 실시간 채팅
-      </h2>
+    
+    <>
+        <p 
+          onClick={() => 
+            setIsShow(!isShow)
+          }
+          style={{ cursor: "pointer", textAlign: "center", color: "#3b6f47", marginBottom: "10px" }}
+        >
+          {isShow ? "❌ 수신자 목록 닫기" : "수신자 목록 열기"}
+        </p>
+        
+        {isShow && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center", marginBottom: "20px" }}>
+            {followList.length > 0 ? (
+              followList.map((user) => (
+                <div
+                  key={user.toUserEmail}
+                  onClick={() => {
+                    handleReceiverSelect(user.toUserEmail);
+                    setIsShow(false);
+                  }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "8px 12px",
+                    border: "1px solid #c8e6c9",
+                    borderRadius: "20px",
+                    cursor: "pointer",
+                    backgroundColor: "#e8f5e9",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  {/* 온라인 상태 점 (초록/회색) */}
+                  <div style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    backgroundColor: user.isOnline ? "#4caf50" : "#cfd8dc",
+                  }} />
+                  {/* 이메일 표시 */}
+                  {user.toUserEmail}
+                </div>
+              ))
+            ) : (
+              <div style={{ fontSize: "0.85rem", color: "#888" }}>
+                팔로우한 사용자가 없습니다.
+              </div>
+            )}
+          </div>
+        )}
+
+
+
+
+
+
 
       <div
         style={{
-          height: "300px",
-          overflowY: "auto",
-          border: "1px solid #e1f0e4",
-          borderRadius: "10px",
-          padding: "12px",
-          marginBottom: "16px",
-          backgroundColor: "#ffffff",
+          border: "1px solid #d6e9d6",
+          borderRadius: "12px",
+          padding: "20px",
+          maxWidth: "460px",
+          margin: "40px auto",
+          backgroundColor: "#f4fcf5",
+          fontFamily: "'Noto Sans KR', sans-serif",
         }}
       >
-        {notes.map((msg, idx) => {
-          const isSender = getUserEmail() === msg.senderEmail;
-
-          return (
-            <div key={idx} style={{ marginBottom: "12px" }}>
-              {!isSender && (
+        
+  
+        <h2
+          style={{
+            textAlign: "center",
+            marginBottom: "20px",
+            fontSize: "1.2rem",
+            color: "#3b6f47",
+          }}
+        >
+          🌱 실시간 채팅
+        </h2>
+  
+        <div
+          style={{
+            height: "300px",
+            overflowY: "auto",
+            border: "1px solid #e1f0e4",
+            borderRadius: "10px",
+            padding: "12px",
+            marginBottom: "16px",
+            backgroundColor: "#ffffff",
+          }}
+        >
+          {notes.map((msg, idx) => {
+            const isSender = getUserEmail() === msg.senderEmail;
+  
+            return (
+              <div key={idx} style={{ marginBottom: "12px" }}>
+                {!isSender && (
+                  <div
+                    style={{
+                      marginBottom: "4px",
+                      fontStyle: "italic",
+                      fontSize: "0.75rem",
+                      color: "#6a826e",
+                    }}
+                  >
+                    {msg.senderEmail}
+                  </div>
+                )}
                 <div
                   style={{
-                    marginBottom: "4px",
-                    fontStyle: "italic",
-                    fontSize: "0.75rem",
-                    color: "#6a826e",
+                    maxWidth: "80%",
+                    padding: "10px",
+                    borderRadius: "10px",
+                    fontSize: "0.85rem",
+                    backgroundColor: isSender ? "#81c784" : "#e2f5e9",
+                    color: isSender ? "#fff" : "#2e5737",
+                    marginLeft: isSender ? "auto" : "0",
                   }}
                 >
-                  {msg.senderEmail}
+                  {msg.content}
                 </div>
-              )}
-              <div
-                style={{
-                  maxWidth: "80%",
-                  padding: "10px",
-                  borderRadius: "10px",
-                  fontSize: "0.85rem",
-                  backgroundColor: isSender ? "#81c784" : "#e2f5e9",
-                  color: isSender ? "#fff" : "#2e5737",
-                  marginLeft: isSender ? "auto" : "0",
-                }}
-              >
-                {msg.content}
               </div>
-            </div>
-          );
-        })}
-        <div ref={notesEndRef} />
+            );
+          })}
+          <div ref={notesEndRef} />
+        </div>
+  
+        <input
+          type="email"
+          value={receiver}
+          onChange={(e) => setReceiver(e.target.value)}
+          placeholder="받는 사람 이메일"
+          style={{
+            width: "100%",
+            padding: "10px",
+            marginBottom: "10px",
+            borderRadius: "8px",
+            border: "1px solid #c8e6c9",
+            fontSize: "0.9rem",
+          }}
+        />
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendNote()}
+          placeholder="채팅 내용을 입력하세요"
+          style={{
+            width: "100%",
+            padding: "10px",
+            marginBottom: "12px",
+            borderRadius: "8px",
+            border: "1px solid #c8e6c9",
+            fontSize: "0.9rem",
+          }}
+        />
+        <button
+          onClick={sendNote}
+          style={{
+            width: "100%",
+            padding: "12px",
+            borderRadius: "8px",
+            border: "none",
+            backgroundColor: "#66bb6a",
+            color: "#ffffff",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          🌼 보내기
+        </button>
       </div>
 
-      <input
-        type="email"
-        value={receiver}
-        onChange={(e) => setReceiver(e.target.value)}
-        placeholder="받는 사람 이메일"
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "10px",
-          borderRadius: "8px",
-          border: "1px solid #c8e6c9",
-          fontSize: "0.9rem",
-        }}
-      />
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && sendNote()}
-        placeholder="채팅 내용을 입력하세요"
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "12px",
-          borderRadius: "8px",
-          border: "1px solid #c8e6c9",
-          fontSize: "0.9rem",
-        }}
-      />
-      <button
-        onClick={sendNote}
-        style={{
-          width: "100%",
-          padding: "12px",
-          borderRadius: "8px",
-          border: "none",
-          backgroundColor: "#66bb6a",
-          color: "#ffffff",
-          fontSize: "1rem",
-          fontWeight: "bold",
-          cursor: "pointer",
-        }}
-      >
-        🌼 보내기
-      </button>
-    </div>
+
+
+      
+
+    </>
   );
 };
 
