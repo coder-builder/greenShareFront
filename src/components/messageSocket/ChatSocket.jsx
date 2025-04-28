@@ -8,7 +8,7 @@ const ChatSocket = ({ onMessageReceive }) => {
   useEffect(() => {
     const client = new Client({
       webSocketFactory: () =>
-        new SockJS(`http://:192.168.30.166:8080/ws?token=${token}`), // 광진이 ip 주소 192.192.168.30.166
+        new SockJS(`http://192.168.30.110:8080/ws?token=${token}`), // 광진이 ip 주소 192.192.168.30.166
       reconnectDelay: 5000,
     });
 
@@ -17,7 +17,7 @@ const ChatSocket = ({ onMessageReceive }) => {
       client.subscribe("/user/queue/notes", (message) => {
         const msg = JSON.parse(message.body);
         console.log("💌 수신된 쪽지:", msg);
-        onMessageReceive?.(msg); // 알림 트리거
+        onMessageReceive?.({...msg}); // 알림 트리거
       });
     };
 
