@@ -29,14 +29,12 @@ const NoteBox = ({ incomingNote }) => {
 
   const fetchFollowList = async (userEmail) => {
     try {
-      // 1. 나를 팔로우한 사용자 리스트 가져오기
       const response = await axiosInstance.get('/follow', {
         params: { fromUserEmail: userEmail }
       });
   
-      const followList = response.data; // [{ toUserEmail: "xxx@naver.com" }, ...]
+      const followList = response.data; // toUserEmail만 있음
   
-      // 2. 각 사용자의 온라인 여부 확인
       const updatedList = await Promise.all(
         followList.map(async (user) => {
           try {
@@ -46,44 +44,53 @@ const NoteBox = ({ incomingNote }) => {
   
             return {
               ...user,
-              isOnline: onlineStatus.data // true or false
+              isOnline: onlineStatus.data, // 여기서 추가
             };
           } catch (error) {
             console.error('온라인 상태 확인 실패', error);
             return {
               ...user,
-              isOnline: false // 에러나면 기본값 false
+              isOnline: false // 실패하면 기본 false
             };
           }
         })
       );
   
-      // 3. 최종적으로 온라인 여부까지 추가된 리스트 저장
+      console.log("✅ updatedList (isOnline 추가됨)", updatedList);
       setFollowList(updatedList);
-      
+  
     } catch (error) {
       console.error('팔로우 리스트 가져오기 실패', error);
     }
   };
   
   
+  
 
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () =>
-        new SockJS(`http://localhost:8080/ws?token=${token}`),
+      webSocketFactory: () => new SockJS(`http://localhost:8080/ws`), // 👈 URL에는 token 안 붙인다
+      connectHeaders: {
+        Authorization: `Bearer ${token}`, // 👈 토큰은 Header로 보낸다
+      },
       reconnectDelay: 5000,
     });
-
+  
     client.onConnect = () => {
       console.log("✅ 전송용 WebSocket 연결됨");
       setStompClient(client);
     };
-
+  
     client.activate();
     return () => client.deactivate();
   }, []);
+  
+
+
+
+
+  
 
   const sendNote = () => {
     const senderEmail = getUserEmail();
@@ -133,6 +140,7 @@ const NoteBox = ({ incomingNote }) => {
         console.error("수신자 확인 실패", err);
       });
   };
+  
 
   useEffect(() => {
     notesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -158,9 +166,10 @@ const NoteBox = ({ incomingNote }) => {
   useEffect(() => {
     const userEmail = getUserEmail();
     if (userEmail) {
-      fetchFollowList(userEmail); // ✅ 서버에서 follow list를 가져오는 함수 호출
+      fetchFollowList(userEmail);
     }
-  }, []);
+  }, []); // ✅ 빈 배열
+  
   
   
   const handleReceiverSelect = (email) => {
@@ -179,7 +188,7 @@ const NoteBox = ({ incomingNote }) => {
           }
           style={{ cursor: "pointer", textAlign: "center", color: "#3b6f47", marginBottom: "10px" }}
         >
-          {isShow ? "❌ 수신자 목록 닫기" : "수신자 목록 열기"}
+          {isShow ? " 수신자 목록 닫기" : "수신자 목록 열기"}
         </p>
         
         {isShow && (
@@ -209,7 +218,8 @@ const NoteBox = ({ incomingNote }) => {
                     width: "10px",
                     height: "10px",
                     borderRadius: "50%",
-                    backgroundColor: user.isOnline ? "#4caf50" : "#cfd8dc",
+                    backgroundColor: (user.isOnline === true || user.isOnline === "true") ? "#4caf50" : "#cfd8dc"
+
                   }} />
                   {/* 이메일 표시 */}
                   {user.toUserEmail}
