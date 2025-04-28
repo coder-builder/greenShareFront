@@ -70,10 +70,7 @@ const NoteBox = ({ incomingNote }) => {
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () => new SockJS(`http://localhost:8080/ws`), // 👈 URL에는 token 안 붙인다
-      connectHeaders: {
-        Authorization: `Bearer ${token}`, // 👈 토큰은 Header로 보낸다
-      },
+      webSocketFactory: () => new SockJS(`http://192.168.30.166:8080/ws?token=${token}`), // ✅ Bearer 없이 token만 붙인다
       reconnectDelay: 5000,
     });
   
@@ -195,6 +192,7 @@ const NoteBox = ({ incomingNote }) => {
           <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center", marginBottom: "20px" }}>
             {followList.length > 0 ? (
               followList.map((user) => (
+                
                 <div
                   key={user.toUserEmail}
                   onClick={() => {
@@ -224,6 +222,7 @@ const NoteBox = ({ incomingNote }) => {
                   {/* 이메일 표시 */}
                   {user.toUserEmail}
                 </div>
+                
               ))
             ) : (
               <div style={{ fontSize: "0.85rem", color: "#888" }}>
