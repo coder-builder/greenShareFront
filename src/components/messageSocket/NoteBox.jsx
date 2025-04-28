@@ -29,65 +29,55 @@ const NoteBox = ({ incomingNote }) => {
 
   const fetchFollowList = async (userEmail) => {
     try {
-      const response = await axiosInstance.get('/follow', {
-        params: { fromUserEmail: userEmail }
+      const response = await axiosInstance.get("/follow", {
+        params: { fromUserEmail: userEmail },
       });
-  
+
       const followList = response.data; // toUserEmail만 있음
-  
+
       const updatedList = await Promise.all(
         followList.map(async (user) => {
           try {
-            const onlineStatus = await axiosInstance.get('/users/online', {
-              params: { userEmail: user.toUserEmail }
+            const onlineStatus = await axiosInstance.get("/users/online", {
+              params: { userEmail: user.toUserEmail },
             });
-  
+
             return {
               ...user,
               isOnline: onlineStatus.data, // 여기서 추가
             };
           } catch (error) {
-            console.error('온라인 상태 확인 실패', error);
+            console.error("온라인 상태 확인 실패", error);
             return {
               ...user,
-              isOnline: false // 실패하면 기본 false
+              isOnline: false, // 실패하면 기본 false
             };
           }
         })
       );
-  
+
       console.log("✅ updatedList (isOnline 추가됨)", updatedList);
       setFollowList(updatedList);
-  
     } catch (error) {
-      console.error('팔로우 리스트 가져오기 실패', error);
+      console.error("팔로우 리스트 가져오기 실패", error);
     }
   };
-  
-  
-  
-
 
   useEffect(() => {
     const client = new Client({
-      webSocketFactory: () => new SockJS(`http://192.168.30.166:8080/ws?token=${token}`), // ✅ Bearer 없이 token만 붙인다
+      webSocketFactory: () =>
+        new SockJS(`http://192.168.30.166:8080/ws?token=${token}`), // ✅ Bearer 없이 token만 붙인다
       reconnectDelay: 5000,
     });
-  
+
     client.onConnect = () => {
       console.log("✅ 전송용 WebSocket 연결됨");
       setStompClient(client);
     };
-  
+
     client.activate();
     return () => client.deactivate();
   }, []);
-  
-
-
-
-
-  
 
   const sendNote = () => {
     const senderEmail = getUserEmail();
@@ -137,7 +127,6 @@ const NoteBox = ({ incomingNote }) => {
         console.error("수신자 확인 실패", err);
       });
   };
-  
 
   useEffect(() => {
     notesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -161,84 +150,84 @@ const NoteBox = ({ incomingNote }) => {
     }
   }, [incomingNote]);
 
-
   useEffect(() => {
     const userEmail = getUserEmail();
     if (userEmail) {
       fetchFollowList(userEmail);
     }
   }, []); // ✅ 빈 배열
-  
-  
-  
+
   const handleReceiverSelect = (email) => {
     setReceiver(email); // 클릭한 이메일을 수신자 입력창에 자동으로 설정
   };
-  
-
-
 
   return (
-    
     <>
-        <p 
-          onClick={() => 
-            setIsShow(!isShow)
-          }
-          style={{ cursor: "pointer", textAlign: "center", color: "#3b6f47", marginBottom: "10px" }}
+      <p
+        onClick={() => setIsShow(!isShow)}
+        style={{
+          cursor: "pointer",
+          textAlign: "center",
+          color: "#3b6f47",
+          marginBottom: "10px",
+        }}
+      >
+        {isShow ? " 팔로우 목록 닫기" : "팔로우 목록 열기"}
+      </p>
+
+      {isShow && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "8px",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
         >
-          {isShow ? " 수신자 목록 닫기" : "수신자 목록 열기"}
-        </p>
-        
-        {isShow && (
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", justifyContent: "center", marginBottom: "20px" }}>
-            {followList.length > 0 ? (
-              followList.map((user) => (
-                
+          {followList.length > 0 ? (
+            followList.map((user) => (
+              <div
+                key={user.toUserEmail}
+                onClick={() => {
+                  handleReceiverSelect(user.toUserEmail);
+                  setIsShow(false);
+                }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  padding: "8px 12px",
+                  border: "1px solid #c8e6c9",
+                  borderRadius: "20px",
+                  cursor: "pointer",
+                  backgroundColor: "#e8f5e9",
+                  fontSize: "0.9rem",
+                }}
+              >
+                {/* 온라인 상태 점 (초록/회색) */}
                 <div
-                  key={user.toUserEmail}
-                  onClick={() => {
-                    handleReceiverSelect(user.toUserEmail);
-                    setIsShow(false);
-                  }}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    padding: "8px 12px",
-                    border: "1px solid #c8e6c9",
-                    borderRadius: "20px",
-                    cursor: "pointer",
-                    backgroundColor: "#e8f5e9",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  {/* 온라인 상태 점 (초록/회색) */}
-                  <div style={{
                     width: "10px",
                     height: "10px",
                     borderRadius: "50%",
-                    backgroundColor: (user.isOnline === true || user.isOnline === "true") ? "#4caf50" : "#cfd8dc"
-
-                  }} />
-                  {/* 이메일 표시 */}
-                  {user.toUserEmail}
-                </div>
-                
-              ))
-            ) : (
-              <div style={{ fontSize: "0.85rem", color: "#888" }}>
-                팔로우한 사용자가 없습니다.
+                    backgroundColor:
+                      user.isOnline === true || user.isOnline === "true"
+                        ? "#4caf50"
+                        : "#cfd8dc",
+                  }}
+                />
+                {/* 이메일 표시 */}
+                {user.toUserEmail}
               </div>
-            )}
-          </div>
-        )}
-
-
-
-
-
-
+            ))
+          ) : (
+            <div style={{ fontSize: "0.85rem", color: "#888" }}>
+              팔로우한 사용자가 없습니다.
+            </div>
+          )}
+        </div>
+      )}
 
       <div
         style={{
@@ -251,8 +240,6 @@ const NoteBox = ({ incomingNote }) => {
           fontFamily: "'Noto Sans KR', sans-serif",
         }}
       >
-        
-  
         <h2
           style={{
             textAlign: "center",
@@ -261,9 +248,9 @@ const NoteBox = ({ incomingNote }) => {
             color: "#3b6f47",
           }}
         >
-          🌱 실시간 채팅
+          🌱 GreenShare 채팅방
         </h2>
-  
+
         <div
           style={{
             height: "300px",
@@ -277,7 +264,7 @@ const NoteBox = ({ incomingNote }) => {
         >
           {notes.map((msg, idx) => {
             const isSender = getUserEmail() === msg.senderEmail;
-  
+
             return (
               <div key={idx} style={{ marginBottom: "12px" }}>
                 {!isSender && (
@@ -310,12 +297,12 @@ const NoteBox = ({ incomingNote }) => {
           })}
           <div ref={notesEndRef} />
         </div>
-  
+
         <input
           type="email"
           value={receiver}
           onChange={(e) => setReceiver(e.target.value)}
-          placeholder="받는 사람 이메일"
+          placeholder="이메일을 직접 입력"
           style={{
             width: "100%",
             padding: "10px",
@@ -357,11 +344,6 @@ const NoteBox = ({ incomingNote }) => {
           🌼 보내기
         </button>
       </div>
-
-
-
-      
-
     </>
   );
 };
