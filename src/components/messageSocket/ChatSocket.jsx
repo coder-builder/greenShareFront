@@ -17,7 +17,7 @@ const ChatSocket = ({ onMessageReceive }) => {
       client.subscribe("/user/queue/notes", (message) => {
         const msg = JSON.parse(message.body);
         console.log("💌 수신된 쪽지:", msg);
-        onMessageReceive?.(msg); // 알림 트리거
+        onMessageReceive?.({...msg}); // 알림 트리거
       });
     };
 

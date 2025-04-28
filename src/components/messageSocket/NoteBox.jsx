@@ -155,6 +155,8 @@ const NoteBox = ({ incomingNote }) => {
         sendDate: incomingNote.sentAt || new Date().toISOString(), // 시간 필드 보정
       };
 
+      console.log("🧹 포맷 완료된 메시지:", formatted);
+
       setNotes((prev) => [...prev, formatted]);
     }
   }, [incomingNote]);
