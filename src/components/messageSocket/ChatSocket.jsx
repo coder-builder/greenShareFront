@@ -8,7 +8,7 @@ const ChatSocket = ({ onMessageReceive }) => {
   useEffect(() => {
     const client = new Client({
       webSocketFactory: () =>
-        new SockJS(`http://192.168.30.110/ws?token=${token}`), // 광진이 ip 주소 192.192.168.30.166
+        new SockJS(`http://192.168.30.166:8080/ws?token=${token}`), // 광진이 ip 주소 192.192.168.30.166
       reconnectDelay: 5000,
     });
 
