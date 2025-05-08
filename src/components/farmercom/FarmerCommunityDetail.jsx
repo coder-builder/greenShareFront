@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { detailStory } from "../../apis/plantStory";
 import styles from "./FamerCommunityDetail.module.css";
 import dayjs from "dayjs";
-import { axiosInstance } from "../../redux/axiosinstance";
-import FarmerCoummnityReplyEdit from "./FarmerCoummnityReplyEdit";
+import { axiosInstance } from "../../redux/axiosInstance";
+import FarmerCoummnityReplyEdit from "./FarmerCommunityReplyEdit";
 
 const FarmerCommunityDetail = () => {
   const nav = useNavigate();
