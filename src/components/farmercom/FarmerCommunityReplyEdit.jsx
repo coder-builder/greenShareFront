@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../redux/axiosInstance";
-import styles from "./FarmerCoummintyReplyEdit.module.css";
+import styles from "./FarmerCommuintyReplyEdit.module.css";
 
 const FarmerCommunityReplyEdit = ({
   commentId,
